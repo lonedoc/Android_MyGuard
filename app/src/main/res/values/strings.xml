@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">MyGuard</string>
+    <string name="default_notification_channel_id">ru.rubeg38.myguard.notifications</string>
+
+    <!-- Common -->
+    <string name="background_image_description">Background image</string>
+    <string name="request_failed_message">Could not load data</string> <!-- TODO: Edit -->
+
+    <!-- Login -->
+    <string name="logo_image_description">Logo</string>
+    <string name="logo_text">Rubezh NPO</string>
+    <string name="city_picker_hint">City</string>
+    <string name="guard_service_picker_hint">Guard service</string>
+    <string name="phone_number_field_hint">Phone number</string>
+    <string name="get_password_button_text">Get password</string>
+
+    <!-- Password -->
+    <string name="password_sent_text">An sms message with a password has been sent to your number. Please, enter it in the text field below:</string>
+    <string name="password_hint">Password</string>
+    <string name="password_request_cooldown_text">You can request new password again after: %s</string>
+    <string name="get_new_password_button_text">Get new password</string>
+    <string name="cancel_button_text">Cancel</string>
+    <string name="proceed_button_text">Proceed</string>
+    <string name="fcm_token_unavailable_message">Google Services is not available</string> <!-- TODO: Edit -->
+    <string name="password_request_failed_message">Could not send new password</string> <!-- TODO: Edit -->
+    <string name="login_failed_message">Login failed</string> <!-- TODO: Edit -->
+</resources>

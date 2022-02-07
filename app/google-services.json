@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "85520675861",
+    "firebase_url": "https://rubezhsecutirycenter.firebaseio.com",
+    "project_id": "rubezhsecutirycenter",
+    "storage_bucket": "rubezhsecutirycenter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85520675861:android:9ba53162212ab2cd",
+        "android_client_info": {
+          "package_name": "kobramob.rubeg38.ru.myprotection"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "85520675861-gribmmhbaj5o586ikono1ec0n3kp6uuc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrewIqggn471g9tDNn5G8CmYsxDPPB7DI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "85520675861-gribmmhbaj5o586ikono1ec0n3kp6uuc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "85520675861-a1rcjrhm1jg2ab5609de5q8sg59j3o7h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ru.rubeg38.securiycenter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

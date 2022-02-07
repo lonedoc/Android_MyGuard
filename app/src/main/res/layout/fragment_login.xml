@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/background_image_description"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_image" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <!-- Logo -->
+        <ImageView
+            android:id="@+id/logoImage"
+            android:layout_width="@dimen/logo_size"
+            android:layout_height="@dimen/logo_size"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/logo_image_description"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/logoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/logoImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="@string/logo_text" />
+
+        <!-- City -->
+        <View
+            android:id="@+id/cityPickerBackgroundView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/text_field_height"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@id/logoText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:alpha="0.3"
+            android:background="@color/white" />
+
+        <Spinner
+            android:id="@+id/cityPicker"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/text_field_height"
+            android:layout_marginHorizontal="0dp"
+            app:layout_constraintTop_toTopOf="@id/cityPickerBackgroundView"
+            app:layout_constraintStart_toStartOf="@id/cityPickerBackgroundView"
+            app:layout_constraintEnd_toEndOf="@id/cityPickerBackgroundView"
+            app:layout_constraintBottom_toBottomOf="@id/cityPickerBackgroundView"
+            android:paddingHorizontal="@dimen/window_padding"
+            android:backgroundTint="@color/white"
+            android:popupBackground="@color/blue_gray_800" />
+
+        <!-- Guard service -->
+        <View
+            android:id="@+id/guardServicePickerBackgroundView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/text_field_height"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/cityPickerBackgroundView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:alpha="0.3"
+            android:background="@color/white" />
+
+        <Spinner
+            android:id="@+id/guardServicePicker"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/text_field_height"
+            app:layout_constraintTop_toTopOf="@id/guardServicePickerBackgroundView"
+            app:layout_constraintStart_toStartOf="@id/guardServicePickerBackgroundView"
+            app:layout_constraintEnd_toEndOf="@id/guardServicePickerBackgroundView"
+            app:layout_constraintBottom_toBottomOf="@id/guardServicePickerBackgroundView"
+            android:paddingHorizontal="@dimen/window_padding"
+            android:backgroundTint="@color/white"
+            android:popupBackground="@color/blue_gray_800" />
+
+        <!-- Phone number -->
+        <EditText
+            android:id="@+id/phoneEditText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/text_field_height"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/guardServicePickerBackgroundView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingHorizontal="@dimen/window_padding"
+            android:background="@color/translucent_white_30"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/translucent_white_80"
+            android:inputType="phone"
+            android:hint="@string/phone_number_field_hint" />
+
+        <!-- Submit -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/proceedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginHorizontal="@dimen/window_padding"
+            app:layout_constraintTop_toBottomOf="@id/phoneEditText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@color/positive_button_background_color"
+            android:textColor="@color/white"
+            android:text="@string/get_password_button_text" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
