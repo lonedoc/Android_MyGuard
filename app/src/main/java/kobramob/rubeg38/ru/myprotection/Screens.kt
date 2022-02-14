@@ -10,6 +10,10 @@ import kobramob.rubeg38.ru.myprotection.feature.splashscreen.ui.SplashScreenFrag
 
 object Screens {
 
+    fun splashscreen() = FragmentScreen {
+        SplashScreenFragment.create()
+    }
+
     fun login() = FragmentScreen {
         LoginFragment.create()
     }
