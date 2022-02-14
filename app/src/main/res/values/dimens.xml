@@ -19,8 +19,8 @@
     <dimen name="indicator_gap">8dp</dimen>
     <dimen name="digit_button_size">64dp</dimen>
     <dimen name="half_digit_button_size">32dp</dimen>
-    <dimen name="digit_button_horizontal_gap">24dp</dimen>
-    <dimen name="digit_button_vertical_gap">16dp</dimen>
-    <dimen name="digit_text_size">18sp</dimen>
-    <dimen name="digit_hint_text_size">14sp</dimen>
+    <dimen name="digit_button_horizontal_gap">32dp</dimen>
+    <dimen name="digit_button_vertical_gap">24dp</dimen>
+    <dimen name="digit_text_size">20sp</dimen>
+    <dimen name="digit_hint_text_size">16sp</dimen>
 </resources>

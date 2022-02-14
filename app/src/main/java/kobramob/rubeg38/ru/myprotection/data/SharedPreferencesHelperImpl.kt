@@ -14,6 +14,7 @@ private const val USER_PHONE_NUMBER_KEY = "userPhone"
 private const val USER_ID_KEY = "userId"
 private const val USER_NAME_KEY = "userName"
 private const val TOKEN_KEY = "token"
+private const val PASSCODE_KEY = "pinCode"
 
 class SharedPreferencesHelperImpl(
     private val sharedPreferences: SharedPreferences
@@ -77,6 +78,14 @@ class SharedPreferencesHelperImpl(
         set(value) {
             sharedPreferences.edit {
                 putString(TOKEN_KEY, value)
+            }
+        }
+
+    override var passcode: String?
+        get() = sharedPreferences.getString(PASSCODE_KEY, null)
+        set(value) {
+            sharedPreferences.edit {
+                putString(PASSCODE_KEY, value)
             }
         }
 

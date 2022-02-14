@@ -14,8 +14,8 @@ class LoginRepositoryImpl(private val loginApi: LoginApi) : LoginRepository {
         return loginApi.login(credentials, fcmToken, deviceName).toDomain()
     }
 
-    override suspend fun logout() {
-
+    override suspend fun logout(): Boolean {
+        return loginApi.logout()
     }
 
 }

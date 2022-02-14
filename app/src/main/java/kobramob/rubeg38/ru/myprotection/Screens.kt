@@ -3,8 +3,10 @@ package kobramob.rubeg38.ru.myprotection
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import kobramob.rubeg38.ru.myprotection.domain.models.GuardService
 import kobramob.rubeg38.ru.myprotection.feature.login.ui.LoginFragment
+import kobramob.rubeg38.ru.myprotection.feature.objects.ui.ObjectsFragment
 import kobramob.rubeg38.ru.myprotection.feature.passcode.ui.PasscodeFragment
 import kobramob.rubeg38.ru.myprotection.feature.password.ui.PasswordFragment
+import kobramob.rubeg38.ru.myprotection.feature.splashscreen.ui.SplashScreenFragment
 
 object Screens {
 
@@ -18,6 +20,10 @@ object Screens {
 
     fun passcode() = FragmentScreen {
         PasscodeFragment.create()
+    }
+
+    fun objects() = FragmentScreen {
+        ObjectsFragment.create()
     }
 
 }

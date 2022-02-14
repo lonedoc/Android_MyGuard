@@ -19,6 +19,7 @@
     <!-- 1 -->
     <LinearLayout
         android:id="@+id/digit1Button"
+        android:tag="1"
         android:layout_width="@dimen/digit_button_size"
         android:layout_height="@dimen/digit_button_size"
         android:layout_marginEnd="@dimen/digit_button_horizontal_gap"
@@ -51,6 +52,7 @@
     <!-- 2 -->
     <LinearLayout
         android:id="@+id/digit2Button"
+        android:tag="2"
         android:layout_width="@dimen/digit_button_size"
         android:layout_height="@dimen/digit_button_size"
         app:layout_constraintTop_toTopOf="parent"
@@ -83,6 +85,7 @@
     <!-- 3 -->
     <LinearLayout
         android:id="@+id/digit3Button"
+        android:tag="3"
         android:layout_width="@dimen/digit_button_size"
         android:layout_height="@dimen/digit_button_size"
         android:layout_marginStart="@dimen/digit_button_horizontal_gap"
@@ -115,6 +118,7 @@
     <!-- 4 -->
     <LinearLayout
         android:id="@+id/digit4Button"
+        android:tag="4"
         android:layout_width="@dimen/digit_button_size"
         android:layout_height="@dimen/digit_button_size"
         android:layout_marginEnd="@dimen/digit_button_horizontal_gap"
@@ -147,6 +151,7 @@
     <!-- 5 -->
     <LinearLayout
         android:id="@+id/digit5Button"
+        android:tag="5"
         android:layout_width="@dimen/digit_button_size"
         android:layout_height="@dimen/digit_button_size"
         android:layout_marginTop="@dimen/digit_button_vertical_gap"
@@ -180,6 +185,7 @@
     <!-- 6 -->
     <LinearLayout
         android:id="@+id/digit6Button"
+        android:tag="6"
         android:layout_width="@dimen/digit_button_size"
         android:layout_height="@dimen/digit_button_size"
         android:layout_marginStart="@dimen/digit_button_horizontal_gap"
@@ -212,6 +218,7 @@
     <!-- 7 -->
     <LinearLayout
         android:id="@+id/digit7Button"
+        android:tag="7"
         android:layout_width="@dimen/digit_button_size"
         android:layout_height="@dimen/digit_button_size"
         android:layout_marginEnd="@dimen/digit_button_horizontal_gap"
@@ -244,6 +251,7 @@
     <!-- 8 -->
     <LinearLayout
         android:id="@+id/digit8Button"
+        android:tag="8"
         android:layout_width="@dimen/digit_button_size"
         android:layout_height="@dimen/digit_button_size"
         android:layout_marginTop="@dimen/digit_button_vertical_gap"
@@ -277,6 +285,7 @@
     <!-- 9 -->
     <LinearLayout
         android:id="@+id/digit9Button"
+        android:tag="9"
         android:layout_width="@dimen/digit_button_size"
         android:layout_height="@dimen/digit_button_size"
         android:layout_marginStart="@dimen/digit_button_horizontal_gap"
@@ -309,6 +318,7 @@
     <!-- 0 -->
     <LinearLayout
         android:id="@+id/digit0Button"
+        android:tag="0"
         android:layout_width="@dimen/digit_button_size"
         android:layout_height="@dimen/digit_button_size"
         android:layout_marginTop="@dimen/digit_button_vertical_gap"

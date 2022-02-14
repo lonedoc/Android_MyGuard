@@ -9,6 +9,7 @@ interface SharedPreferencesHelper {
     var userPhoneNumber: String?
     var user: User?
     var token: String?
+    var passcode: String?
 }
 
 

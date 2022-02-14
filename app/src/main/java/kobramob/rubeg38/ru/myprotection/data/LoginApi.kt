@@ -81,6 +81,53 @@ class LoginApi(private val sessionDataHolder: SessionDataHolder) {
         return jsonObject.toString()
     }
 
+    suspend fun logout(): Boolean {
+        val addresses = sessionDataHolder.getIpAddresses().mapNotNull { ip ->
+            try {
+                Address.create(ip, PORT)
+            } catch (ex: Exception) {
+                null
+            }
+        }
+
+        require(addresses.count() > 0)
+
+        val token = sessionDataHolder.getToken()
+
+        val query = "{\"\$c$\":\"newlk\",\"com\":\"deleteuser\"}"
+
+        if (BuildConfig.DEBUG) {
+            Log.d(this::class.simpleName, "-> $query")
+        }
+
+        val data = retry(3, addresses) { address ->
+            val config = clientConfig {
+                setSkipUnidentified(false)
+            }
+
+            val client = Client(config)
+            client.bind(address)
+            client.sendRequest(query, token)
+        }
+
+        val json = String(data)
+
+        if (BuildConfig.DEBUG) {
+            Log.d(this::class.simpleName, "<- $json")
+        }
+
+        val jsonObject = JsonParser.parseString(json).asJsonObject
+        val clientType = jsonObject.get("\$c$")?.asString
+        val command = jsonObject.get("com")?.asString
+        val result = jsonObject.get("result")?.asString
+
+        if (clientType != "newlk" || command != "deleteuser" || result == null) {
+            throw Exception("Parse error")
+        }
+
+        return result == "ok"
+    }
+
     private fun parseCommand(json: String): String? {
         val jsonObject = JsonParser.parseString(json).asJsonObject
         return jsonObject.get("\$c$")?.asString

@@ -26,16 +26,18 @@
     <string name="login_failed_message">Login failed</string> <!-- TODO: Edit -->
 
     <!-- Passcode -->
+    <string name="exit_button_title">Exit</string>
+    <string name="call_button_title">Call the guard service</string>
     <string name="forgot_code_button_text">Forgot code?</string>
-        <string name="digit_2_button_hint">abc</string>
-        <string name="digit_3_button_hint">def</string>
-        <string name="digit_4_button_hint">ghi</string>
-        <string name="digit_5_button_hint">jkl</string>
-        <string name="digit_6_button_hint">mno</string>
-        <string name="digit_7_button_hint">pqrs</string>
-        <string name="digit_8_button_hint">tuv</string>
-        <string name="digit_9_button_hint">wxyz</string>
-        <string name="digit_0_button_hint">+</string>
+    <string name="digit_2_button_hint">abc</string>
+    <string name="digit_3_button_hint">def</string>
+    <string name="digit_4_button_hint">ghi</string>
+    <string name="digit_5_button_hint">jkl</string>
+    <string name="digit_6_button_hint">mno</string>
+    <string name="digit_7_button_hint">pqrs</string>
+    <string name="digit_8_button_hint">tuv</string>
+    <string name="digit_9_button_hint">wxyz</string>
+    <string name="digit_0_button_hint">+</string>
 <!--    <string name="digit_2_button_hint">абвг</string>-->
 <!--    <string name="digit_3_button_hint">дежз</string>-->
 <!--    <string name="digit_4_button_hint">ийкл</string>-->
@@ -44,4 +46,11 @@
 <!--    <string name="digit_7_button_hint">фхцч</string>-->
 <!--    <string name="digit_8_button_hint">шщъы</string>-->
 <!--    <string name="digit_9_button_hint">ьэюя</string>-->
+    <string name="passcode_creation_hint_text">Enter new passcode</string>
+    <string name="passcode_confirmation_hint_text">Repeat the passcode</string>
+    <string name="entrance_with_passcode_hint_text">Enter the passcode</string>
+    <string name="wrong_passcode_confirmation_message">Wrong passcode confirmation</string>
+    <string name="wrong_passcode_message">Wrong passcode</string>
+    <string name="logout_failed_message">Could not log out. Please, try again</string>
+    <string name="phone_number_not_found_message">Phone number is not found</string>
 </resources>

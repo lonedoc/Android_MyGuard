@@ -10,5 +10,5 @@ interface LoginRepository {
         deviceName: String
     ): LoginResponse
 
-    suspend fun logout()
+    suspend fun logout(): Boolean
 }
