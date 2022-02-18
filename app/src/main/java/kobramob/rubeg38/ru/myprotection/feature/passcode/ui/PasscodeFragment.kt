@@ -19,7 +19,6 @@ class PasscodeFragment : Fragment(R.layout.fragment_passcode) {
     }
 
     private val viewModel: PasscodeViewModel by viewModel()
-
     private val binding: FragmentPasscodeBinding by viewBinding()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

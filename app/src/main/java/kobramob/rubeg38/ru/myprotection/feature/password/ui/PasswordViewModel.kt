@@ -118,6 +118,8 @@ class PasswordViewModel(
                 passwordInteractor.saveUser(event.loginResponse.user)
                 passwordInteractor.updateGuardService(event.loginResponse.guardService)
 
+                passwordInteractor.setToken(event.loginResponse.token)
+
                 router.navigateTo(Screens.passcode())
 
                 return null

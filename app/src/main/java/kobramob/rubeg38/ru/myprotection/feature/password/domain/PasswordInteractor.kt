@@ -19,6 +19,10 @@ class PasswordInteractor(
         sessionDataHolder.setIpAddresses(ipAddresses)
     }
 
+    suspend fun setToken(token: String) {
+        sessionDataHolder.setToken(token)
+    }
+
     suspend fun requestPassword(phoneNumber: String) = attempt {
         val preparedPhoneNumber = phoneNumber
             .filter { char -> char.isDigit() }

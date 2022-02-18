@@ -3,6 +3,7 @@
     <!-- Common -->
     <dimen name="window_padding">24dp</dimen>
     <dimen name="half_window_padding">12dp</dimen>
+    <dimen name="small_headline_size">18sp</dimen>
     <dimen name="body_text_size">16sp</dimen>
 
     <!-- Login -->
@@ -23,4 +24,9 @@
     <dimen name="digit_button_vertical_gap">24dp</dimen>
     <dimen name="digit_text_size">20sp</dimen>
     <dimen name="digit_hint_text_size">16sp</dimen>
+
+    <!-- Objects -->
+    <dimen name="object_icon_wrapper_size">72dp</dimen>
+    <dimen name="object_icon_size">32dp</dimen>
+    <dimen name="object_icon_horizontal_gap">16dp</dimen>
 </resources>

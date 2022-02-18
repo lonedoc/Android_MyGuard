@@ -109,7 +109,7 @@ class PasscodeViewModel(
                         if (passcode == previousState.passcode2) {
                             interactor.savePasscode(passcode)
 
-                            router.newRootScreen(Screens.objects())
+                            router.newRootScreen(Screens.facilities())
 
                             return previousState.copy(
                                 passcode1 = passcode,
@@ -130,7 +130,7 @@ class PasscodeViewModel(
                     }
                     Stage.ENTRANCE -> {
                         if (passcode == previousState.passcode2) {
-                            router.newRootScreen(Screens.objects())
+                            router.newRootScreen(Screens.facilities())
 
                             return previousState.copy(
                                 passcode1 = passcode,

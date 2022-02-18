@@ -1,9 +1,11 @@
 package kobramob.rubeg38.ru.myprotection
 
 import com.github.terrakok.cicerone.androidx.FragmentScreen
+import kobramob.rubeg38.ru.myprotection.domain.models.Facility
 import kobramob.rubeg38.ru.myprotection.domain.models.GuardService
 import kobramob.rubeg38.ru.myprotection.feature.login.ui.LoginFragment
-import kobramob.rubeg38.ru.myprotection.feature.objects.ui.ObjectsFragment
+import kobramob.rubeg38.ru.myprotection.feature.facilities.ui.FacilitiesFragment
+import kobramob.rubeg38.ru.myprotection.feature.facility.ui.FacilityFragment
 import kobramob.rubeg38.ru.myprotection.feature.passcode.ui.PasscodeFragment
 import kobramob.rubeg38.ru.myprotection.feature.password.ui.PasswordFragment
 import kobramob.rubeg38.ru.myprotection.feature.splashscreen.ui.SplashScreenFragment
@@ -26,8 +28,12 @@ object Screens {
         PasscodeFragment.create()
     }
 
-    fun objects() = FragmentScreen {
-        ObjectsFragment.create()
+    fun facilities() = FragmentScreen {
+        FacilitiesFragment.create()
+    }
+
+    fun facility(facility: Facility) = FragmentScreen {
+        FacilityFragment.create(facility)
     }
 
 }

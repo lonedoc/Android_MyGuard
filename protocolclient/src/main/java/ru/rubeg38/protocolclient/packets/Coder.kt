@@ -180,6 +180,7 @@ internal class Coder {
         return token
             .replace("-", "")
             .zipWithNext { first, second -> "$first$second" }
+            .filterIndexed { index, _ -> index % 2 == 0 }
             .map { hex -> Integer.valueOf(hex, 16).toByte() }
             .toByteArray()
     }

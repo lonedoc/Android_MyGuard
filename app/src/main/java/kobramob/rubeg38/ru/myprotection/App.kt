@@ -2,6 +2,7 @@ package kobramob.rubeg38.ru.myprotection
 
 import android.app.Application
 import kobramob.rubeg38.ru.myprotection.di.appModule
+import kobramob.rubeg38.ru.myprotection.feature.facilities.di.facilitiesModule
 import kobramob.rubeg38.ru.myprotection.feature.login.di.loginModule
 import kobramob.rubeg38.ru.myprotection.feature.passcode.di.passcodeModule
 import kobramob.rubeg38.ru.myprotection.feature.password.di.passwordModule
@@ -16,7 +17,14 @@ class App : Application() {
 
         startKoin {
             androidContext(applicationContext)
-            modules(appModule, loginModule, passwordModule, passcodeModule, splashScreenModule)
+            modules(
+                appModule,
+                loginModule,
+                passwordModule,
+                passcodeModule,
+                splashScreenModule,
+                facilitiesModule
+            )
         }
     }
 
