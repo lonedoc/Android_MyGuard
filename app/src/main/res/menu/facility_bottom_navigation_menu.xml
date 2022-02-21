@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/eventsItem"
+        android:title="@string/events_item_text"
+        android:icon="@drawable/events_icon" />
+
+    <item
+        android:id="@+id/sensorsItem"
+        android:title="@string/sensors_item_text"
+        android:icon="@drawable/sensors_icon" />
+
+    <item
+        android:id="@+id/placeholderItem"
+        android:title="" />
+
+    <item
+        android:id="@+id/accountItem"
+        android:title="@string/account_item_text"
+        android:icon="@drawable/account_icon" />
+
+    <item
+        android:id="@+id/testModeItem"
+        android:title="@string/test_mode_item_text"
+        android:icon="@drawable/test_mode_icon" />
+
+</menu>

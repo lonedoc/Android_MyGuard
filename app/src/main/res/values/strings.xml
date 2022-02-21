@@ -54,7 +54,15 @@
     <string name="logout_failed_message">Could not log out. Please, try again</string>
     <string name="phone_number_not_found_message">Phone number is not found</string>
 
-    <!-- Objects -->
+    <!-- Facilities -->
     <string name="facilities_title">Facilities</string>
     <string name="facilities_update_failed_message">Could not fetch the list of facilities</string>
+
+    <!-- Facility -->
+    <string name="edit_name_item_text">Edit name</string>
+    <string name="events_item_text">Events</string>
+    <string name="sensors_item_text">Sensors</string>
+    <string name="account_item_text">Account</string>
+    <string name="test_mode_item_text">Test mode</string>
+    <string name="arming_button_content_description">Arming button</string>
 </resources>

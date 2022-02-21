@@ -10,8 +10,8 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iconImageView"
-        android:layout_width="@dimen/object_icon_wrapper_size"
-        android:layout_height="@dimen/object_icon_wrapper_size"
+        android:layout_width="@dimen/facility_icon_wrapper_size"
+        android:layout_height="@dimen/facility_icon_wrapper_size"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,7 +23,7 @@
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/object_icon_horizontal_gap"
+        android:layout_marginStart="@dimen/facility_icon_horizontal_gap"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/iconImageView"
         app:layout_constraintBottom_toTopOf="@id/addressTextView"

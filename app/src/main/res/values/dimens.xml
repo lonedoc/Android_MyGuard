@@ -25,8 +25,14 @@
     <dimen name="digit_text_size">20sp</dimen>
     <dimen name="digit_hint_text_size">16sp</dimen>
 
-    <!-- Objects -->
-    <dimen name="object_icon_wrapper_size">72dp</dimen>
-    <dimen name="object_icon_size">32dp</dimen>
-    <dimen name="object_icon_horizontal_gap">16dp</dimen>
+    <!-- Facilities -->
+    <dimen name="facility_icon_wrapper_size">72dp</dimen>
+    <dimen name="facility_icon_size">32dp</dimen>
+    <dimen name="facility_icon_horizontal_gap">16dp</dimen>
+
+    <!-- Facility -->
+    <dimen name="equipment_status_icon_size">20dp</dimen>
+    <dimen name="equipment_status_icon_inset">2dp</dimen>
+    <dimen name="equipment_status_icon_gap">8dp</dimen>
+    <dimen name="status_text_size">18sp</dimen>
 </resources>
