@@ -29,4 +29,7 @@
     <dimen name="object_icon_wrapper_size">72dp</dimen>
     <dimen name="object_icon_size">32dp</dimen>
     <dimen name="object_icon_horizontal_gap">16dp</dimen>
+
+    <!-- Accounts -->
+    <dimen name="payment_form_items_gap">16dp</dimen>
 </resources>

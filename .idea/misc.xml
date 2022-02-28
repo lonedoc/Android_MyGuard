@@ -8,11 +8,16 @@
         <entry key="..\:/Users/Dev/Documents/Work/MyGuard/app/src/main/res/drawable-mdpi/shield_icon.xml" value="0.2135" />
         <entry key="..\:/Users/Dev/Documents/Work/MyGuard/app/src/main/res/layout/fragment_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Dev/Documents/Work/MyGuard/app/src/main/res/layout/fragment_password.xml" value="0.32592592592592595" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/drawable/alarm_icon.xml" value="0.211" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/drawable/backspace_icon.xml" value="0.1115" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/drawable/battery_icon.xml" value="0.211" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/drawable/button_background.xml" value="0.325" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/drawable/empty_shield_icon.xml" value="0.211" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/drawable/fingerprint_icon.xml" value="0.1115" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/drawable/notification_icon.xml" value="0.1965" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/drawable/online_channel_off_icon.xml" value="0.211" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/drawable/online_channel_on_icon.xml" value="0.211" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/drawable/power_supply_icon.xml" value="0.211" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/drawable/solid_shield_icon.xml" value="0.211" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/drawable/status_alarm_icon.xml" value="0.1115" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/drawable/status_guarded_icon.xml" value="0.1115" />
@@ -24,13 +29,17 @@
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/layout/dropdown_item.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/layout/facilities_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/layout/fragment_facilities.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/layout/fragment_facility.xml" value="0.33" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/layout/fragment_login.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/layout/fragment_objects.xml" value="0.24592391304347827" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/layout/fragment_passcode.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/layout/fragment_password.xml" value="0.26268115942028986" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/layout/fragment_payment_page.xml" value="0.24592391304347827" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/layout/fragment_splash_screen.xml" value="0.24592391304347827" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/layout/keyboard_view.xml" value="0.1" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/layout/list_item.xml" value="0.24592391304347827" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/layout/objects_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/menu/facility_bottom_navigation_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

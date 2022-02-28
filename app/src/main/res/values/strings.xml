@@ -57,4 +57,11 @@
     <!-- Objects -->
     <string name="facilities_title">Facilities</string>
     <string name="facilities_update_failed_message">Could not fetch the list of facilities</string>
+
+    <!-- Accounts -->
+    <string name="account_text_field_hint">Account</string>
+    <string name="sum_text_field_hint">Sum</string>
+    <string name="pay_button_text">Pay</string>
+    <string name="invalid_input_message">Invalid data format</string>
+    <string name="payment_page_title">Payment</string>
 </resources>
