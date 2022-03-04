@@ -3,6 +3,7 @@ package kobramob.rubeg38.ru.myprotection.utils
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
@@ -60,6 +61,7 @@ fun EditText.setDebouncingTextListener(
     })
 }
 
+
 fun EditText.setTextChangedListener(onTextChange: (String) -> Unit) {
     addTextChangedListener(object : TextWatcher {
         override fun onTextChanged(newText: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -71,8 +73,27 @@ fun EditText.setTextChangedListener(onTextChange: (String) -> Unit) {
     })
 }
 
+fun textChangedListener(onTextChange: (String) -> Unit) = object : TextWatcher {
+    override fun onTextChanged(newText: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        onTextChange(newText.toString())
+    }
+
+    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+    override fun afterTextChanged(p0: Editable?) {}
+}
+
 fun <T> AbsDelegationAdapter<List<T>>.loadData(data: List<T>) {
     items = data
+    notifyDataSetChanged()
+}
+
+fun <T> ArrayAdapter<T>.loadData(data: List<T>) {
+    clear()
+
+    data.forEachIndexed { index, item ->
+        insert(item, index)
+    }
+
     notifyDataSetChanged()
 }
 

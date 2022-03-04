@@ -25,6 +25,7 @@
     <dimen name="digit_text_size">20sp</dimen>
     <dimen name="digit_hint_text_size">16sp</dimen>
 
+
     <!-- Facilities -->
     <dimen name="facility_icon_wrapper_size">72dp</dimen>
     <dimen name="facility_icon_size">32dp</dimen>
@@ -35,4 +36,7 @@
     <dimen name="equipment_status_icon_inset">2dp</dimen>
     <dimen name="equipment_status_icon_margin">4dp</dimen>
     <dimen name="status_text_size">18sp</dimen>
+
+    <!-- Accounts -->
+    <dimen name="payment_form_items_gap">16dp</dimen>
 </resources>
