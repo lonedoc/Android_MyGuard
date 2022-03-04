@@ -1,11 +1,12 @@
 package kobramob.rubeg38.ru.myprotection.domain.models
 
 import android.os.Parcelable
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Facility(
-    val id: Int,
+    val id: String,
     val name: String,
     val address: String,
     val statusCodes: List<StatusCode>,
@@ -18,4 +19,12 @@ data class Facility(
     val batteryMalfunction: Boolean,
     val powerSupplyMalfunction: Boolean,
     val accounts: List<Account>
-) : Parcelable
+) : Parcelable {
+
+    @IgnoredOnParcel
+    val alarm = statusCodes.contains(StatusCode.ALARM)
+
+    @IgnoredOnParcel
+    val isGuarded = statusCodes.contains(StatusCode.GUARDED)
+
+}

@@ -4,7 +4,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
+import androidx.annotation.DrawableRes
+import com.bumptech.glide.Glide
 import com.hannesdorfmann.adapterdelegates4.AbsDelegationAdapter
+import kobramob.rubeg38.ru.myprotection.R
 import java.util.*
 
 private const val DEFAULT_THROTTLE_DELAY = 300L
@@ -56,6 +60,17 @@ fun EditText.setDebouncingTextListener(
     })
 }
 
+fun EditText.setTextChangedListener(onTextChange: (String) -> Unit) {
+    addTextChangedListener(object : TextWatcher {
+        override fun onTextChanged(newText: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            onTextChange(newText.toString())
+        }
+
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        override fun afterTextChanged(p0: Editable?) {}
+    })
+}
+
 fun <T> AbsDelegationAdapter<List<T>>.loadData(data: List<T>) {
     items = data
     notifyDataSetChanged()
@@ -71,4 +86,11 @@ fun Timer.schedule(delay: Long, period: Long, task: () -> Unit) {
         delay,
         period
     )
+}
+
+fun ImageView.load(@DrawableRes drawableRes: Int) {
+    Glide
+        .with(context)
+        .load(drawableRes)
+        .into(this)
 }

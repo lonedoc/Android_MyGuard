@@ -19,7 +19,7 @@ fun LoginResponseDto.toDomain() = LoginResponse(
 )
 
 fun FacilityDto.toDomain() = Facility(
-    id = id.toInt(),
+    id = id,
     name = name,
     address = address,
     statusCodes = getStatusCodes(statusCode, perimeterOnly),

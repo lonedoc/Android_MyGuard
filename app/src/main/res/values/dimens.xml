@@ -33,6 +33,6 @@
     <!-- Facility -->
     <dimen name="equipment_status_icon_size">20dp</dimen>
     <dimen name="equipment_status_icon_inset">2dp</dimen>
-    <dimen name="equipment_status_icon_gap">8dp</dimen>
+    <dimen name="equipment_status_icon_margin">4dp</dimen>
     <dimen name="status_text_size">18sp</dimen>
 </resources>

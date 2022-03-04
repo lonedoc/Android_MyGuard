@@ -80,32 +80,27 @@
                 android:id="@+id/onlineChannelIcon"
                 android:layout_width="@dimen/equipment_status_icon_size"
                 android:layout_height="@dimen/equipment_status_icon_size"
+                android:layout_marginHorizontal="@dimen/equipment_status_icon_margin"
                 android:src="@drawable/online_channel_on_icon"
                 android:background="@color/blue_500"
                 app:shapeAppearanceOverlay="@style/roundedImageView"
                 android:visibility="invisible" />
 
-            <Space
-                android:layout_width="@dimen/equipment_status_icon_gap"
-                android:layout_height="wrap_content" />
-
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/batteryMalfunctionIcon"
                 android:layout_width="@dimen/equipment_status_icon_size"
                 android:layout_height="@dimen/equipment_status_icon_size"
+                android:layout_marginHorizontal="@dimen/equipment_status_icon_margin"
                 android:src="@drawable/battery_icon"
                 android:background="@color/deep_orange_500"
                 app:shapeAppearanceOverlay="@style/roundedImageView"
                 android:visibility="invisible" />
 
-            <Space
-                android:layout_width="@dimen/equipment_status_icon_gap"
-                android:layout_height="wrap_content" />
-
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/powerSupplyMalfunctionIcon"
                 android:layout_width="@dimen/equipment_status_icon_size"
                 android:layout_height="@dimen/equipment_status_icon_size"
+                android:layout_marginHorizontal="@dimen/equipment_status_icon_margin"
                 android:src="@drawable/power_supply_icon"
                 android:background="@color/deep_orange_500"
                 app:shapeAppearanceOverlay="@style/roundedImageView"
