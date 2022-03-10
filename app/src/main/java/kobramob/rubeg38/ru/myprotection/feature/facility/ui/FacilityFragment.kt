@@ -8,11 +8,14 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.fragment.app.setFragmentResultListener
 import by.kirich1409.viewbindingdelegate.viewBinding
 import kobramob.rubeg38.ru.myprotection.R
 import kobramob.rubeg38.ru.myprotection.databinding.FragmentFacilityBinding
 import kobramob.rubeg38.ru.myprotection.domain.models.Facility
+import kobramob.rubeg38.ru.myprotection.feature.accounts.ui.AccountsFragment
+import kobramob.rubeg38.ru.myprotection.feature.events.ui.EventsFragment
 import kobramob.rubeg38.ru.myprotection.utils.load
 import kobramob.rubeg38.ru.myprotection.utils.setThrottledClickListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -28,6 +31,16 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
         fun create(facility: Facility) = FacilityFragment().apply {
             arguments = bundleOf(FACILITY_KEY to facility)
         }
+    }
+
+    private val eventsFragment: EventsFragment by lazy {
+        val facility = requireArguments().getParcelable<Facility>(FACILITY_KEY)
+        EventsFragment.create(facility?.id ?: "")
+    }
+
+    private val accountsFragment: AccountsFragment by lazy {
+        val facility = requireArguments().getParcelable<Facility>(FACILITY_KEY)
+        AccountsFragment.create(facility?.accounts ?: emptyList())
     }
 
     private val viewModel: FacilityViewModel by viewModel {
@@ -69,25 +82,24 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
         binding.bottomNavigationView.menu.getItem(2).isEnabled = false
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.eventsItem -> {
-                    // TODO: Show events
-                    true
-                }
-                R.id.sensorsItem -> {
-                    // TODO: Show sensors
-                    true
-                }
-                R.id.accountItem -> {
-                    // TODO: Show the payment form
-                    true
-                }
-                R.id.testModeItem -> {
-                    // TODO: Start the test mode
-                    false
-                }
-                else -> false
+            if (item.itemId == R.id.testModeItem) {
+                // TODO: Test mode
+                return@setOnItemSelectedListener false
             }
+
+            val fragment = when (item.itemId) {
+                R.id.eventsItem -> eventsFragment
+                R.id.sensorsItem -> null // TODO: Show sensors
+                R.id.accountItem -> accountsFragment
+                else -> null
+            } ?: return@setOnItemSelectedListener false
+
+
+            childFragmentManager.commit {
+                replace(R.id.containerView, fragment)
+            }
+
+            true
         }
 
         lifecycle.addObserver(viewModel)

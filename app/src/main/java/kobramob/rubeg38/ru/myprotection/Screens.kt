@@ -39,10 +39,6 @@ object Screens {
         FacilityFragment.create(facility)
     }
 
-    fun accounts(accounts: List<Account>) = FragmentScreen {
-        AccountsFragment.create(accounts)
-    }
-
     fun paymentPage(account: Account, sum: String) = FragmentScreen {
         PaymentPageFragment.create(account, sum)
     }

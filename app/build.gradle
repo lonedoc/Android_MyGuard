@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
     id 'kotlin-android'
+    id 'kotlin-kapt'
     id 'kotlin-parcelize'
 }
 
@@ -48,6 +49,7 @@ dependencies {
     def glide_version = "4.12.0"
     def material_components_version = "1.5.0"
     def swipe_refresh_layout_version = "1.1.0"
+    def room_version = "2.4.2"
     def decoro_version = "1.5.0"
     def view_binding_delegate_version = "1.5.2"
     def adapter_delegates_version = "4.3.1"
@@ -98,6 +100,11 @@ dependencies {
 
     // Decoro
     implementation "ru.tinkoff.decoro:decoro:$decoro_version"
+
+    // Room
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
     // Testing
     testImplementation 'junit:junit:4.13.2'

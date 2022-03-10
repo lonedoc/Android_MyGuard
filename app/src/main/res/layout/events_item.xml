@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="@dimen/half_window_padding"
+    android:layout_marginHorizontal="@dimen/window_padding">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iconImageView"
+        android:layout_width="@dimen/event_icon_wrapper_size"
+        android:layout_height="@dimen/event_icon_wrapper_size"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:shapeAppearanceOverlay="@style/roundedImageView"
+        tools:background="@color/black"
+        tools:src="@drawable/exit_icon" />
+
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/event_icon_horizontal_gap"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iconImageView"
+        app:layout_constraintBottom_toTopOf="@id/zoneTextView"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="@dimen/small_headline_size"
+        android:textStyle="bold"
+        tools:text="Title" />
+
+    <TextView
+        android:id="@+id/zoneTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/descriptionTextView"
+        app:layout_constraintStart_toStartOf="@id/descriptionTextView"
+        app:layout_constraintBottom_toTopOf="@id/timestampTextView"
+        android:maxLines="1"
+        android:ellipsize="end"
+        tools:text="Address" />
+
+    <TextView
+        android:id="@+id/timestampTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/zoneTextView"
+        app:layout_constraintStart_toStartOf="@id/descriptionTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:maxLines="1"
+        android:ellipsize="end"
+        tools:text="Status" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

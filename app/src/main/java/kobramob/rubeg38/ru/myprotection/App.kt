@@ -3,6 +3,7 @@ package kobramob.rubeg38.ru.myprotection
 import android.app.Application
 import kobramob.rubeg38.ru.myprotection.di.appModule
 import kobramob.rubeg38.ru.myprotection.feature.accounts.di.accountsModule
+import kobramob.rubeg38.ru.myprotection.feature.events.di.eventsModule
 import kobramob.rubeg38.ru.myprotection.feature.facilities.di.facilitiesModule
 import kobramob.rubeg38.ru.myprotection.feature.facility.di.facilityModule
 import kobramob.rubeg38.ru.myprotection.feature.login.di.loginModule
@@ -27,6 +28,7 @@ class App : Application() {
                 splashScreenModule,
                 facilitiesModule,
                 facilityModule,
+                eventsModule,
                 accountsModule
             )
         }

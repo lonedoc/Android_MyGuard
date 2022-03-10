@@ -45,7 +45,9 @@ class AccountsFragment : Fragment(R.layout.fragment_accounts) {
 
         binding.accountsAutoComplete.setOnItemClickListener { _, _, position, _ ->
             adapter.getItem(position)?.let { account ->
+                binding.accountsAutoComplete.setAdapter(null)
                 binding.accountsAutoComplete.setText(getTextRepresentation(account))
+                binding.accountsAutoComplete.setAdapter(adapter)
                 viewModel.processUiEvent(UiEvent.OnAccountSelect(account))
             }
         }
