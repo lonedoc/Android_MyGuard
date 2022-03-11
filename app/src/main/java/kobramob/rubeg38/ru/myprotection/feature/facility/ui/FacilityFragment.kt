@@ -20,6 +20,7 @@ import kobramob.rubeg38.ru.myprotection.utils.load
 import kobramob.rubeg38.ru.myprotection.utils.setThrottledClickListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import java.io.OutputStream
 
 private const val RENAME_DIALOG_TAG = "rename_dialog"
 
@@ -94,13 +95,14 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
                 else -> null
             } ?: return@setOnItemSelectedListener false
 
-
             childFragmentManager.commit {
                 replace(R.id.containerView, fragment)
             }
 
             true
         }
+
+        binding.bottomNavigationView.selectedItemId = R.id.eventsItem
 
         lifecycle.addObserver(viewModel)
 
