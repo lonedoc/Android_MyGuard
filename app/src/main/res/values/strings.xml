@@ -64,6 +64,7 @@
     <string name="sensors_item_text">Sensors</string>
     <string name="account_item_text">Account</string>
     <string name="test_mode_item_text">Test mode</string>
+    <string name="alarm_button_content_description">Alarm button</string>
     <string name="arming_button_content_description">Arming button</string>
     <string name="rename_dialog_title">Rename the facility</string>
     <string name="name_hint">Name</string>
@@ -99,4 +100,14 @@
     <string name="pay_button_text">Pay</string>
     <string name="invalid_input_message">Invalid data format</string>
     <string name="payment_page_title">Payment</string>
+
+    <!-- TestMode -->
+    <string name="reset_button_text">Reset</string>
+    <string name="end_testing_button_text">Cancel</string>
+    <string name="press_alarm_button_hint">Press the alarm button</string>
+    <string name="alarm_button_pressed_hint">The alarm button has been pressed</string>
+    <string name="alarm_button_tested_hint">The alarm button has been tested</string>
+    <string name="reset_failed_message">Could not complete reset</string>
+    <string name="end_testing_failed_message">Could not end the testing</string>
+    <string name="testing_failed_message">Could not start testing</string>
 </resources>

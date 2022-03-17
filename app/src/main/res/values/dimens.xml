@@ -43,4 +43,9 @@
 
     <!-- Accounts -->
     <dimen name="payment_form_items_gap">16dp</dimen>
+
+    <!-- TestMode -->
+    <dimen name="hint_text_size">16sp</dimen>
+    <dimen name="countdown_text_size">32sp</dimen>
+    <dimen name="countdown_vertical_gap">24dp</dimen>
 </resources>

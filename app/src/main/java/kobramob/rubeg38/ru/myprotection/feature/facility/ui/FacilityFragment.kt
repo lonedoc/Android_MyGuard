@@ -10,18 +10,27 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.setFragmentResultListener
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
 import kobramob.rubeg38.ru.myprotection.R
 import kobramob.rubeg38.ru.myprotection.databinding.FragmentFacilityBinding
+import kobramob.rubeg38.ru.myprotection.domain.models.Account
 import kobramob.rubeg38.ru.myprotection.domain.models.Facility
 import kobramob.rubeg38.ru.myprotection.feature.accounts.ui.AccountsFragment
+import kobramob.rubeg38.ru.myprotection.feature.accounts.ui.AccountsViewModel
 import kobramob.rubeg38.ru.myprotection.feature.events.ui.EventsFragment
+import kobramob.rubeg38.ru.myprotection.feature.events.ui.EventsViewModel
+import kobramob.rubeg38.ru.myprotection.feature.testmode.ui.TestModeDialogFragment
 import kobramob.rubeg38.ru.myprotection.utils.load
 import kobramob.rubeg38.ru.myprotection.utils.setThrottledClickListener
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import java.io.OutputStream
 
 private const val RENAME_DIALOG_TAG = "rename_dialog"
+private const val TEST_MODE_DIALOG_TAG = "test_mode_dialog"
 
 class FacilityFragment : Fragment(R.layout.fragment_facility) {
 
@@ -33,18 +42,30 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
         }
     }
 
-    private val eventsFragment: EventsFragment by lazy {
-        val facility = requireArguments().getParcelable<Facility>(FACILITY_KEY)
-        EventsFragment.create(facility?.id ?: "")
-    }
-
-    private val accountsFragment: AccountsFragment by lazy {
-        val facility = requireArguments().getParcelable<Facility>(FACILITY_KEY)
-        AccountsFragment.create(facility?.accounts ?: emptyList())
-    }
-
     private val viewModel: FacilityViewModel by viewModel {
         parametersOf(requireArguments().getParcelable<Facility>(FACILITY_KEY))
+    }
+
+    private fun getPagerAdapter(): FragmentStateAdapter {
+        return object : FragmentStateAdapter(childFragmentManager, lifecycle) {
+            override fun getItemCount(): Int = 3
+
+            override fun createFragment(position: Int): Fragment = when (position) {
+                0 -> getEventsFragment()
+                1 -> getAccountsFragment() // TODO
+                else -> getAccountsFragment()
+            }
+
+            private fun getEventsFragment(): EventsFragment {
+                val facility = requireArguments().getParcelable<Facility>(FACILITY_KEY)
+                return EventsFragment.create(facility?.id ?: "")
+            }
+
+            private fun getAccountsFragment(): AccountsFragment {
+                val facility = requireArguments().getParcelable<Facility>(FACILITY_KEY)
+                return AccountsFragment.create(facility?.accounts ?: emptyList())
+            }
+        }
     }
 
     private val binding: FragmentFacilityBinding by viewBinding()
@@ -79,28 +100,34 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
             false
         }
 
+        binding.viewPager.adapter = getPagerAdapter()
+
         binding.bottomNavigationView.menu.getItem(2).isEnabled = false
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             if (item.itemId == R.id.testModeItem) {
-                // TODO: Test mode
+                viewModel.processUiEvent(UiEvent.OnTestButtonClick)
                 return@setOnItemSelectedListener false
             }
 
-            val fragment = when (item.itemId) {
-                R.id.eventsItem -> eventsFragment
-                R.id.sensorsItem -> null // TODO: Show sensors
-                R.id.accountItem -> accountsFragment
-                else -> null
-            } ?: return@setOnItemSelectedListener false
-
-
-            childFragmentManager.commit {
-                replace(R.id.containerView, fragment)
+            return@setOnItemSelectedListener when (item.itemId) {
+                R.id.eventsItem -> {
+                    binding.viewPager.setCurrentItem(0, true)
+                    true
+                }
+                R.id.sensorsItem -> {
+                    binding.viewPager.setCurrentItem(1, true)
+                    true
+                }
+                R.id.accountItem -> {
+                    binding.viewPager.setCurrentItem(2, true)
+                    true
+                }
+                else -> false
             }
-
-            true
         }
+
+        binding.bottomNavigationView.selectedItemId = R.id.eventsItem
 
         lifecycle.addObserver(viewModel)
 
@@ -154,6 +181,9 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
                     viewModel.processUiEvent(event.uiEvent)
                 }
             }
+            is SingleEvent.OnTestModeDialog -> {
+                showTestModeDialog(event.facilityId)
+            }
             is SingleEvent.OnError -> {
                 showErrorMessage(event.errorMessageRes)
             }
@@ -179,6 +209,13 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
             .setNegativeButton(R.string.confirmation_dialog_negative_button_text) { _, _ -> }
             .create()
             .show()
+    }
+
+    private fun showTestModeDialog(facilityId: String) {
+        TestModeDialogFragment.create(facilityId).show(
+            requireActivity().supportFragmentManager,
+            TEST_MODE_DIALOG_TAG
+        )
     }
 
     private fun showErrorMessage(@StringRes errorMessageRes: Int) {

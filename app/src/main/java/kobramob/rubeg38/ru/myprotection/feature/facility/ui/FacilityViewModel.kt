@@ -206,6 +206,11 @@ class FacilityViewModel(
                 }
                 return null
             }
+            is UiEvent.OnTestButtonClick -> {
+                val facilityId = previousState.facility.id
+                singleEvent.postValue(SingleEvent.OnTestModeDialog(facilityId))
+                return null
+            }
             is DataEvent.OnArmingStart -> {
                 startTimer(SHORT_UPDATE_INTERVAL)
 

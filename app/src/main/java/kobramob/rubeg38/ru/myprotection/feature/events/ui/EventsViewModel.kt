@@ -48,6 +48,11 @@ class EventsViewModel(
             }
             is UiEvent.OnEndOfListReached -> {
                 val minEventId = previousState.events.minOf { it.id }
+
+                if (minEventId == 0) {
+                    return null
+                }
+
                 var lowerBound = minEventId - PAGE_SIZE
 
                 if (lowerBound < 0) {

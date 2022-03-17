@@ -13,6 +13,7 @@ import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import kobramob.rubeg38.ru.myprotection.R
 import kobramob.rubeg38.ru.myprotection.databinding.FragmentEventsBinding
 import kobramob.rubeg38.ru.myprotection.utils.loadData
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 

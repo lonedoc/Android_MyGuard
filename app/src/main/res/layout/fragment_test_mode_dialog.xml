@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/window_padding">
+
+    <TextView
+        android:id="@+id/hintTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="@dimen/hint_text_size"
+        tools:text="Status" />
+
+    <TextView
+        android:id="@+id/countdownTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/countdown_vertical_gap"
+        app:layout_constraintTop_toBottomOf="@id/hintTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="@dimen/countdown_text_size"
+        tools:text="Status" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/centerGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.5"
+        android:orientation="vertical" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/resetButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/countdown_vertical_gap"
+        android:layout_marginStart="@dimen/window_padding"
+        android:layout_marginEnd="@dimen/half_window_padding"
+        app:layout_constraintTop_toBottomOf="@id/countdownTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/centerGuideline"
+        android:backgroundTint="@color/positive_button_background_color"
+        android:textColor="@color/white"
+        android:text="@string/reset_button_text" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/endTestingButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/countdown_vertical_gap"
+        android:layout_marginStart="@dimen/half_window_padding"
+        android:layout_marginEnd="@dimen/window_padding"
+        app:layout_constraintTop_toBottomOf="@id/countdownTextView"
+        app:layout_constraintStart_toEndOf="@id/centerGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/positive_button_background_color"
+        android:textColor="@color/white"
+        android:text="@string/end_testing_button_text" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

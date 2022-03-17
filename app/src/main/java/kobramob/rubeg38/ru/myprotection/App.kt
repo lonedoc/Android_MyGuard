@@ -10,6 +10,7 @@ import kobramob.rubeg38.ru.myprotection.feature.login.di.loginModule
 import kobramob.rubeg38.ru.myprotection.feature.passcode.di.passcodeModule
 import kobramob.rubeg38.ru.myprotection.feature.password.di.passwordModule
 import kobramob.rubeg38.ru.myprotection.feature.splashscreen.di.splashScreenModule
+import kobramob.rubeg38.ru.myprotection.feature.testmode.di.testModeModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -29,7 +30,8 @@ class App : Application() {
                 facilitiesModule,
                 facilityModule,
                 eventsModule,
-                accountsModule
+                accountsModule,
+                testModeModule
             )
         }
     }

@@ -10,6 +10,7 @@ import kobramob.rubeg38.ru.myprotection.databinding.FragmentAccountsBinding
 import kobramob.rubeg38.ru.myprotection.domain.models.Account
 import kobramob.rubeg38.ru.myprotection.utils.loadData
 import kobramob.rubeg38.ru.myprotection.utils.textChangedListener
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
