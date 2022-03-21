@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
+import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegate
 import kobramob.rubeg38.ru.myprotection.R
 import kobramob.rubeg38.ru.myprotection.databinding.FragmentEventsBinding
 import kobramob.rubeg38.ru.myprotection.utils.loadData
@@ -75,7 +76,9 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
     }
 
     private fun render(viewState: ViewState) {
+        val state = binding.eventsRecyclerView.layoutManager?.onSaveInstanceState()
         eventsAdapter.loadData(viewState.events)
+        binding.eventsRecyclerView.layoutManager?.onRestoreInstanceState(state)
 
         binding.swipeRefreshLayout.isRefreshing = viewState.isRefresherShown
     }

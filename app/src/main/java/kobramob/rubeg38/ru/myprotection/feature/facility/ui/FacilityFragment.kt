@@ -100,6 +100,7 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
             false
         }
 
+        binding.viewPager.isUserInputEnabled = false
         binding.viewPager.adapter = getPagerAdapter()
 
         binding.bottomNavigationView.menu.getItem(2).isEnabled = false
