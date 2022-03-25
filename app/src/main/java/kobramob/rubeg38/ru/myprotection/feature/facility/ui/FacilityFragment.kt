@@ -29,9 +29,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import java.io.OutputStream
 
-private const val RENAME_DIALOG_TAG = "rename_dialog"
-private const val TEST_MODE_DIALOG_TAG = "test_mode_dialog"
-
 class FacilityFragment : Fragment(R.layout.fragment_facility) {
 
     companion object {
@@ -194,7 +191,7 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
     private fun showRenameDialog(currentName: String) {
         RenameDialogFragment.create(currentName).show(
             requireActivity().supportFragmentManager,
-            RENAME_DIALOG_TAG
+            RenameDialogFragment::class.simpleName
         )
     }
 
@@ -215,7 +212,7 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
     private fun showTestModeDialog(facilityId: String) {
         TestModeDialogFragment.create(facilityId).show(
             requireActivity().supportFragmentManager,
-            TEST_MODE_DIALOG_TAG
+            TestModeDialogFragment::class.simpleName
         )
     }
 

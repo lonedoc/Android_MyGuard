@@ -49,4 +49,5 @@ class RenameDialogFragment : DialogFragment() {
 
         return dialog
     }
+
 }

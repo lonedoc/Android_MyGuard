@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/titleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/iconImageView"
+        app:layout_constraintBottom_toTopOf="@id/subtitleTextView"
+        tools:text="Title"
+        android:textSize="@dimen/sorting_option_title_size"
+        android:textColor="@android:color/black" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/subtitleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/iconImageView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="Title"
+        android:textSize="@dimen/sorting_option_subtitle_size"
+        android:textColor="@color/gray_500" />
+
+    <ImageView
+        android:id="@+id/iconImageView"
+        android:layout_width="@dimen/sorting_option_icon_size"
+        android:layout_height="@dimen/sorting_option_icon_size"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</merge>

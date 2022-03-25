@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/window_padding"
+    android:orientation="vertical">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/sorting_bottom_sheet_title_gap_size"
+        android:textAlignment="center"
+        android:textSize="@dimen/small_headline_size"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:text="@string/sorting_bottom_sheet_title" />
+
+    <kobramob.rubeg38.ru.myprotection.feature.facilities.ui.views.QuadStateCheckbox
+        android:id="@+id/byAddressCheckbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/sorting_by_address_title"
+        app:subtitle1="@string/ascending_subtitle"
+        app:subtitle2="@string/descending_subtitle"
+        app:icon1="@drawable/ascending_icon"
+        app:icon2="@drawable/descending_icon"
+        app:tintColor="@color/green_500" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sorting_options_gap_size" />
+
+    <kobramob.rubeg38.ru.myprotection.feature.facilities.ui.views.QuadStateCheckbox
+        android:id="@+id/byNameCheckbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/sorting_by_name_title"
+        app:subtitle1="@string/ascending_subtitle"
+        app:subtitle2="@string/descending_subtitle"
+        app:icon1="@drawable/ascending_icon"
+        app:icon2="@drawable/descending_icon"
+        app:tintColor="@color/green_500" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sorting_options_gap_size" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/byStatusCheckbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sorting_by_status_title"
+        android:textSize="@dimen/sorting_option_title_size"
+        android:textColor="@color/checkbox_text_color"
+        android:button="@null"
+        android:drawableRight="@drawable/checkbox_icon"
+        android:background="@android:color/transparent"
+        tools:checked="true" />
+
+</LinearLayout>

@@ -30,6 +30,13 @@
     <dimen name="facility_icon_size">32dp</dimen>
     <dimen name="facility_icon_horizontal_gap">16dp</dimen>
 
+    <!-- Sorting -->
+    <dimen name="sorting_bottom_sheet_title_gap_size">24dp</dimen>
+    <dimen name="sorting_option_title_size">18sp</dimen>
+    <dimen name="sorting_option_subtitle_size">16sp</dimen>
+    <dimen name="sorting_option_icon_size">24dp</dimen>
+    <dimen name="sorting_options_gap_size">16dp</dimen>
+
     <!-- Facility -->
     <dimen name="equipment_status_icon_size">20dp</dimen>
     <dimen name="equipment_status_icon_inset">2dp</dimen>
