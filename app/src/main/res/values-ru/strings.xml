@@ -1,0 +1,114 @@
+<resources>
+    <string name="app_name">Моя охрана</string>
+    <string name="default_notification_channel_id">ru.rubeg38.myguard.notifications</string>
+
+    <!-- Common -->
+    <string name="background_image_description">Фоновое изображение</string>
+    <string name="request_failed_message">Не удалось загрузить данные</string> <!-- TODO: Edit -->
+    <string name="call_button_title">Позвонить в охранное предприятие</string>
+
+    <!-- Login -->
+    <string name="logo_image_description">Логотип</string>
+    <string name="logo_text">Рубеж НПО</string>
+    <string name="city_picker_hint">Город</string>
+    <string name="guard_service_picker_hint">Охранное предприятие</string>
+    <string name="phone_number_field_hint">Номер телефона</string>
+    <string name="get_password_button_text">Запросить пароль</string>
+
+    <!-- Password -->
+    <string name="password_sent_text">Смс-сообщение с паролем было отправлено на ваш номер. Введите его в текстовое поле ниже:</string>
+    <string name="password_hint">Пароль</string>
+    <string name="password_request_cooldown_text">Вы можете запросить новый пароль через: %s</string>
+    <string name="get_new_password_button_text">Запросить новый пароль</string>
+    <string name="cancel_button_text">Отмена</string>
+    <string name="proceed_button_text">Продолжить</string>
+    <string name="fcm_token_unavailable_message">Сервисы Google не доступны</string> <!-- TODO: Edit -->
+    <string name="password_request_failed_message">Не удалось отправить пароль</string> <!-- TODO: Edit -->
+    <string name="login_failed_message">Не удалось выполнить вход</string> <!-- TODO: Edit -->
+
+    <!-- Passcode -->
+    <string name="exit_button_title">Выход</string>
+    <string name="forgot_code_button_text">Забыли код?</string>
+    <string name="digit_2_button_hint">абвг</string>
+    <string name="digit_3_button_hint">дежз</string>
+    <string name="digit_4_button_hint">ийкл</string>
+    <string name="digit_5_button_hint">мноп</string>
+    <string name="digit_6_button_hint">рсту</string>
+    <string name="digit_7_button_hint">фхцч</string>
+    <string name="digit_8_button_hint">шщъы</string>
+    <string name="digit_9_button_hint">ьэюя</string>
+    <string name="digit_0_button_hint">+</string>
+    <string name="passcode_creation_hint_text">Введите новый код</string>
+    <string name="passcode_confirmation_hint_text">Повторите код</string>
+    <string name="entrance_with_passcode_hint_text">Введите код</string>
+    <string name="wrong_passcode_confirmation_message">Коды не совпадают</string>
+    <string name="wrong_passcode_message">Неправильный код</string>
+    <string name="logout_failed_message">Не удалось выполнить выход</string>
+    <string name="phone_number_not_found_message">Номер телефона не найден</string>
+
+    <!-- Facilities -->
+    <string name="facilities_title">Объекты</string>
+    <string name="facilities_update_failed_message">Не удалось загрузить список объектов</string>
+    <string name="sort_button_title">Сортировка</string>
+
+    <!-- Sorting -->
+    <string name="sorting_bottom_sheet_title">Сортировка</string>
+    <string name="sorting_by_address_title">По адресу</string>
+    <string name="sorting_by_name_title">По названию</string>
+    <string name="sorting_by_status_title">По статусу</string>
+    <string name="ascending_subtitle">По возрастанию</string>
+    <string name="descending_subtitle">По убыванию</string>
+
+    <!-- Facility -->
+    <string name="edit_name_item_text">Переименовать</string>
+    <string name="events_item_text">События</string>
+    <string name="sensors_item_text">Датчики</string>
+    <string name="account_item_text">Учетные записи</string>
+    <string name="test_mode_item_text">Проверка ТК</string>
+    <string name="alarm_button_content_description">Тревожная кнопка</string>
+    <string name="arming_button_content_description">Кнопка постановки/снятия с охраны</string>
+    <string name="rename_dialog_title">Переименовать объект</string>
+    <string name="name_hint">Название</string>
+    <string name="rename_dialog_positive_button_text">Переименовать</string>
+    <string name="rename_dialog_negative_button_text">Отмена</string>
+    <string name="renaming_failed_message">Не удалось переименовать объект</string>
+    <string name="confirmation_dialog_title">Требуется подтверждение</string>
+    <string name="confirmation_dialog_negative_button_text">Отмена</string>
+    <string name="alarm_is_not_available_message">Функция тревога не доступна. Для того чтобы использовать эту функцию обратитесь в охранное предприятие</string>
+    <string name="alarm_dialog_message">Вы уверены, что хотите начать тревогу?</string>
+    <string name="alarm_dialog_positive_button_text">Начать тревогу</string>
+    <string name="alarm_failed_message">Не удалось начать тревогу</string>
+    <string name="arming_is_not_available_message">Функция постановки/снятия не доступна. Для того чтобы использовать эту функцию обратитесь в охранное предприятие</string>
+    <string name="arming_dialog_message">Вы уверены, что хотите взять поставить объект на охрану?</string>
+    <string name="arming_dialog_positive_button_text">Поставить под охрану</string>
+    <string name="arming_progress_bar_hint">Постановка на охрану…</string>
+    <string name="arming_failed_message">Не удалось поставить объект на охрану</string>
+    <string name="arming_perimeter_dialog_message">Вы уверены, что хотите поставить периметр объекта на охрану?</string>
+    <string name="arming_perimeter_dialog_positive_button_text">Поставить периметр на охрану</string>
+    <string name="arming_perimeter_progress_bar_hint">Постановка периметра на охрану…</string>
+    <string name="arming_perimeter_failed_message">Не удалось поставить периметр объекта на охрану</string>
+    <string name="disarming_dialog_message">Вы уверены, что хотите снять объект с охраны?</string>
+    <string name="disarming_dialog_positive_button_text">Снять с охраны</string>
+    <string name="disarming_progress_bar_hint">Снятие с охраны…</string>
+    <string name="disarming_failed_message">Не удалось снять объект с охраны</string>
+
+    <!-- Events -->
+    <string name="events_update_failed_message">Не удалось загрузить список событий</string>
+
+    <!-- Accounts -->
+    <string name="account_text_field_hint">Учетная запись</string>
+    <string name="sum_text_field_hint">Сумма</string>
+    <string name="pay_button_text">Оплатить</string>
+    <string name="invalid_input_message">Некорректный формат данных</string>
+    <string name="payment_page_title">Оплата</string>
+
+    <!-- TestMode -->
+    <string name="reset_button_text">Сброс</string>
+    <string name="end_testing_button_text">Отмена</string>
+    <string name="press_alarm_button_hint">Нажмите тревожную кнопку</string>
+    <string name="alarm_button_pressed_hint">Тревожная кнопка нажата</string>
+    <string name="alarm_button_tested_hint">Тревожная кнопка протестирована</string>
+    <string name="reset_failed_message">Не удалось выполнить сброс</string>
+    <string name="end_testing_failed_message">Не удалось завершить тестирование</string>
+    <string name="testing_failed_message">Не удалось начать тестирование</string>
+</resources>

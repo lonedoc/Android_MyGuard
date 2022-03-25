@@ -38,14 +38,6 @@
     <string name="digit_8_button_hint">tuv</string>
     <string name="digit_9_button_hint">wxyz</string>
     <string name="digit_0_button_hint">+</string>
-<!--    <string name="digit_2_button_hint">абвг</string>-->
-<!--    <string name="digit_3_button_hint">дежз</string>-->
-<!--    <string name="digit_4_button_hint">ийкл</string>-->
-<!--    <string name="digit_5_button_hint">мноп</string>-->
-<!--    <string name="digit_6_button_hint">рсту</string>-->
-<!--    <string name="digit_7_button_hint">фхцч</string>-->
-<!--    <string name="digit_8_button_hint">шщъы</string>-->
-<!--    <string name="digit_9_button_hint">ьэюя</string>-->
     <string name="passcode_creation_hint_text">Enter new passcode</string>
     <string name="passcode_confirmation_hint_text">Repeat the passcode</string>
     <string name="entrance_with_passcode_hint_text">Enter the passcode</string>
