@@ -10,23 +10,11 @@ import ru.rubeg38.protocolclient.Address
 import ru.rubeg38.protocolclient.Client
 import ru.rubeg38.protocolclient.retry
 
-private const val PORT = 8301
-
 class EventsApi(private val sessionDataHolder: SessionDataHolder) {
 
     suspend fun getEvents(facilityId: String, position: Int? = null): EventsResponseDto {
-        val addresses = sessionDataHolder.getIpAddresses().mapNotNull { ip ->
-            try {
-                Address.create(ip, PORT)
-            } catch (ex: Exception) {
-                null
-            }
-        }
-
-        require(addresses.count() > 0)
-
+        val addresses = sessionDataHolder.getAddresses()
         val token = sessionDataHolder.getToken()
-
         val query = getEventsQuery(facilityId, position)
 
         if (BuildConfig.DEBUG) {

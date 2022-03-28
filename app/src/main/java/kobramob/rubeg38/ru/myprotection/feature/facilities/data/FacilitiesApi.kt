@@ -11,23 +11,11 @@ import ru.rubeg38.protocolclient.Client
 import ru.rubeg38.protocolclient.clientConfig
 import ru.rubeg38.protocolclient.retry
 
-private const val PORT = 8301
-
 class FacilitiesApi(private val sessionDataHolder: SessionDataHolder) {
 
     suspend fun getFacilities(): List<FacilityDto> {
-        val addresses = sessionDataHolder.getIpAddresses().mapNotNull { ip ->
-            try {
-                Address.create(ip, PORT)
-            } catch (ex: Exception) {
-                null
-            }
-        }
-
-        require(addresses.count() > 0)
-
+        val addresses = sessionDataHolder.getAddresses()
         val token = sessionDataHolder.getToken()
-
         val query = "{\"\$c$\":\"newlk\",\"com\":\"getobject\"}"
 
         if (BuildConfig.DEBUG) {

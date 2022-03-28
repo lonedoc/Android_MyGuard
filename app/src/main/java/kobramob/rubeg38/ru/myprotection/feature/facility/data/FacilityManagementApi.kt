@@ -13,23 +13,11 @@ import ru.rubeg38.protocolclient.Address
 import ru.rubeg38.protocolclient.Client
 import ru.rubeg38.protocolclient.retry
 
-private const val PORT = 8301
-
 class FacilityManagementApi(private val sessionDataHolder: SessionDataHolder) {
 
     suspend fun getFacility(facilityId: String): FacilityDto {
-        val addresses = sessionDataHolder.getIpAddresses().mapNotNull { ip ->
-            try {
-                Address.create(ip, PORT)
-            } catch (ex: Exception) {
-                null
-            }
-        }
-
-        require(addresses.count() > 0)
-
+        val addresses = sessionDataHolder.getAddresses()
         val token = sessionDataHolder.getToken()
-
         val query = getFacilityQuery(facilityId)
 
         if (BuildConfig.DEBUG) {
@@ -58,18 +46,8 @@ class FacilityManagementApi(private val sessionDataHolder: SessionDataHolder) {
     }
 
     suspend fun setName(facilityId: String, name: String): RenamingResultDto {
-        val addresses = sessionDataHolder.getIpAddresses().mapNotNull { ip ->
-            try {
-                Address.create(ip, PORT)
-            } catch (ex: Exception) {
-                null
-            }
-        }
-
-        require(addresses.count() > 0)
-
+        val addresses = sessionDataHolder.getAddresses()
         val token = sessionDataHolder.getToken()
-
         val query = getRenameQuery(facilityId, name)
 
         if (BuildConfig.DEBUG) {
@@ -92,16 +70,7 @@ class FacilityManagementApi(private val sessionDataHolder: SessionDataHolder) {
     }
 
     suspend fun startAlarm(facilityId: String): ResultDto {
-        val addresses = sessionDataHolder.getIpAddresses().mapNotNull { ip ->
-            try {
-                Address.create(ip, PORT)
-            } catch (ex: Exception) {
-                null
-            }
-        }
-
-        require(addresses.count() > 0)
-
+        val addresses = sessionDataHolder.getAddresses()
         val token = sessionDataHolder.getToken()
 
         val query = getAlarmQuery(facilityId)
@@ -137,16 +106,7 @@ class FacilityManagementApi(private val sessionDataHolder: SessionDataHolder) {
 
 
     private suspend fun changeStatus(facilityId: String, status: String): ResultDto {
-        val addresses = sessionDataHolder.getIpAddresses().mapNotNull { ip ->
-            try {
-                Address.create(ip, PORT)
-            } catch (ex: Exception) {
-                null
-            }
-        }
-
-        require(addresses.count() > 0)
-
+        val addresses = sessionDataHolder.getAddresses()
         val token = sessionDataHolder.getToken()
 
         val query = getStatusChangeQuery(facilityId, status)

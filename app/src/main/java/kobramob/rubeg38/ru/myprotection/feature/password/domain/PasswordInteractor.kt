@@ -6,8 +6,10 @@ import kobramob.rubeg38.ru.myprotection.domain.models.User
 import kobramob.rubeg38.ru.myprotection.feature.password.data.PasswordRepository
 import kobramob.rubeg38.ru.myprotection.utils.SessionDataHolder
 import kobramob.rubeg38.ru.myprotection.utils.attempt
+import ru.rubeg38.protocolclient.Address
 
 private const val NO_COUNTRY_CODE_PHONE_NUMBER_SIZE = 10
+private const val PORT = 8301
 
 class PasswordInteractor(
     private val sessionDataHolder: SessionDataHolder,
@@ -16,7 +18,15 @@ class PasswordInteractor(
 ) {
 
     suspend fun setIpAddresses(ipAddresses: List<String>) {
-        sessionDataHolder.setIpAddresses(ipAddresses)
+        val addresses = ipAddresses.mapNotNull { ipAddress ->
+            try {
+                Address.create(ipAddress, PORT)
+            } catch(ex: IllegalArgumentException) {
+                null
+            }
+        }
+
+        sessionDataHolder.setAddresses(addresses)
     }
 
     suspend fun setToken(token: String) {

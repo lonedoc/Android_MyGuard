@@ -10,22 +10,12 @@ import ru.rubeg38.protocolclient.Client
 import ru.rubeg38.protocolclient.clientConfig
 import ru.rubeg38.protocolclient.retry
 
-private const val PORT = 8301
 private const val RESULT_OK = "sendpassword"
 
 class PasswordApi(private val sessionDataHolder: SessionDataHolder) {
 
     suspend fun requestPassword(phoneNumber: String): Boolean {
-        val addresses = sessionDataHolder.getIpAddresses().mapNotNull { ip ->
-            try {
-                Address.create(ip, PORT)
-            } catch (ex: Exception) {
-                null
-            }
-        }
-
-        require(addresses.count() > 0)
-
+        val addresses = sessionDataHolder.getAddresses()
         val query = "{\"\$c$\":\"getpasswordlk\",\"phone\":\"$phoneNumber\"}"
 
         if (BuildConfig.DEBUG) {

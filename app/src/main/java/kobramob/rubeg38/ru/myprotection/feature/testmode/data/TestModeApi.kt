@@ -12,23 +12,11 @@ import ru.rubeg38.protocolclient.Address
 import ru.rubeg38.protocolclient.Client
 import ru.rubeg38.protocolclient.retry
 
-private const val PORT = 8301
-
 class TestModeApi(private val sessionDataHolder: SessionDataHolder) {
 
     suspend fun startTesting(facilityId: String): StartTestingResponseDto {
-        val addresses = sessionDataHolder.getIpAddresses().mapNotNull { ip ->
-            try {
-                Address.create(ip, PORT)
-            } catch (ex: Exception) {
-                null
-            }
-        }
-
-        require(addresses.count() > 0)
-
+        val addresses = sessionDataHolder.getAddresses()
         val token = sessionDataHolder.getToken()
-
         val query = getStartTestingQuery(facilityId)
 
         if (BuildConfig.DEBUG) {
@@ -51,18 +39,8 @@ class TestModeApi(private val sessionDataHolder: SessionDataHolder) {
     }
 
     suspend fun endTesting(facilityId: String): ResultDto {
-        val addresses = sessionDataHolder.getIpAddresses().mapNotNull { ip ->
-            try {
-                Address.create(ip, PORT)
-            } catch (ex: Exception) {
-                null
-            }
-        }
-
-        require(addresses.count() > 0)
-
+        val addresses = sessionDataHolder.getAddresses()
         val token = sessionDataHolder.getToken()
-
         val query = getEndTestingQuery(facilityId)
 
         if (BuildConfig.DEBUG) {
@@ -85,18 +63,8 @@ class TestModeApi(private val sessionDataHolder: SessionDataHolder) {
     }
 
     suspend fun reset(facilityId: String): ResultDto {
-        val addresses = sessionDataHolder.getIpAddresses().mapNotNull { ip ->
-            try {
-                Address.create(ip, PORT)
-            } catch (ex: Exception) {
-                null
-            }
-        }
-
-        require(addresses.count() > 0)
-
+        val addresses = sessionDataHolder.getAddresses()
         val token = sessionDataHolder.getToken()
-
         val query = getResetQuery(facilityId)
 
         if (BuildConfig.DEBUG) {
@@ -119,18 +87,8 @@ class TestModeApi(private val sessionDataHolder: SessionDataHolder) {
     }
 
     suspend fun getStatus(facilityId: String): TestingStatusDto {
-        val addresses = sessionDataHolder.getIpAddresses().mapNotNull { ip ->
-            try {
-                Address.create(ip, PORT)
-            } catch (ex: Exception) {
-                null
-            }
-        }
-
-        require(addresses.count() > 0)
-
+        val addresses = sessionDataHolder.getAddresses()
         val token = sessionDataHolder.getToken()
-
         val query = getStatusQuery(facilityId)
 
         if (BuildConfig.DEBUG) {

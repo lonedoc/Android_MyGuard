@@ -7,6 +7,9 @@ import kobramob.rubeg38.ru.myprotection.Screens
 import kobramob.rubeg38.ru.myprotection.feature.splashscreen.domain.SplashScreenInteractor
 import kobramob.rubeg38.ru.myprotection.utils.SessionDataHolder
 import kotlinx.coroutines.launch
+import ru.rubeg38.protocolclient.Address
+
+private const val PORT = 8301
 
 class SplashScreenViewModel(
     private val interactor: SplashScreenInteractor,
@@ -39,9 +42,15 @@ class SplashScreenViewModel(
                 )
 
                 // Prepare the SessionDataHolder instance
-                val addresses = interactor.getCachedAddresses()
+                val addresses = interactor.getCachedAddresses().mapNotNull { ipAddress ->
+                    try {
+                        Address.create(ipAddress, PORT)
+                    } catch (ex: IllegalArgumentException) {
+                        null
+                    }
+                }
 
-                sessionDataHolder.setIpAddresses(addresses)
+                sessionDataHolder.setAddresses(addresses)
                 sessionDataHolder.setToken(token)
 
                 router.newRootScreen(Screens.passcode())

@@ -19,9 +19,9 @@ data class ClientConfig constructor(
                 packetSize = 960,
                 congestionWindowSize = 32,
                 maxAttemptsCount = 3,
-                retryInterval = 1500,
+                retryInterval = 1000,
                 sleepInterval = 200,
-                readTimeout = 6000,
+                readTimeout = 5000,
                 skipUnidentified = true
             )
         }

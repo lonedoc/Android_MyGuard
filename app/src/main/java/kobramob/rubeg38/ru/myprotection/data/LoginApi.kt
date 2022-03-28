@@ -24,15 +24,7 @@ class LoginApi(private val sessionDataHolder: SessionDataHolder) {
         fcmToken: String,
         deviceName: String
     ): LoginResponseDto {
-        val addresses = sessionDataHolder.getIpAddresses().mapNotNull { ip ->
-            try {
-                Address.create(ip, PORT)
-            } catch (ex: Exception) {
-                null
-            }
-        }
-
-        require(addresses.count() > 0)
+        val addresses = sessionDataHolder.getAddresses()
 
         val query = getLoginQuery(credentials, fcmToken, deviceName)
 
@@ -82,18 +74,8 @@ class LoginApi(private val sessionDataHolder: SessionDataHolder) {
     }
 
     suspend fun logout(): Boolean {
-        val addresses = sessionDataHolder.getIpAddresses().mapNotNull { ip ->
-            try {
-                Address.create(ip, PORT)
-            } catch (ex: Exception) {
-                null
-            }
-        }
-
-        require(addresses.count() > 0)
-
+        val addresses = sessionDataHolder.getAddresses()
         val token = sessionDataHolder.getToken()
-
         val query = "{\"\$c$\":\"newlk\",\"com\":\"deleteuser\"}"
 
         if (BuildConfig.DEBUG) {
