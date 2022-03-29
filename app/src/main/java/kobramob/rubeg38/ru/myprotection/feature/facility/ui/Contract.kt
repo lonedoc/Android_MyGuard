@@ -22,6 +22,7 @@ sealed class UiEvent : Event {
     object OnAlarmButtonClick : UiEvent()
     object OnAlarmConfirmed : UiEvent()
     object OnTestButtonClick : UiEvent()
+    data class OnCancelAlarmConfirmed(val passcode: String) : UiEvent()
     data class OnRenameConfirmed(val name: String) : UiEvent()
 }
 
@@ -46,6 +47,7 @@ sealed class SingleEvent {
         val uiEvent: UiEvent
     ) : SingleEvent()
 
+    data class OnCancelAlarmDialog(val passcodes: List<String>) : SingleEvent()
     data class OnTestModeDialog(val facilityId: String) : SingleEvent()
     data class OnRenameDialog(val currentName: String) : SingleEvent()
     data class OnError(@StringRes val errorMessageRes: Int) : SingleEvent()

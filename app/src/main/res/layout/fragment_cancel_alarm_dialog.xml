@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/window_padding">
+
+    <RadioButton
+        android:id="@+id/word0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Option 1" />
+
+    <RadioButton
+        android:id="@+id/word1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Option 2" />
+
+    <RadioButton
+        android:id="@+id/word2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Option 3" />
+
+    <RadioButton
+        android:id="@+id/word3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Option 4" />
+
+</RadioGroup>

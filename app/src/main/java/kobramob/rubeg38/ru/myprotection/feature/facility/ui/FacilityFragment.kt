@@ -134,6 +134,11 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
             viewModel.processUiEvent(UiEvent.OnRenameConfirmed(name))
         }
 
+        setFragmentResultListener(CancelAlarmDialogFragment.REQUEST_KEY) { _, bundle ->
+            val selectedPasscode = bundle.getString(CancelAlarmDialogFragment.PASSCODE_KEY) ?: return@setFragmentResultListener
+            viewModel.processUiEvent(UiEvent.OnCancelAlarmConfirmed(selectedPasscode))
+        }
+
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
         viewModel.singleEvent.observe(viewLifecycleOwner, ::handleSingleEvent)
     }
@@ -168,6 +173,9 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
 
     private fun handleSingleEvent(event: SingleEvent) {
         when(event) {
+            is SingleEvent.OnCancelAlarmDialog -> {
+                showCancelAlarmDialog(event.passcodes)
+            }
             is SingleEvent.OnRenameDialog -> {
                 showRenameDialog(event.currentName)
             }
@@ -186,6 +194,13 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
                 showErrorMessage(event.errorMessageRes)
             }
         }
+    }
+
+    private fun showCancelAlarmDialog(passcodes: List<String>) {
+        CancelAlarmDialogFragment.create(passcodes).show(
+            requireActivity().supportFragmentManager,
+            CancelAlarmDialogFragment::class.simpleName
+        )
     }
 
     private fun showRenameDialog(currentName: String) {
