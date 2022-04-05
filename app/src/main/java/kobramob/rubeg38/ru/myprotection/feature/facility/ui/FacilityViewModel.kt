@@ -1,6 +1,7 @@
 package kobramob.rubeg38.ru.myprotection.feature.facility.ui
 
 import android.app.Application
+import android.os.SystemClock.elapsedRealtime
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
@@ -20,6 +21,7 @@ import kotlin.random.Random
 
 private const val LONG_UPDATE_INTERVAL: Long = 10_000
 private const val SHORT_UPDATE_INTERVAL: Long = 2_000
+private const val CANCELLATION_COOLDOWN: Long = 3_600_000 // 1 hour
 
 class FacilityViewModel(
     facility: Facility,
@@ -180,6 +182,21 @@ class FacilityViewModel(
                 val facility = previousState.facility
 
                 if (facility.statusCodes.contains(StatusCode.ALARM)) {
+                    val lastCancellationTime = interactor.getLastCancellationTime(previousState.facility.id)
+
+                    if (lastCancellationTime != null) {
+                        val timeSinceLastCancellation = elapsedRealtime() - lastCancellationTime
+
+                        // If the timeSinceLastCancellation is negative, it means that device was
+                        // rebooted and lastCancellationTime is invalid
+                        if (timeSinceLastCancellation in 0 until CANCELLATION_COOLDOWN) {
+                            singleEvent.postValue(SingleEvent.OnError(R.string.cancel_alarm_cooldown_message))
+                            return null
+                        }
+                    }
+
+                    interactor.setLastCancellationTime(previousState.facility.id, elapsedRealtime())
+
                     val passcode = facility.passcode
 
                     if (passcode == null) {

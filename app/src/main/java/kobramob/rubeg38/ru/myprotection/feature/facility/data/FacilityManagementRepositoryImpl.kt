@@ -1,12 +1,17 @@
 package kobramob.rubeg38.ru.myprotection.feature.facility.data
 
+import android.content.SharedPreferences
+import androidx.core.content.edit
 import kobramob.rubeg38.ru.myprotection.domain.models.Facility
 import kobramob.rubeg38.ru.myprotection.domain.toDomain
 import kobramob.rubeg38.ru.myprotection.feature.facility.domain.models.RenamingResult
 import kobramob.rubeg38.ru.myprotection.feature.facility.domain.toDomain
 
+private const val CANCELLATION_TIME_KEY_PREFIX = "cancellation_time_"
+
 class FacilityManagementRepositoryImpl(
-    private val facilityManagementApi: FacilityManagementApi
+    private val facilityManagementApi: FacilityManagementApi,
+    private val sharedPreferences: SharedPreferences
 ) : FacilityManagementRepository {
 
     override suspend fun getFacility(facilityId: String): Facility =
@@ -29,5 +34,21 @@ class FacilityManagementRepositoryImpl(
 
     override suspend fun disarm(facilityId: String): Boolean =
         facilityManagementApi.disarm(facilityId).toDomain()
+
+    override fun setLastCancellationTime(facilityId: String, time: Long) {
+        sharedPreferences.edit {
+            putLong("$CANCELLATION_TIME_KEY_PREFIX$facilityId", time)
+        }
+    }
+
+    override fun getLastCancellationTime(facilityId: String): Long? {
+        val time = sharedPreferences.getLong("$CANCELLATION_TIME_KEY_PREFIX$facilityId", -1)
+
+        if (time == -1L) {
+            return null
+        }
+
+        return time
+    }
 
 }

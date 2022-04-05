@@ -84,6 +84,7 @@
     <string name="cancel_alarm_dialog_negative_button_text">Назад</string>
     <string name="cancel_alarm_failed_message">Не удалось отменить тревогу</string>
     <string name="cancel_alarm_passcode_not_found_message">Не удалось получить кодовое слово для отмены тревоги</string>
+    <string name="cancel_alarm_cooldown_message">Вы уже совершили попытку отмены тревоги меньше часа назад</string>
     <string name="arming_is_not_available_message">Функция постановки/снятия не доступна. Для того чтобы использовать эту функцию обратитесь в охранное предприятие</string>
     <string name="arming_dialog_message">Вы уверены, что хотите взять поставить объект на охрану?</string>
     <string name="arming_dialog_positive_button_text">Поставить под охрану</string>

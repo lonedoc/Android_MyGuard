@@ -1,5 +1,6 @@
 package kobramob.rubeg38.ru.myprotection.feature.facility.di
 
+import android.content.SharedPreferences
 import com.github.terrakok.cicerone.Router
 import kobramob.rubeg38.ru.myprotection.domain.models.Facility
 import kobramob.rubeg38.ru.myprotection.feature.facility.data.FacilityManagementApi
@@ -18,7 +19,10 @@ val facilityModule = module {
     }
 
     single<FacilityManagementRepository> {
-        FacilityManagementRepositoryImpl(get<FacilityManagementApi>())
+        FacilityManagementRepositoryImpl(
+            get<FacilityManagementApi>(),
+            get<SharedPreferences>()
+        )
     }
 
     single<FacilityInteractor> {

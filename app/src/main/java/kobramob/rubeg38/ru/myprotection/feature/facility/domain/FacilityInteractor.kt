@@ -33,4 +33,11 @@ class FacilityInteractor(private val facilityManagementRepository: FacilityManag
         facilityManagementRepository.disarm(facilityId)
     }
 
+    fun setLastCancellationTime(facilityId: String, time: Long) {
+        facilityManagementRepository.setLastCancellationTime(facilityId, time)
+    }
+
+    fun getLastCancellationTime(facilityId: String): Long? =
+        facilityManagementRepository.getLastCancellationTime(facilityId)
+
 }

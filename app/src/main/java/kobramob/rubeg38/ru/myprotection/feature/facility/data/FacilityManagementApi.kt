@@ -11,6 +11,7 @@ import kobramob.rubeg38.ru.myprotection.feature.facility.data.models.RenamingRes
 import kobramob.rubeg38.ru.myprotection.utils.SessionDataHolder
 import ru.rubeg38.protocolclient.Address
 import ru.rubeg38.protocolclient.Client
+import ru.rubeg38.protocolclient.clientConfig
 import ru.rubeg38.protocolclient.retry
 
 class FacilityManagementApi(private val sessionDataHolder: SessionDataHolder) {
