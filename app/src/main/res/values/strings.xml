@@ -82,6 +82,8 @@
     <string name="cancel_alarm_dialog_message">Select your passcode from the list below</string>
     <string name="cancel_alarm_dialog_positive_button_text">Cancel the alarm</string>
     <string name="cancel_alarm_dialog_negative_button_text">Go back</string>
+    <string name="cancel_alarm_failed_message">Could not cancel alarm</string>
+    <string name="cancel_alarm_passcode_not_found_message">Could not find the passcode to cancel the alarm</string>
     <string name="arming_is_not_available_message">The arming/disarming feature is not available. In order to use this feature, contact your security company</string>
     <string name="arming_dialog_message">Are you sure you want to arm the facility?</string>
     <string name="arming_dialog_positive_button_text">Arm the facility</string>
@@ -95,6 +97,40 @@
     <string name="disarming_dialog_positive_button_text">Disarm the facility</string>
     <string name="disarming_progress_bar_hint">Disarming…</string>
     <string name="disarming_failed_message">Could not disarm the facility</string>
+
+    <string-array name="passcodes">
+        <item>человек</item>
+        <item>время</item>
+        <item>жизнь</item>
+        <item>работа</item>
+        <item>система</item>
+        <item>земля</item>
+        <item>машина</item>
+        <item>компания</item>
+        <item>развитие</item>
+        <item>процесс</item>
+        <item>средство</item>
+        <item>условие</item>
+        <item>минута</item>
+        <item>организация</item>
+        <item>внимание</item>
+        <item>информация</item>
+        <item>движение</item>
+        <item>культура</item>
+        <item>принцип</item>
+        <item>характер</item>
+        <item>территория</item>
+        <item>свобода</item>
+        <item>природа</item>
+        <item>писатель</item>
+        <item>спектакль</item>
+        <item>основание</item>
+        <item>надежда</item>
+        <item>пространство</item>
+        <item>сознание</item>
+        <item>художник</item>
+        <item>безопасность</item>
+    </string-array>
 
     <!-- Events -->
     <string name="events_update_failed_message">Could not fetch the list of events</string>

@@ -8,6 +8,7 @@ import kobramob.rubeg38.ru.myprotection.feature.facility.data.FacilityManagement
 import kobramob.rubeg38.ru.myprotection.feature.facility.domain.FacilityInteractor
 import kobramob.rubeg38.ru.myprotection.feature.facility.ui.FacilityViewModel
 import kobramob.rubeg38.ru.myprotection.utils.SessionDataHolder
+import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -27,6 +28,7 @@ val facilityModule = module {
     viewModel<FacilityViewModel> { params ->
         FacilityViewModel(
             params.get<Facility>(),
+            androidApplication(),
             get<FacilityInteractor>(),
             get<Router>()
         )

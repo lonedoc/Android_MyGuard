@@ -31,6 +31,7 @@ fun FacilityDto.toDomain() = Facility(
     isAlarmButtonEnabled = isAlarmButtonEnabled == 1,
     batteryMalfunction = batteryMalfunction == 1,
     powerSupplyMalfunction = powerSupplyMalfunction == 1,
+    passcode = passcode,
     accounts = parseAccounts(this)
 )
 

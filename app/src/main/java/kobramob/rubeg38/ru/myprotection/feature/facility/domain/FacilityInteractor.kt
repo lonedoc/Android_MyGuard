@@ -17,6 +17,10 @@ class FacilityInteractor(private val facilityManagementRepository: FacilityManag
         facilityManagementRepository.startAlarm(facilityId)
     }
 
+    suspend fun cancelAlarm(facilityId: String, passcode: String) = attempt {
+        facilityManagementRepository.cancelAlarm(facilityId, passcode)
+    }
+
     suspend fun arm(facilityId: String) = attempt {
         facilityManagementRepository.arm(facilityId)
     }

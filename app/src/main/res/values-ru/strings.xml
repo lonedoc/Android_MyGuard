@@ -82,6 +82,8 @@
     <string name="cancel_alarm_dialog_message">Выберите ваше кодовое слово из списка ниже</string>
     <string name="cancel_alarm_dialog_positive_button_text">Отменить тревогу</string>
     <string name="cancel_alarm_dialog_negative_button_text">Назад</string>
+    <string name="cancel_alarm_failed_message">Не удалось отменить тревогу</string>
+    <string name="cancel_alarm_passcode_not_found_message">Не удалось получить кодовое слово для отмены тревоги</string>
     <string name="arming_is_not_available_message">Функция постановки/снятия не доступна. Для того чтобы использовать эту функцию обратитесь в охранное предприятие</string>
     <string name="arming_dialog_message">Вы уверены, что хотите взять поставить объект на охрану?</string>
     <string name="arming_dialog_positive_button_text">Поставить под охрану</string>
@@ -95,6 +97,40 @@
     <string name="disarming_dialog_positive_button_text">Снять с охраны</string>
     <string name="disarming_progress_bar_hint">Снятие с охраны…</string>
     <string name="disarming_failed_message">Не удалось снять объект с охраны</string>
+
+    <string-array name="passcodes">
+        <item>человек</item>
+        <item>время</item>
+        <item>жизнь</item>
+        <item>работа</item>
+        <item>система</item>
+        <item>земля</item>
+        <item>машина</item>
+        <item>компания</item>
+        <item>развитие</item>
+        <item>процесс</item>
+        <item>средство</item>
+        <item>условие</item>
+        <item>минута</item>
+        <item>организация</item>
+        <item>внимание</item>
+        <item>информация</item>
+        <item>движение</item>
+        <item>культура</item>
+        <item>принцип</item>
+        <item>характер</item>
+        <item>территория</item>
+        <item>свобода</item>
+        <item>природа</item>
+        <item>писатель</item>
+        <item>спектакль</item>
+        <item>основание</item>
+        <item>надежда</item>
+        <item>пространство</item>
+        <item>сознание</item>
+        <item>художник</item>
+        <item>безопасность</item>
+    </string-array>
 
     <!-- Events -->
     <string name="events_update_failed_message">Не удалось загрузить список событий</string>

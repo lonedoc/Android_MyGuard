@@ -1,5 +1,6 @@
 package kobramob.rubeg38.ru.myprotection.feature.facility.ui
 
+import android.app.Application
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
@@ -15,12 +16,14 @@ import kobramob.rubeg38.ru.myprotection.utils.SingleLiveEvent
 import kobramob.rubeg38.ru.myprotection.utils.schedule
 import kotlinx.coroutines.launch
 import java.util.*
+import kotlin.random.Random
 
 private const val LONG_UPDATE_INTERVAL: Long = 10_000
 private const val SHORT_UPDATE_INTERVAL: Long = 2_000
 
 class FacilityViewModel(
     facility: Facility,
+    private val context: Application,
     private val interactor: FacilityInteractor,
     private val router: Router
 ) : BaseViewModel<ViewState>(), LifecycleEventObserver {
@@ -46,14 +49,14 @@ class FacilityViewModel(
                 val facility = previousState.facility
                 val isOnlineChannelAvailable = facility.hasOnlineChannel && facility.isOnlineChannelEnabled
 
-//                if (!isOnlineChannelAvailable) {
-//                    return null
-//                }
+                if (!isOnlineChannelAvailable) {
+                    return null
+                }
 
-//                if (!facility.isArmingEnabled) {
-//                    singleEvent.postValue(SingleEvent.OnError(R.string.arming_is_not_available_message))
-//                    return null
-//                }
+                if (!facility.isArmingEnabled) {
+                    singleEvent.postValue(SingleEvent.OnError(R.string.arming_is_not_available_message))
+                    return null
+                }
 
                 val confirmDialogEvent = SingleEvent.OnConfirmationDialog(
                     R.string.arming_perimeter_dialog_message,
@@ -68,14 +71,14 @@ class FacilityViewModel(
                 val facility = previousState.facility
                 val isOnlineChannelAvailable = facility.hasOnlineChannel && facility.isOnlineChannelEnabled
 
-//                if (!isOnlineChannelAvailable) {
-//                    return null
-//                }
+                if (!isOnlineChannelAvailable) {
+                    return null
+                }
 
-//                if (!facility.isArmingEnabled) {
-//                    singleEvent.postValue(SingleEvent.OnError(R.string.arming_is_not_available_message))
-//                    return null
-//                }
+                if (!facility.isArmingEnabled) {
+                    singleEvent.postValue(SingleEvent.OnError(R.string.arming_is_not_available_message))
+                    return null
+                }
 
                 val confirmDialogEvent = if (!facility.isGuarded) {
                     SingleEvent.OnConfirmationDialog(
@@ -176,6 +179,25 @@ class FacilityViewModel(
             is UiEvent.OnAlarmButtonClick -> {
                 val facility = previousState.facility
 
+                if (facility.statusCodes.contains(StatusCode.ALARM)) {
+                    val passcode = facility.passcode
+
+                    if (passcode == null) {
+                        singleEvent.postValue(SingleEvent.OnError(R.string.cancel_alarm_passcode_not_found_message))
+                        return null
+                    }
+
+                    val allPasscodes = context.resources.getStringArray(R.array.passcodes).toList()
+
+                    val passcodes = mutableListOf(passcode).apply {
+                        addAll(getRandomElements(3, allPasscodes))
+                        shuffle()
+                    }
+
+                    singleEvent.postValue(SingleEvent.OnCancelAlarmDialog(passcodes))
+                    return null
+                }
+
                 if (!facility.isAlarmButtonEnabled) {
                     singleEvent.postValue(SingleEvent.OnError(R.string.alarm_is_not_available_message))
                     return null
@@ -192,6 +214,7 @@ class FacilityViewModel(
             }
             is UiEvent.OnAlarmConfirmed -> {
                 val facility = previousState.facility
+
                 viewModelScope.launch {
                     interactor.startAlarm(facility.id).fold(
                         onSuccess = { success ->
@@ -201,6 +224,23 @@ class FacilityViewModel(
                         },
                         onError = {
                             processDataEvent(DataEvent.OnAlarmFail)
+                        }
+                    )
+                }
+                return null
+            }
+            is UiEvent.OnCancelAlarmConfirmed -> {
+                val facility = previousState.facility
+
+                viewModelScope.launch {
+                    interactor.cancelAlarm(facility.id, event.passcode).fold(
+                        onSuccess = { success ->
+                            if (!success) {
+                                processDataEvent(DataEvent.OnCancelAlarmFail)
+                            }
+                        },
+                        onError = {
+                            processDataEvent(DataEvent.OnCancelAlarmFail)
                         }
                     )
                 }
@@ -298,6 +338,10 @@ class FacilityViewModel(
                 singleEvent.postValue(SingleEvent.OnError(R.string.alarm_failed_message))
                 return null
             }
+            is DataEvent.OnCancelAlarmFail -> {
+                singleEvent.postValue(SingleEvent.OnError(R.string.cancel_alarm_failed_message))
+                return null
+            }
             else -> return null
         }
     }
@@ -325,7 +369,7 @@ class FacilityViewModel(
 
     private fun isArmingOrDisarmingComplete(facility: Facility, updatedFacility: Facility): Boolean =
         !facility.isGuarded && updatedFacility.isGuarded ||
-        facility.isGuarded && !updatedFacility.isGuarded
+                facility.isGuarded && !updatedFacility.isGuarded
 
 
 }
@@ -343,5 +387,27 @@ private fun createFacilityNull() = Facility(
     isAlarmButtonEnabled = false,
     batteryMalfunction = false,
     powerSupplyMalfunction = false,
+    passcode = null,
     accounts = emptyList()
 )
+
+private fun <T> getRandomElements(count: Int, source: List<T>): List<T> {
+    if (source.count() <= count) {
+        return source
+    }
+
+    val random = Random(System.currentTimeMillis())
+    val indexesUsed = mutableSetOf<Int>()
+    val result = mutableListOf<T>()
+
+    while (result.count() < count) {
+        val index = random.nextInt(0, source.count())
+
+        if (!indexesUsed.contains(index)) {
+            indexesUsed.add(index)
+            result.add(source[index])
+        }
+    }
+
+    return result
+}

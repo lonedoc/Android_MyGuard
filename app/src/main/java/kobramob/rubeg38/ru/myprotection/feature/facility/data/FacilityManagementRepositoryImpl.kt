@@ -18,6 +18,9 @@ class FacilityManagementRepositoryImpl(
     override suspend fun startAlarm(facilityId: String): Boolean =
         facilityManagementApi.startAlarm(facilityId).toDomain()
 
+    override suspend fun cancelAlarm(facilityId: String, passcode: String): Boolean =
+        facilityManagementApi.cancelAlarm(facilityId, passcode).toDomain()
+
     override suspend fun arm(facilityId: String): Boolean =
         facilityManagementApi.arm(facilityId).toDomain()
 

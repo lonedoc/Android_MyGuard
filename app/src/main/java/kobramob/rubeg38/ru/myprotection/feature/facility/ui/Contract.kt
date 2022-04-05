@@ -36,6 +36,7 @@ sealed class DataEvent : Event {
     object OnDisarmingFail : DataEvent()
     object OnRenamingFail : DataEvent()
     object OnAlarmFail : DataEvent()
+    object OnCancelAlarmFail : DataEvent()
     data class OnFacilityUpdate(val facility: Facility) : DataEvent()
     data class OnRenamingResult(val name: String) : DataEvent()
 }

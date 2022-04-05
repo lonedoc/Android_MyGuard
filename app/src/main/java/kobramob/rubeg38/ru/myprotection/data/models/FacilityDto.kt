@@ -29,6 +29,8 @@ data class FacilityDto(
     val batteryMalfunction: Int?,
     @SerializedName("220")
     val powerSupplyMalfunction: Int?,
+    @SerializedName("password")
+    val passcode: String?,
 
     // account 1
     @SerializedName("i1clic")

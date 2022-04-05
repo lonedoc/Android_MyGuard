@@ -72,8 +72,31 @@ class FacilityManagementApi(private val sessionDataHolder: SessionDataHolder) {
     suspend fun startAlarm(facilityId: String): ResultDto {
         val addresses = sessionDataHolder.getAddresses()
         val token = sessionDataHolder.getToken()
-
         val query = getAlarmQuery(facilityId)
+
+        if (BuildConfig.DEBUG) {
+            Log.d(this::class.simpleName, "-> $query")
+        }
+
+        val data = retry(3, addresses) { address ->
+            val client = Client()
+            client.bind(address)
+            client.sendRequest(query, token)
+        }
+
+        val json = String(data)
+
+        if (BuildConfig.DEBUG) {
+            Log.d(this::class.simpleName, "<- $json")
+        }
+
+        return Gson().fromJson(json, ResultDto::class.java)
+    }
+
+    suspend fun cancelAlarm(facilityId: String, passcode: String): ResultDto {
+        val addresses = sessionDataHolder.getAddresses()
+        val token = sessionDataHolder.getToken()
+        val query = getCancelAlarmQuery(facilityId, passcode)
 
         if (BuildConfig.DEBUG) {
             Log.d(this::class.simpleName, "-> $query")
@@ -108,7 +131,6 @@ class FacilityManagementApi(private val sessionDataHolder: SessionDataHolder) {
     private suspend fun changeStatus(facilityId: String, status: String): ResultDto {
         val addresses = sessionDataHolder.getAddresses()
         val token = sessionDataHolder.getToken()
-
         val query = getStatusChangeQuery(facilityId, status)
 
         if (BuildConfig.DEBUG) {
@@ -149,6 +171,14 @@ class FacilityManagementApi(private val sessionDataHolder: SessionDataHolder) {
         addProperty("\$c$", "newlk")
         addProperty("com", "alarmtk")
         addProperty("obj", facilityId)
+        toString()
+    }
+
+    private fun getCancelAlarmQuery(facilityId: String, passcode: String) = JsonObject().run {
+        addProperty("\$c$", "newlk")
+        addProperty("com", "cancelalarm")
+        addProperty("obj", facilityId)
+        addProperty("passcode", passcode)
         toString()
     }
 
