@@ -1,5 +1,6 @@
 package kobramob.rubeg38.ru.myprotection.feature.facility.ui
 
+import android.hardware.Sensor
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -21,6 +22,7 @@ import kobramob.rubeg38.ru.myprotection.feature.accounts.ui.AccountsFragment
 import kobramob.rubeg38.ru.myprotection.feature.accounts.ui.AccountsViewModel
 import kobramob.rubeg38.ru.myprotection.feature.events.ui.EventsFragment
 import kobramob.rubeg38.ru.myprotection.feature.events.ui.EventsViewModel
+import kobramob.rubeg38.ru.myprotection.feature.sensors.ui.SensorsFragment
 import kobramob.rubeg38.ru.myprotection.feature.testmode.ui.TestModeDialogFragment
 import kobramob.rubeg38.ru.myprotection.utils.load
 import kobramob.rubeg38.ru.myprotection.utils.setThrottledClickListener
@@ -49,13 +51,17 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
 
             override fun createFragment(position: Int): Fragment = when (position) {
                 0 -> getEventsFragment()
-                1 -> getAccountsFragment() // TODO
+                1 -> getSensorsFragment() // TODO
                 else -> getAccountsFragment()
             }
 
             private fun getEventsFragment(): EventsFragment {
                 val facility = requireArguments().getParcelable<Facility>(FACILITY_KEY)
                 return EventsFragment.create(facility?.id ?: "")
+            }
+
+            private fun getSensorsFragment(): SensorsFragment {
+                return SensorsFragment.create()
             }
 
             private fun getAccountsFragment(): AccountsFragment {
@@ -100,6 +106,7 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
         binding.viewPager.isUserInputEnabled = false
         binding.viewPager.adapter = getPagerAdapter()
 
+        binding.bottomNavigationView.menu.getItem(1).isEnabled = false
         binding.bottomNavigationView.menu.getItem(2).isEnabled = false
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
@@ -113,10 +120,10 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
                     binding.viewPager.setCurrentItem(0, true)
                     true
                 }
-                R.id.sensorsItem -> {
-                    binding.viewPager.setCurrentItem(1, true)
-                    true
-                }
+//                R.id.sensorsItem -> {
+//                    binding.viewPager.setCurrentItem(1, true)
+//                    true
+//                }
                 R.id.accountItem -> {
                     binding.viewPager.setCurrentItem(2, true)
                     true
