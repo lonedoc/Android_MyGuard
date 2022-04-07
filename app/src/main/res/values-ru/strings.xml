@@ -142,6 +142,7 @@
     <string name="pay_button_text">Оплатить</string>
     <string name="invalid_input_message">Некорректный формат данных</string>
     <string name="payment_page_title">Оплата</string>
+    <string name="no_accounts_message">Нет данных</string>
 
     <!-- TestMode -->
     <string name="reset_button_text">Сброс</string>

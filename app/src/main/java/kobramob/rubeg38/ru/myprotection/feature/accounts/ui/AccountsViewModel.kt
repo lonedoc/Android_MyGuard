@@ -21,7 +21,8 @@ class AccountsViewModel(
         selectedAccount = null,
         sum = "0.0",
         invalidSumMessageRes = null,
-        isPayButtonEnabled = false
+        isPayButtonEnabled = false,
+        isNoAccountsViewVisible = true
     )
 
     override suspend fun reduce(event: Event, previousState: ViewState): ViewState? {
@@ -62,7 +63,10 @@ class AccountsViewModel(
                 return null
             }
             is DataEvent.OnAccountsUpdate -> {
-                return previousState.copy(accounts = event.accounts)
+                return previousState.copy(
+                    accounts = event.accounts,
+                    isNoAccountsViewVisible = event.accounts.isEmpty()
+                )
             }
             else -> return null
         }

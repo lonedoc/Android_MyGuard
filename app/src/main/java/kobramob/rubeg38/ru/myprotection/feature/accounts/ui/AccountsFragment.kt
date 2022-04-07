@@ -3,6 +3,7 @@ package kobramob.rubeg38.ru.myprotection.feature.accounts.ui
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import kobramob.rubeg38.ru.myprotection.R
@@ -72,8 +73,8 @@ class AccountsFragment : Fragment(R.layout.fragment_accounts) {
         }
 
         binding.sumTextInputLayout.error = errorMessage
-
         binding.payButton.isEnabled = viewState.isPayButtonEnabled
+        binding.noAccountsView.isVisible = viewState.isNoAccountsViewVisible
     }
 
     private fun getTextRepresentation(account: Account): String {

@@ -142,6 +142,7 @@
     <string name="pay_button_text">Pay</string>
     <string name="invalid_input_message">Invalid data format</string>
     <string name="payment_page_title">Payment</string>
+    <string name="no_accounts_message">No data</string>
 
     <!-- TestMode -->
     <string name="reset_button_text">Reset</string>

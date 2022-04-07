@@ -9,7 +9,8 @@ data class ViewState(
     val selectedAccount: Account?,
     val sum: String,
     @StringRes val invalidSumMessageRes: Int?,
-    val isPayButtonEnabled: Boolean
+    val isPayButtonEnabled: Boolean,
+    val isNoAccountsViewVisible: Boolean
 )
 
 sealed class UiEvent : Event {
