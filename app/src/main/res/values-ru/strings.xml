@@ -61,6 +61,7 @@
 
     <!-- Facility -->
     <string name="edit_name_item_text">Переименовать</string>
+    <string name="application_item_text">Отправить заявку</string>
     <string name="events_item_text">События</string>
     <string name="sensors_item_text">Датчики</string>
     <string name="account_item_text">Учетные записи</string>
@@ -153,4 +154,15 @@
     <string name="reset_failed_message">Не удалось выполнить сброс</string>
     <string name="end_testing_failed_message">Не удалось завершить тестирование</string>
     <string name="testing_failed_message">Не удалось начать тестирование</string>
+
+    <!-- Applications -->
+    <string name="application_screen_title">Завявка</string>
+    <string name="application_text_field_hint">Заявка</string>
+    <string name="custom_application_text">Свой вариант</string>
+    <string name="custom_application_text_field_hint">Текст заявки</string>
+    <string name="date_text_field_hint">Дата</string>
+    <string name="time_text_field_hint">Время</string>
+    <string name="applications_request_failed_message">Не удалось загрузить заявки</string>
+    <string name="missing_datetime_error_message">Ошибка заполнения формы</string>
+    <string name="application_failed_message">Не удалось создать заявку</string>
 </resources>

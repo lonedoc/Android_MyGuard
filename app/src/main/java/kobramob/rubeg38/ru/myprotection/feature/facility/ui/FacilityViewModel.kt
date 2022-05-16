@@ -8,6 +8,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.viewModelScope
 import com.github.terrakok.cicerone.Router
 import kobramob.rubeg38.ru.myprotection.R
+import kobramob.rubeg38.ru.myprotection.Screens
 import kobramob.rubeg38.ru.myprotection.base.BaseViewModel
 import kobramob.rubeg38.ru.myprotection.base.Event
 import kobramob.rubeg38.ru.myprotection.domain.models.Facility
@@ -159,6 +160,10 @@ class FacilityViewModel(
             }
             is UiEvent.OnRenameButtonClick -> {
                 singleEvent.postValue(SingleEvent.OnRenameDialog(previousState.facility.name))
+                return null
+            }
+            is UiEvent.OnApplyButtonClick -> {
+                router.navigateTo(Screens.application(previousState.facility.id))
                 return null
             }
             is UiEvent.OnRenameConfirmed -> {

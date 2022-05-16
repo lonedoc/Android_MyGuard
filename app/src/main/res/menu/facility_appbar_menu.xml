@@ -9,4 +9,10 @@
         android:icon="@drawable/edit_icon"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/applicationItem"
+        android:title="@string/application_item_text"
+        android:icon="@drawable/send_application_icon"
+        app:showAsAction="ifRoom" />
+
 </menu>
