@@ -71,7 +71,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         setupCompanyPicker()
         setupPhoneNumberMask()
 
-        binding.proceedButton.setThrottledClickListener {
+        binding.submitButton.setThrottledClickListener {
             viewModel.processUiEvent(UiEvent.OnProceedButtonClicked)
         }
 
@@ -138,7 +138,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             binding.phoneEditText.setText(viewState.phoneNumber ?: "")
         }
 
-        binding.proceedButton.isEnabled = viewState.isSubmitButtonEnabled
+        binding.submitButton.isEnabled = viewState.isSubmitButtonEnabled
     }
 
     private fun <T> updatePicker(

@@ -4,8 +4,8 @@ import com.github.terrakok.cicerone.androidx.FragmentScreen
 import kobramob.rubeg38.ru.myprotection.domain.models.Account
 import kobramob.rubeg38.ru.myprotection.domain.models.Facility
 import kobramob.rubeg38.ru.myprotection.domain.models.GuardService
-import kobramob.rubeg38.ru.myprotection.feature.accounts.ui.AccountsFragment
 import kobramob.rubeg38.ru.myprotection.feature.accounts.ui.PaymentPageFragment
+import kobramob.rubeg38.ru.myprotection.feature.applications.ui.ApplicationsFragment
 import kobramob.rubeg38.ru.myprotection.feature.login.ui.LoginFragment
 import kobramob.rubeg38.ru.myprotection.feature.facilities.ui.FacilitiesFragment
 import kobramob.rubeg38.ru.myprotection.feature.facility.ui.FacilityFragment
@@ -41,6 +41,10 @@ object Screens {
 
     fun paymentPage(account: Account, sum: String) = FragmentScreen {
         PaymentPageFragment.create(account, sum)
+    }
+
+    fun application(facilityId: String) = FragmentScreen {
+        ApplicationsFragment.create(facilityId)
     }
 
 }

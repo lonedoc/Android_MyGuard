@@ -3,6 +3,7 @@ package kobramob.rubeg38.ru.myprotection
 import android.app.Application
 import kobramob.rubeg38.ru.myprotection.di.appModule
 import kobramob.rubeg38.ru.myprotection.feature.accounts.di.accountsModule
+import kobramob.rubeg38.ru.myprotection.feature.applications.di.applicationsModule
 import kobramob.rubeg38.ru.myprotection.feature.events.di.eventsModule
 import kobramob.rubeg38.ru.myprotection.feature.facilities.di.facilitiesModule
 import kobramob.rubeg38.ru.myprotection.feature.facility.di.facilityModule
@@ -31,7 +32,8 @@ class App : Application() {
                 facilityModule,
                 eventsModule,
                 accountsModule,
-                testModeModule
+                testModeModule,
+                applicationsModule
             )
         }
     }

@@ -19,6 +19,7 @@ sealed class UiEvent : Event {
     object OnDisarmingConfirmed : UiEvent()
     object OnBackButtonClick : UiEvent()
     object OnRenameButtonClick : UiEvent()
+    object OnApplyButtonClick : UiEvent()
     object OnAlarmButtonClick : UiEvent()
     object OnAlarmConfirmed : UiEvent()
     object OnTestButtonClick : UiEvent()

@@ -86,6 +86,10 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
                     viewModel.processUiEvent(UiEvent.OnRenameButtonClick)
                     true
                 }
+                R.id.applicationItem -> {
+                    viewModel.processUiEvent(UiEvent.OnApplyButtonClick)
+                    true
+                }
                 else -> false
             }
         }

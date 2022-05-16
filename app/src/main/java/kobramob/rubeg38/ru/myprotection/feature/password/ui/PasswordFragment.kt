@@ -59,7 +59,7 @@ class PasswordFragment : Fragment(R.layout.fragment_password) {
             viewModel.processUiEvent(UiEvent.OnCancelButtonClick)
         }
 
-        binding.proceedButton.setThrottledClickListener {
+        binding.submitButton.setThrottledClickListener {
             if (isGoogleServicesAvailable()) {
                 getFcmToken { token ->
                     if (token == null) {
@@ -85,7 +85,7 @@ class PasswordFragment : Fragment(R.layout.fragment_password) {
         binding.passwordCooldownTextView.text = passwordCooldownText
         binding.passwordCooldownTextView.isInvisible = !viewState.isCountDownShown
         binding.retryButton.isGone = viewState.isCountDownShown
-        binding.proceedButton.isEnabled = viewState.isSubmitButtonEnabled
+        binding.submitButton.isEnabled = viewState.isSubmitButtonEnabled
     }
 
     private fun handleEvent(event: SingleEvent) {
