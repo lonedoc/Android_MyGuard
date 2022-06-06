@@ -1,6 +1,5 @@
 package kobramob.rubeg38.ru.myprotection.feature.applications.ui
 
-import androidx.annotation.StringRes
 import kobramob.rubeg38.ru.myprotection.base.Event
 import java.util.*
 

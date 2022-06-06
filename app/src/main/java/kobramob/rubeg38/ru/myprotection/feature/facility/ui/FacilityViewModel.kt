@@ -410,6 +410,7 @@ private fun createFacilityNull() = Facility(
     batteryMalfunction = false,
     powerSupplyMalfunction = false,
     passcode = null,
+    isApplicationsEnabled = false,
     accounts = emptyList()
 )
 

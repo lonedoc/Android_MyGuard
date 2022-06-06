@@ -19,6 +19,7 @@ data class Facility(
     val batteryMalfunction: Boolean,
     val powerSupplyMalfunction: Boolean,
     val passcode: String?,
+    val isApplicationsEnabled: Boolean,
     val accounts: List<Account>
 ) : Parcelable {
 

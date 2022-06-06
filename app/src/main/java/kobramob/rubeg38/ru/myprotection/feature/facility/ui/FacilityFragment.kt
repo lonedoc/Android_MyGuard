@@ -51,7 +51,7 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
 
             override fun createFragment(position: Int): Fragment = when (position) {
                 0 -> getEventsFragment()
-                1 -> getSensorsFragment() // TODO
+                1 -> getSensorsFragment()
                 else -> getAccountsFragment()
             }
 
@@ -156,6 +156,9 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
 
     private fun render(viewState: ViewState) {
         val facility = viewState.facility
+
+        binding.appBar.menu.findItem(R.id.applicationItem)?.isVisible =
+            facility.isApplicationsEnabled
 
         binding.appBar.title = facility.name
         binding.statusTextView.text = facility.statusDescription

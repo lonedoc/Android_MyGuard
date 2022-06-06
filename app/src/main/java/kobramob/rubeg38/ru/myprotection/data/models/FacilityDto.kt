@@ -31,6 +31,8 @@ data class FacilityDto(
     val powerSupplyMalfunction: Int?,
     @SerializedName("password")
     val passcode: String?,
+    @SerializedName("zay")
+    val isApplicationsEnabled: Int?,
 
     // account 1
     @SerializedName("i1clic")
