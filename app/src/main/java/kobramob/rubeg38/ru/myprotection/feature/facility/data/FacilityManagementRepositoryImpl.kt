@@ -51,4 +51,10 @@ class FacilityManagementRepositoryImpl(
         return time
     }
 
+    override fun removeLastCancellationTime(facilityId: String) {
+        sharedPreferences.edit {
+            remove("$CANCELLATION_TIME_KEY_PREFIX$facilityId")
+        }
+    }
+
 }

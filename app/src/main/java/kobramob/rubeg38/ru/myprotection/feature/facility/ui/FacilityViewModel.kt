@@ -327,6 +327,10 @@ class FacilityViewModel(
                 return null
             }
             is DataEvent.OnFacilityUpdate -> {
+                if (!event.facility.alarm) {
+                    interactor.removeLastCancellationTime(event.facility.id)
+                }
+
                 if (previousState.pendingArmingOrDisarming) {
                     val facility = previousState.facility
                     val updatedFacility = event.facility

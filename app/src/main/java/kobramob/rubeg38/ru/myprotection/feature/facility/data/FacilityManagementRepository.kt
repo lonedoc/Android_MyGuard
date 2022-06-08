@@ -13,4 +13,5 @@ interface FacilityManagementRepository {
     suspend fun disarm(facilityId: String): Boolean
     fun setLastCancellationTime(facilityId: String, time: Long)
     fun getLastCancellationTime(facilityId: String): Long?
+    fun removeLastCancellationTime(facilityId: String)
 }
