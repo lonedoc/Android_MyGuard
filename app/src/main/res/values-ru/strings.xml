@@ -45,6 +45,8 @@
     <string name="wrong_passcode_message">Неправильный код</string>
     <string name="logout_failed_message">Не удалось выполнить выход</string>
     <string name="phone_number_not_found_message">Номер телефона не найден</string>
+    <string name="biometric_auth_failed_message">Не удалось пройти аутентификацию</string>
+    <string name="biometric_prompt_title">Вход в личный кабинет</string>
 
     <!-- Facilities -->
     <string name="facilities_title">Объекты</string>

@@ -23,10 +23,13 @@ class PasscodeViewModel(
 
     init {
         processDataEvent(DataEvent.OnCachedPasscodeRequest)
+        processDataEvent(DataEvent.OnBiometryAvailabilityCheck)
     }
 
     override fun initialViewState() = ViewState(
         stage = Stage.CREATION,
+        isBiometricReady = false,
+        isBiometricButtonVisible = false,
         isForgotCodeButtonVisible = false,
         isAppBarMenuVisible = false,
         hintTextRes = R.string.passcode_creation_hint_text,
@@ -79,6 +82,14 @@ class PasscodeViewModel(
                 }
 
                 router.newRootScreen(Screens.password(guardService, userPhoneNumber))
+                return null
+            }
+            is UiEvent.OnBiometricButtonClick -> {
+                singleEvent.postValue(SingleEvent.OnShowBiometricPrompt)
+                return null
+            }
+            is UiEvent.OnBiometricAuthSuccess -> {
+                router.newRootScreen(Screens.facilities())
                 return null
             }
             is UiEvent.OnCharacterAdded -> {
@@ -149,7 +160,7 @@ class PasscodeViewModel(
                 }
             }
             is UiEvent.OnCharacterRemoved -> {
-                return if (previousState.passcode1.count() == 0) {
+                return if (previousState.passcode1.isEmpty()) {
                     null
                 } else {
                     val passcode = previousState.passcode1.substring(
@@ -161,6 +172,15 @@ class PasscodeViewModel(
                         indicatorValue = passcode.count()
                     )
                 }
+            }
+            is DataEvent.OnBiometryAvailabilityCheck -> {
+                val isEntranceStage = previousState.stage == Stage.ENTRANCE
+                val isBiometricReady = interactor.isBiometricReady()
+
+                return previousState.copy(
+                    isBiometricReady = isBiometricReady,
+                    isBiometricButtonVisible = isEntranceStage && isBiometricReady
+                )
             }
             is DataEvent.OnLoggedOut -> {
                 router.newRootScreen(Screens.login())
@@ -192,8 +212,12 @@ class PasscodeViewModel(
                     R.string.entrance_with_passcode_hint_text
                 }
 
+                val isEntranceStage = stage == Stage.ENTRANCE
+                val isBiometricReady = previousState.isBiometricReady
+
                 return previousState.copy(
                     stage = stage,
+                    isBiometricButtonVisible = isEntranceStage && isBiometricReady,
                     isForgotCodeButtonVisible = isPasscodeCreated,
                     isAppBarMenuVisible = isPasscodeCreated,
                     hintTextRes = hintTextRes,

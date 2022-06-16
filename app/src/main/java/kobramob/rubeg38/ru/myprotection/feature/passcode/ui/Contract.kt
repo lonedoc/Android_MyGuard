@@ -10,6 +10,8 @@ enum class Stage {
 
 data class ViewState(
     val stage: Stage,
+    val isBiometricReady: Boolean,
+    val isBiometricButtonVisible: Boolean,
     val isForgotCodeButtonVisible: Boolean,
     val isAppBarMenuVisible: Boolean,
     @StringRes val hintTextRes: Int,
@@ -23,11 +25,14 @@ sealed class UiEvent : Event {
     object OnExitButtonClick : UiEvent()
     object OnCallButtonClick : UiEvent()
     object OnForgotCodeButtonClick : UiEvent()
+    object OnBiometricButtonClick : UiEvent()
+    object OnBiometricAuthSuccess : UiEvent()
     object OnCharacterRemoved : UiEvent()
     data class OnCharacterAdded(val character: String) : UiEvent()
 }
 
 sealed class DataEvent : Event {
+    object OnBiometryAvailabilityCheck : DataEvent()
     object OnLoggedOut : DataEvent()
     object OnLogoutFailed : DataEvent()
     object OnCachedPasscodeRequest : DataEvent()
@@ -35,6 +40,7 @@ sealed class DataEvent : Event {
 }
 
 sealed class SingleEvent {
+    object OnShowBiometricPrompt : SingleEvent()
     data class OnError(@StringRes val errorMessageRes: Int) : SingleEvent()
     data class OnCall(val uri: Uri) : SingleEvent()
 }
