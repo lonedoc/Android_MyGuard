@@ -1,5 +1,7 @@
 package kobramob.rubeg38.ru.myprotection.domain
 
+import com.google.gson.JsonParseException
+import kobramob.rubeg38.ru.myprotection.data.models.DeviceDto
 import kobramob.rubeg38.ru.myprotection.data.models.FacilityDto
 import kobramob.rubeg38.ru.myprotection.data.models.LoginResponseDto
 import kobramob.rubeg38.ru.myprotection.domain.models.*
@@ -33,7 +35,8 @@ fun FacilityDto.toDomain() = Facility(
     powerSupplyMalfunction = powerSupplyMalfunction == 1,
     passcode = passcode,
     isApplicationsEnabled = isApplicationsEnabled == 1,
-    accounts = parseAccounts(this)
+    accounts = parseAccounts(this),
+    devices = devices?.map(DeviceDto::toDomain) ?: emptyList()
 )
 
 private fun getStatusCodes(statusCodeStr: String, perimeterOnly: Int?): List<StatusCode> =
@@ -83,7 +86,7 @@ private fun getStatusCodes(statusCodeStr: String, perimeterOnly: Int?): List<Sta
         else -> listOf(StatusCode.UNKNOWN)
     }
 
-fun parseAccounts(facilityDto: FacilityDto): List<Account> {
+private fun parseAccounts(facilityDto: FacilityDto): List<Account> {
     val accounts = mutableListOf<Account>()
 
     if (facilityDto.account1 != null && facilityDto.paymentSystemUrl1 != null) {
@@ -120,4 +123,25 @@ fun parseAccounts(facilityDto: FacilityDto): List<Account> {
     }
 
     return accounts
+}
+
+fun DeviceDto.toDomain(): Device {
+    val deviceType = DeviceType.values().firstOrNull { it.id == type }
+        ?: throw IllegalStateException()
+
+    return when (deviceType) {
+        DeviceType.CERBER_TEMPERATURE -> {
+            if (value == null) {
+                throw IllegalStateException()
+            }
+
+            CerberTemperatureSensor(
+                deviceType = deviceType,
+                number = number,
+                deviceDescription = deviceDescription,
+                isOnline = isOnline == 1,
+                temperature = value
+            )
+        }
+    }
 }

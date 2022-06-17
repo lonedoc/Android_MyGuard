@@ -33,6 +33,8 @@ data class FacilityDto(
     val passcode: String?,
     @SerializedName("zay")
     val isApplicationsEnabled: Int?,
+    @SerializedName("device")
+    val devices: List<DeviceDto>?,
 
     // account 1
     @SerializedName("i1clic")

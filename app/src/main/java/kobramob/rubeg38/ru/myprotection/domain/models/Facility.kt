@@ -20,7 +20,8 @@ data class Facility(
     val powerSupplyMalfunction: Boolean,
     val passcode: String?,
     val isApplicationsEnabled: Boolean,
-    val accounts: List<Account>
+    val accounts: List<Account>,
+    val devices: List<Device>
 ) : Parcelable {
 
     @IgnoredOnParcel
