@@ -1,6 +1,5 @@
 package kobramob.rubeg38.ru.myprotection.domain
 
-import com.google.gson.JsonParseException
 import kobramob.rubeg38.ru.myprotection.data.models.DeviceDto
 import kobramob.rubeg38.ru.myprotection.data.models.FacilityDto
 import kobramob.rubeg38.ru.myprotection.data.models.LoginResponseDto
@@ -135,7 +134,7 @@ fun DeviceDto.toDomain(): Device {
                 throw IllegalStateException()
             }
 
-            CerberTemperatureSensor(
+            CerberThermostat(
                 deviceType = deviceType,
                 number = number,
                 deviceDescription = deviceDescription,

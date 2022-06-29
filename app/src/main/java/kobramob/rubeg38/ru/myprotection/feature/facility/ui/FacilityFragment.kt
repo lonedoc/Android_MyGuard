@@ -1,6 +1,5 @@
 package kobramob.rubeg38.ru.myprotection.feature.facility.ui
 
-import android.hardware.Sensor
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -9,27 +8,23 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.fragment.app.setFragmentResultListener
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
 import kobramob.rubeg38.ru.myprotection.R
 import kobramob.rubeg38.ru.myprotection.databinding.FragmentFacilityBinding
-import kobramob.rubeg38.ru.myprotection.domain.models.Account
 import kobramob.rubeg38.ru.myprotection.domain.models.Facility
 import kobramob.rubeg38.ru.myprotection.feature.accounts.ui.AccountsFragment
-import kobramob.rubeg38.ru.myprotection.feature.accounts.ui.AccountsViewModel
 import kobramob.rubeg38.ru.myprotection.feature.events.ui.EventsFragment
-import kobramob.rubeg38.ru.myprotection.feature.events.ui.EventsViewModel
 import kobramob.rubeg38.ru.myprotection.feature.sensors.ui.SensorsFragment
+import kobramob.rubeg38.ru.myprotection.feature.sensors.ui.SensorsViewModel
 import kobramob.rubeg38.ru.myprotection.feature.testmode.ui.TestModeDialogFragment
 import kobramob.rubeg38.ru.myprotection.utils.load
 import kobramob.rubeg38.ru.myprotection.utils.setThrottledClickListener
-import org.koin.androidx.viewmodel.ext.android.getViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import java.io.OutputStream
+import kobramob.rubeg38.ru.myprotection.feature.sensors.ui.UiEvent as SensorsUiEvent
 
 class FacilityFragment : Fragment(R.layout.fragment_facility) {
 
@@ -45,33 +40,35 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
         parametersOf(requireArguments().getParcelable<Facility>(FACILITY_KEY))
     }
 
-    private fun getPagerAdapter(): FragmentStateAdapter {
-        return object : FragmentStateAdapter(childFragmentManager, lifecycle) {
+    private val sensorsViewModel: SensorsViewModel by sharedViewModel()
+
+    private val binding: FragmentFacilityBinding by viewBinding()
+
+    private val pagerAdapter: FragmentStateAdapter by lazy {
+        object : FragmentStateAdapter(childFragmentManager, lifecycle) {
+
             override fun getItemCount(): Int = 3
 
             override fun createFragment(position: Int): Fragment = when (position) {
-                0 -> getEventsFragment()
-                1 -> getSensorsFragment()
-                else -> getAccountsFragment()
+                0 -> createEventsFragment()
+                1 -> createSensorsFragment()
+                else -> createAccountsFragment()
             }
 
-            private fun getEventsFragment(): EventsFragment {
+            private fun createEventsFragment(): EventsFragment {
                 val facility = requireArguments().getParcelable<Facility>(FACILITY_KEY)
                 return EventsFragment.create(facility?.id ?: "")
             }
 
-            private fun getSensorsFragment(): SensorsFragment {
-                return SensorsFragment.create()
-            }
+            private fun createSensorsFragment() = SensorsFragment.create()
 
-            private fun getAccountsFragment(): AccountsFragment {
+            private fun createAccountsFragment(): AccountsFragment {
                 val facility = requireArguments().getParcelable<Facility>(FACILITY_KEY)
                 return AccountsFragment.create(facility?.accounts ?: emptyList())
             }
+
         }
     }
-
-    private val binding: FragmentFacilityBinding by viewBinding()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -108,10 +105,9 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
         }
 
         binding.viewPager.isUserInputEnabled = false
-        binding.viewPager.adapter = getPagerAdapter()
+        binding.viewPager.adapter = pagerAdapter
 
-        binding.bottomNavigationView.menu.getItem(1).isEnabled = false
-        binding.bottomNavigationView.menu.getItem(2).isEnabled = false
+        binding.bottomNavigationView.menu.getItem(2).isEnabled = false // placeholder
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             if (item.itemId == R.id.testModeItem) {
@@ -124,10 +120,10 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
                     binding.viewPager.setCurrentItem(0, true)
                     true
                 }
-//                R.id.sensorsItem -> {
-//                    binding.viewPager.setCurrentItem(1, true)
-//                    true
-//                }
+                R.id.sensorsItem -> {
+                    binding.viewPager.setCurrentItem(1, true)
+                    true
+                }
                 R.id.accountItem -> {
                     binding.viewPager.setCurrentItem(2, true)
                     true
@@ -157,23 +153,11 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
     private fun render(viewState: ViewState) {
         val facility = viewState.facility
 
-        binding.appBar.menu.findItem(R.id.applicationItem)?.isVisible =
-            facility.isApplicationsEnabled
-
-        binding.appBar.title = facility.name
-        binding.statusTextView.text = facility.statusDescription
-        binding.addressTextView.text = facility.address
-
-        val onlineChannelIconRes = if (facility.isOnlineChannelEnabled)
+        val onlineChannelIconRes = if (facility.isOnlineChannelEnabled) {
             R.drawable.online_channel_on_icon
-        else
+        } else {
             R.drawable.online_channel_off_icon
-
-        binding.onlineChannelIcon.load(onlineChannelIconRes)
-
-        binding.onlineChannelIcon.isVisible = facility.hasOnlineChannel
-        binding.powerSupplyMalfunctionIcon.isVisible = facility.powerSupplyMalfunction
-        binding.batteryMalfunctionIcon.isVisible = facility.batteryMalfunction
+        }
 
         val armButtonImageRes = when {
             facility.alarm && facility.isGuarded -> R.drawable.facility_status_alarm_guarded
@@ -182,7 +166,19 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
             else -> R.drawable.facility_status_not_guarded
         }
 
+        binding.appBar.menu.findItem(R.id.applicationItem)?.isVisible =
+            facility.isApplicationsEnabled
+
+        binding.appBar.title = facility.name
+        binding.statusTextView.text = facility.statusDescription
+        binding.addressTextView.text = facility.address
+        binding.onlineChannelIcon.load(onlineChannelIconRes)
+        binding.onlineChannelIcon.isVisible = facility.hasOnlineChannel
+        binding.powerSupplyMalfunctionIcon.isVisible = facility.powerSupplyMalfunction
+        binding.batteryMalfunctionIcon.isVisible = facility.batteryMalfunction
         binding.armButton.load(armButtonImageRes)
+
+        sensorsViewModel.processUiEvent(SensorsUiEvent.OnDevicesListUpdated(facility.devices))
     }
 
     private fun handleSingleEvent(event: SingleEvent) {

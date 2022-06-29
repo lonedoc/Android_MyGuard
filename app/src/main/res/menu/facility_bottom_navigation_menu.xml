@@ -6,14 +6,14 @@
         android:title="@string/events_item_text"
         android:icon="@drawable/events_icon" />
 
-    <item
-        android:id="@+id/sensorsItem"
-        android:title="" />
-
 <!--    <item-->
 <!--        android:id="@+id/sensorsItem"-->
-<!--        android:title="@string/sensors_item_text"-->
-<!--        android:icon="@drawable/sensors_icon" />-->
+<!--        android:title="" />-->
+
+    <item
+        android:id="@+id/sensorsItem"
+        android:title="@string/sensors_item_text"
+        android:icon="@drawable/sensors_icon" />
 
     <item
         android:id="@+id/placeholderItem"

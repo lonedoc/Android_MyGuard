@@ -6,9 +6,10 @@ import com.google.gson.JsonObject
 import kobramob.rubeg38.ru.myprotection.BuildConfig
 import kobramob.rubeg38.ru.myprotection.feature.events.data.models.EventsResponseDto
 import kobramob.rubeg38.ru.myprotection.utils.SessionDataHolder
-import ru.rubeg38.protocolclient.Address
 import ru.rubeg38.protocolclient.Client
 import ru.rubeg38.protocolclient.retry
+
+private const val RETRIES_COUNT = 3
 
 class EventsApi(private val sessionDataHolder: SessionDataHolder) {
 
@@ -21,7 +22,7 @@ class EventsApi(private val sessionDataHolder: SessionDataHolder) {
             Log.d(this::class.simpleName, "-> $query")
         }
 
-        val data = retry(3, addresses) { address ->
+        val data = retry(RETRIES_COUNT, addresses) { address ->
             val client = Client()
             client.bind(address)
             client.sendRequest(query, token)

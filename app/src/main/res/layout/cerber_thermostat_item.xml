@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:backgroundTint="@color/white"
+    app:cardCornerRadius="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/onlineIcon"
+            android:layout_width="@dimen/equipment_status_icon_size"
+            android:layout_height="@dimen/equipment_status_icon_size"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/online_channel_on_icon"
+            android:background="@color/blue_500"
+            app:shapeAppearanceOverlay="@style/roundedImageView" />
+
+        <ImageView
+            android:id="@+id/sensorIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/temperatureTextView"
+            app:layout_constraintBottom_toTopOf="@id/titleTextView"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:src="@drawable/thermostat_icon" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/temperatureTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/sensorIcon"
+            app:layout_constraintStart_toEndOf="@id/sensorIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/sensorIcon"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:textAppearance="@style/MaterialAlertDialog.MaterialComponents.Title.Text"
+            android:textSize="24sp"
+            tools:text="22.2°C" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/titleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textAppearance="@style/MaterialAlertDialog.MaterialComponents.Title.Text"
+            android:textSize="14sp"
+            tools:text="Title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -415,7 +415,8 @@ private fun createFacilityNull() = Facility(
     powerSupplyMalfunction = false,
     passcode = null,
     isApplicationsEnabled = false,
-    accounts = emptyList()
+    accounts = emptyList(),
+    devices = emptyList()
 )
 
 private fun <T> getRandomElements(count: Int, source: List<T>): List<T> {

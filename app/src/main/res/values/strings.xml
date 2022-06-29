@@ -139,6 +139,9 @@
     <!-- Events -->
     <string name="events_update_failed_message">Could not fetch the list of events</string>
 
+    <!-- Sensors -->
+    <string name="temperature_text">%.1f°C</string>
+
     <!-- Accounts -->
     <string name="account_text_field_hint">Account</string>
     <string name="sum_text_field_hint">Sum</string>
