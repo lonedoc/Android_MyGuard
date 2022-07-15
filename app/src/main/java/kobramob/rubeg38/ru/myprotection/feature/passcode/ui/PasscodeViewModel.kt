@@ -183,6 +183,7 @@ class PasscodeViewModel(
                 )
             }
             is DataEvent.OnLoggedOut -> {
+                interactor.removeUserData()
                 router.newRootScreen(Screens.login())
                 return null
             }

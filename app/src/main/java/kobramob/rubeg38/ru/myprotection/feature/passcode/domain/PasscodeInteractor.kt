@@ -30,6 +30,12 @@ class PasscodeInteractor(
         sharedPreferencesHelper.passcode = null
     }
 
+    fun removeUserData() {
+        sharedPreferencesHelper.user = null
+        sharedPreferencesHelper.token = null
+        sharedPreferencesHelper.passcode = null
+    }
+
     suspend fun logout() = attempt { loginRepository.logout() }
 
 }
