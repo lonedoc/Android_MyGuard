@@ -47,7 +47,7 @@ class EventsViewModel(
                 )
             }
             is UiEvent.OnEndOfListReached -> {
-                val minEventId = previousState.events.minOf { it.id }
+                val minEventId = previousState.events.minOfOrNull { it.id } ?: return null
 
                 if (minEventId == 0) {
                     return null
