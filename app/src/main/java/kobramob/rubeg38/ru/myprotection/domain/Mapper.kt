@@ -28,7 +28,7 @@ fun FacilityDto.toDomain() = Facility(
     isSelfServiceEnabled = isSelfServiceEnabled == 1,
     hasOnlineChannel = hasOnlineChannel == 1,
     isOnlineChannelEnabled = isOnlineChannelEnabled == 1,
-    isArmingEnabled = isArmingDisabled == 0,
+    isArmingEnabled = isArmingDisabled != 1,
     isAlarmButtonEnabled = isAlarmButtonEnabled == 1,
     batteryMalfunction = batteryMalfunction == 1,
     powerSupplyMalfunction = powerSupplyMalfunction == 1,
