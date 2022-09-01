@@ -30,6 +30,8 @@ fun eventsAdapterDelegate() =
             binding.descriptionTextView.text = item.description
             binding.zoneTextView.text = item.zone
             binding.timestampTextView.text = getTimestampStr(item.timestamp)
+
+            binding.zoneTextView.isSelected = true
         }
     }
 

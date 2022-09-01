@@ -28,7 +28,6 @@
         app:layout_constraintStart_toEndOf="@id/iconImageView"
         app:layout_constraintBottom_toTopOf="@id/zoneTextView"
         android:maxLines="1"
-        android:ellipsize="end"
         android:textSize="@dimen/small_headline_size"
         android:textStyle="bold"
         tools:text="Title" />
@@ -41,8 +40,13 @@
         app:layout_constraintStart_toStartOf="@id/descriptionTextView"
         app:layout_constraintBottom_toTopOf="@id/timestampTextView"
         android:maxLines="1"
-        android:ellipsize="end"
-        tools:text="Address" />
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollHorizontally="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        tools:text="Zone" />
 
     <TextView
         android:id="@+id/timestampTextView"
@@ -52,7 +56,6 @@
         app:layout_constraintStart_toStartOf="@id/descriptionTextView"
         app:layout_constraintBottom_toBottomOf="parent"
         android:maxLines="1"
-        android:ellipsize="end"
-        tools:text="Status" />
+        tools:text="29.08.2022 18:07:20" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
