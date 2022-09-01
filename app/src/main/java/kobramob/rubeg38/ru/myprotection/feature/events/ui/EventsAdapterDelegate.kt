@@ -60,4 +60,4 @@ private fun getIconResByType(type: Int) = when(type) {
 
 @SuppressLint("SimpleDateFormat")
 private fun getTimestampStr(timestamp: Date): String =
-    SimpleDateFormat("dd.MM.yyyy hh:mm:ss").format(timestamp)
+    SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(timestamp)
