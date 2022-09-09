@@ -1,6 +1,7 @@
 package kobramob.rubeg38.ru.myprotection.feature.facilities.di
 
 import com.github.terrakok.cicerone.Router
+import kobramob.rubeg38.ru.myprotection.data.SharedPreferencesHelper
 import kobramob.rubeg38.ru.myprotection.feature.facilities.data.FacilitiesApi
 import kobramob.rubeg38.ru.myprotection.feature.facilities.data.FacilitiesRepository
 import kobramob.rubeg38.ru.myprotection.feature.facilities.data.FacilitiesRepositoryImpl
@@ -20,7 +21,7 @@ val facilitiesModule = module {
     }
 
     single<FacilitiesInteractor> {
-        FacilitiesInteractor(get<FacilitiesRepository>())
+        FacilitiesInteractor(get<FacilitiesRepository>(), get<SharedPreferencesHelper>())
     }
 
     viewModel<FacilitiesViewModel> {

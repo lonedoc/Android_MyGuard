@@ -1,5 +1,6 @@
 package kobramob.rubeg38.ru.myprotection.feature.facilities.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -93,6 +94,10 @@ class FacilitiesFragment : Fragment(R.layout.fragment_facilities) {
             }
             is SingleEvent.OnError -> {
                 showErrorMessage(event.errorMessageRes)
+            }
+            is SingleEvent.OnCall -> {
+                val intent = Intent(Intent.ACTION_DIAL, event.uri)
+                startActivity(intent)
             }
         }
     }

@@ -6,6 +6,7 @@
     <string name="background_image_description">Background image</string>
     <string name="request_failed_message">Could not load data</string> <!-- TODO: Edit -->
     <string name="call_button_title">Call the guard service</string>
+    <string name="phone_number_not_found_message">Phone number is not found</string>
 
     <!-- Login -->
     <string name="logo_image_description">Logo</string>
@@ -44,7 +45,6 @@
     <string name="wrong_passcode_confirmation_message">Wrong passcode confirmation</string>
     <string name="wrong_passcode_message">Wrong passcode</string>
     <string name="logout_failed_message">Could not log out. Please, try again</string>
-    <string name="phone_number_not_found_message">Phone number is not found</string>
     <string name="biometric_auth_failed_message">Authentication failed</string>
     <string name="biometric_prompt_title">Biometric Authentication</string>
 

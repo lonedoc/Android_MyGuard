@@ -1,5 +1,6 @@
 package kobramob.rubeg38.ru.myprotection.feature.facilities.ui
 
+import android.net.Uri
 import androidx.lifecycle.*
 import com.github.terrakok.cicerone.Router
 import kobramob.rubeg38.ru.myprotection.R
@@ -40,7 +41,14 @@ class FacilitiesViewModel(
     override suspend fun reduce(event: Event, previousState: ViewState): ViewState? {
         when(event) {
             is UiEvent.OnCallButtonClick -> {
-                TODO()
+                interactor.getGuardServicePhoneNumber()?.let { phoneNumber ->
+                    val uri = Uri.parse("tel:$phoneNumber")
+                    singleEvent.postValue(SingleEvent.OnCall(uri))
+                    return null
+                }
+
+                singleEvent.postValue(SingleEvent.OnError(R.string.phone_number_not_found_message))
+                return null
             }
             is UiEvent.OnSortButtonClick -> {
                 singleEvent.postValue(SingleEvent.OnSortingDialog(previousState.sorting))

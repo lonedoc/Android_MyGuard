@@ -1,5 +1,6 @@
 package kobramob.rubeg38.ru.myprotection.feature.facilities.ui
 
+import android.net.Uri
 import androidx.annotation.StringRes
 import kobramob.rubeg38.ru.myprotection.base.Event
 import kobramob.rubeg38.ru.myprotection.domain.models.Facility
@@ -31,4 +32,5 @@ sealed class DataEvent : Event {
 sealed class SingleEvent {
     data class OnSortingDialog(val sorting: Sorting) : SingleEvent()
     data class OnError(@StringRes val errorMessageRes: Int) : SingleEvent()
+    data class OnCall(val uri: Uri) : SingleEvent()
 }
