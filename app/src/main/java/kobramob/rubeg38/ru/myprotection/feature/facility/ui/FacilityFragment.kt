@@ -41,11 +41,11 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
     }
 
     private val sensorsViewModel: SensorsViewModel by sharedViewModel()
-
     private val binding: FragmentFacilityBinding by viewBinding()
+    private var pagerAdapter: FragmentStateAdapter? = null
 
-    private val pagerAdapter: FragmentStateAdapter by lazy {
-        object : FragmentStateAdapter(childFragmentManager, lifecycle) {
+    private fun initializePagerAdapter() {
+        pagerAdapter = object : FragmentStateAdapter(childFragmentManager, lifecycle) {
 
             override fun getItemCount(): Int = 3
 
@@ -103,6 +103,8 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
             viewModel.processUiEvent(UiEvent.OnArmButtonLongClick)
             false
         }
+
+        initializePagerAdapter()
 
         binding.viewPager.isUserInputEnabled = false
         binding.viewPager.adapter = pagerAdapter
