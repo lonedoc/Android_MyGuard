@@ -14,7 +14,7 @@
         app:layout_constraintBottom_toTopOf="@id/subtitleTextView"
         tools:text="Title"
         android:textSize="@dimen/sorting_option_title_size"
-        android:textColor="@android:color/black" />
+        android:textColor="?attr/surfaceForegroundColor" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/subtitleTextView"

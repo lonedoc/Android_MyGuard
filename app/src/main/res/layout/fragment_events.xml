@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?attr/screenBackgroundColor">
 
     <!-- Facilities list -->
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -25,7 +26,7 @@
             android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="vertical"
-            tools:listitem="@layout/facilities_item" />
+            tools:listitem="@layout/events_item" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

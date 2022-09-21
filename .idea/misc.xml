@@ -60,7 +60,21 @@
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/layout/quad_state_checkbox.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/menu/facility_appbar_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/MyGuard/app/src/main/res/menu/facility_bottom_navigation_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/work/Android/MyGuard/app/src/main/res/layout/cerber_thermostat_item.xml" value="0.3109375" />
+        <entry key="..\:/work/Android/MyGuard/app/src/main/res/layout/dropdown_item.xml" value="0.3754528985507246" />
+        <entry key="..\:/work/Android/MyGuard/app/src/main/res/layout/dropdown_item_light.xml" value="0.3754528985507246" />
         <entry key="..\:/work/Android/MyGuard/app/src/main/res/layout/events_item.xml" value="0.3754528985507246" />
+        <entry key="..\:/work/Android/MyGuard/app/src/main/res/layout/facilities_item.xml" value="0.3754528985507246" />
+        <entry key="..\:/work/Android/MyGuard/app/src/main/res/layout/fragment_accounts.xml" value="0.3754528985507246" />
+        <entry key="..\:/work/Android/MyGuard/app/src/main/res/layout/fragment_applications.xml" value="0.3754528985507246" />
+        <entry key="..\:/work/Android/MyGuard/app/src/main/res/layout/fragment_events.xml" value="0.3754528985507246" />
+        <entry key="..\:/work/Android/MyGuard/app/src/main/res/layout/fragment_facilities.xml" value="0.3754528985507246" />
+        <entry key="..\:/work/Android/MyGuard/app/src/main/res/layout/fragment_rename_dialog.xml" value="0.3109375" />
+        <entry key="..\:/work/Android/MyGuard/app/src/main/res/layout/fragment_sensors.xml" value="0.3109375" />
+        <entry key="..\:/work/Android/MyGuard/app/src/main/res/layout/fragment_sorting_dialog.xml" value="0.3109375" />
+        <entry key="..\:/work/Android/MyGuard/app/src/main/res/layout/fragment_test_mode_dialog.xml" value="0.3109375" />
+        <entry key="..\:/work/Android/MyGuard/app/src/main/res/layout/list_item.xml" value="0.3754528985507246" />
+        <entry key="..\:/work/Android/MyGuard/app/src/main/res/layout/quad_state_checkbox.xml" value="0.3109375" />
       </map>
     </option>
   </component>

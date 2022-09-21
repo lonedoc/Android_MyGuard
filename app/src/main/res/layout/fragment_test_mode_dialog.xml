@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/window_padding">
+    android:padding="@dimen/window_padding"
+    android:background="?attr/surfaceBackgroundColor">
 
     <TextView
         android:id="@+id/hintTextView"
@@ -15,6 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="@dimen/hint_text_size"
+        android:textColor="?attr/surfaceForegroundColor"
         tools:text="Status" />
 
     <TextView
@@ -26,6 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="@dimen/countdown_text_size"
+        android:textColor="?attr/surfaceForegroundColor"
         tools:text="Status" />
 
     <androidx.constraintlayout.widget.Guideline

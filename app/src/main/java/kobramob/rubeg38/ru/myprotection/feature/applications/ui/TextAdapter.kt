@@ -2,10 +2,14 @@ package kobramob.rubeg38.ru.myprotection.feature.applications.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.annotation.LayoutRes
 import kobramob.rubeg38.ru.myprotection.R
 import kobramob.rubeg38.ru.myprotection.databinding.DropdownItemLightBinding
@@ -36,13 +40,13 @@ class TextAdapter(
         getItem(position)?.let { item ->
             binding.valueText.text = item
 
-            val colorRes = if (position == selectedItemPosition) {
-                R.color.green_500
+            val color = if (position == selectedItemPosition) {
+                getColorFromRes(parent.context, R.color.green_500)
             } else {
-                R.color.black
+                getColorFromTheme(parent.context, R.attr.surfaceForegroundColor)
             }
 
-            binding.valueText.setTextColor(parent.context.getColor(colorRes))
+            binding.valueText.setTextColor(color)
         }
 
         return binding.root
@@ -56,13 +60,12 @@ class TextAdapter(
         getItem(position)?.let { item ->
             binding.valueText.text = item
 
-            val colorRes = if (position == selectedItemPosition) {
-                R.color.green_500
+            val color = if (position == selectedItemPosition) {
+                getColorFromRes(parent.context, R.color.green_500)
             } else {
-                R.color.black
+                getColorFromTheme(parent.context, R.attr.surfaceForegroundColor)
             }
 
-            val color = parent.context.getColor(colorRes)//R.color.black)
             binding.valueText.setTextColor(color)
         }
 
@@ -75,5 +78,13 @@ class TextAdapter(
 
         return binding.root
     }
+
+    private fun getColorFromTheme(context: Context, @AttrRes attr: Int): Int =
+        TypedValue()
+            .also { value -> context.theme.resolveAttribute(attr, value, true) }
+            .data
+
+    private fun getColorFromRes(context: Context, @ColorRes resId: Int): Int =
+        context.getColor(resId)
 
 }

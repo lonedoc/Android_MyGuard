@@ -6,4 +6,5 @@
     android:layout_height="@dimen/spinner_item_height"
     android:paddingHorizontal="@dimen/window_padding"
     android:gravity="center_vertical|start"
-    android:textSize="16sp" />
+    android:textSize="16sp"
+    android:textColor="?attr/surfaceForegroundColor" />

@@ -3,8 +3,11 @@ package kobramob.rubeg38.ru.myprotection.feature.facilities.ui.views
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import kobramob.rubeg38.ru.myprotection.R
 import kotlin.properties.Delegates
@@ -86,10 +89,16 @@ class QuadStateCheckbox(context: Context, attrs: AttributeSet) : ConstraintLayou
         subtitleTextView.text = subtitles[state]
         iconImageView.setImageDrawable(icons[state])
 
+//        val titleColor = if (isChecked) {
+//            tintColor
+//        } else {
+//            context.getColor(R.color.black)
+//        }
+
         val titleColor = if (isChecked) {
-            tintColor
+            getColorFromRes(context, R.color.green_500)
         } else {
-            context.getColor(R.color.black)
+            getColorFromTheme(context, R.attr.surfaceForegroundColor)
         }
 
         titleTextView.setTextColor(titleColor)
@@ -102,5 +111,13 @@ class QuadStateCheckbox(context: Context, attrs: AttributeSet) : ConstraintLayou
 
         iconImageView.setColorFilter(iconColor)
     }
+
+    private fun getColorFromTheme(context: Context, @AttrRes attr: Int): Int =
+        TypedValue()
+            .also { value -> context.theme.resolveAttribute(attr, value, true) }
+            .data
+
+    private fun getColorFromRes(context: Context, @ColorRes resId: Int): Int =
+        context.getColor(resId)
 
 }

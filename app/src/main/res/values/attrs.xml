@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="screenBackgroundColor" format="color|reference" />
+    <attr name="screenForegroundColor" format="color|reference" />
+    <attr name="surfaceBackgroundColor" format="color|reference" />
+    <attr name="surfaceForegroundColor" format="color|reference" />
+
     <declare-styleable name="QuadStateCheckbox">
         <attr name="title" format="string" />
         <attr name="subtitle1" format="string" />
