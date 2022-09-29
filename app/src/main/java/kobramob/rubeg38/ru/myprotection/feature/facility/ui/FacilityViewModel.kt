@@ -43,7 +43,9 @@ class FacilityViewModel(
         facility = createFacilityNull(),
         pendingArmingOrDisarming = false,
         isProgressBarShown = false,
-        progressBarHintRes = null
+        progressBarHintRes = null,
+        alarmButtonIconRes = R.drawable.alarm_icon,
+        alarmButtonColorRes = R.color.alarm_button_color
     )
 
     override suspend fun reduce(event: Event, previousState: ViewState): ViewState? {
@@ -342,12 +344,18 @@ class FacilityViewModel(
                             facility = event.facility,
                             pendingArmingOrDisarming = false,
                             isProgressBarShown = false,
-                            progressBarHintRes = null
+                            progressBarHintRes = null,
+                            alarmButtonIconRes = getAlarmButtonIcon(event.facility.alarm),
+                            alarmButtonColorRes = getAlarmButtonColor(event.facility.alarm)
                         )
                     }
                 }
 
-                return previousState.copy(facility = event.facility)
+                return previousState.copy(
+                    facility = event.facility,
+                    alarmButtonIconRes = getAlarmButtonIcon(event.facility.alarm),
+                    alarmButtonColorRes = getAlarmButtonColor(event.facility.alarm)
+                )
             }
             is DataEvent.OnRenamingResult -> {
                 val updatedFacility = previousState.facility.copy(name = event.name)
@@ -397,6 +405,17 @@ class FacilityViewModel(
         !facility.isGuarded && updatedFacility.isGuarded ||
                 facility.isGuarded && !updatedFacility.isGuarded
 
+    private fun getAlarmButtonIcon(alarm: Boolean) = if (alarm) {
+        R.drawable.cancel_alarm_icon
+    } else {
+        R.drawable.alarm_icon
+    }
+
+    private fun getAlarmButtonColor(alarm: Boolean) = if (alarm) {
+        R.color.cancel_alarm_button_color
+    } else {
+        R.color.alarm_button_color
+    }
 
 }
 

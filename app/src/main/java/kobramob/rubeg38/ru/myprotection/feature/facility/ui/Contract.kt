@@ -1,5 +1,7 @@
 package kobramob.rubeg38.ru.myprotection.feature.facility.ui
 
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import kobramob.rubeg38.ru.myprotection.base.Event
 import kobramob.rubeg38.ru.myprotection.domain.models.Facility
@@ -8,7 +10,9 @@ data class ViewState(
     val facility: Facility,
     val pendingArmingOrDisarming: Boolean,
     val isProgressBarShown: Boolean,
-    @StringRes val progressBarHintRes: Int?
+    @StringRes val progressBarHintRes: Int?,
+    @DrawableRes val alarmButtonIconRes: Int,
+    @ColorRes val alarmButtonColorRes: Int
 )
 
 sealed class UiEvent : Event {

@@ -1,10 +1,13 @@
 package kobramob.rubeg38.ru.myprotection.feature.facility.ui
 
+import android.content.res.ColorStateList
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -168,6 +171,16 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
             else -> R.drawable.facility_status_not_guarded
         }
 
+        val alarmButtonIcon = AppCompatResources.getDrawable(
+            requireContext(),
+            viewState.alarmButtonIconRes
+        )
+
+        val alarmButtonColor = AppCompatResources.getColorStateList(
+            requireContext(),
+            viewState.alarmButtonColorRes
+        )
+
         binding.appBar.menu.findItem(R.id.applicationItem)?.isVisible =
             facility.isApplicationsEnabled
 
@@ -179,6 +192,8 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
         binding.powerSupplyMalfunctionIcon.isVisible = facility.powerSupplyMalfunction
         binding.batteryMalfunctionIcon.isVisible = facility.batteryMalfunction
         binding.armButton.load(armButtonImageRes)
+        binding.alarmButton.setImageDrawable(alarmButtonIcon)
+        binding.alarmButton.backgroundTintList = alarmButtonColor
 
         sensorsViewModel.processUiEvent(SensorsUiEvent.OnDevicesListUpdated(facility.devices))
     }
