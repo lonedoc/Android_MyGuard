@@ -7,7 +7,7 @@ import ru.rubeg38.protocolclient.Client
 import ru.rubeg38.protocolclient.clientConfig
 import ru.rubeg38.protocolclient.retry
 
-private val ipAddresses = listOf("94.177.183.4", "91.189.160.38")
+private val ipAddresses = listOf("91.189.160.38", "87.103.172.170")
 private const val port = 8300
 
 class GuardServicesApi {
