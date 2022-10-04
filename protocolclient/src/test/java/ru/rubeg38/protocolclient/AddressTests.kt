@@ -2,6 +2,9 @@ package ru.rubeg38.protocolclient
 
 import org.junit.Assert
 import org.junit.Test
+import java.net.UnknownHostException
+
+// TODO: Find a way to mock DNS
 
 class AddressTests {
 
@@ -36,10 +39,27 @@ class AddressTests {
     }
 
     @Test
+    fun factoryMethodShouldThrowExceptionWhenDnsNameIsIncorrect() {
+        val ex = Assert.assertThrows(UnknownHostException::class.java) {
+            Address.create("unknown.hostname.test", 0)
+        }
+
+        Assert.assertEquals("No such host is known (unknown.hostname.test)", ex.message)
+    }
+
+    @Test
     fun factoryMethodShouldReturnNewInstanceOfAddress() {
         val address = Address.create("192.168.1.1", 3000)
 
         Assert.assertEquals("192.168.1.1", address.ip)
+        Assert.assertEquals(3000, address.port)
+    }
+
+    @Test
+    fun factoryMethodShouldReturnNewInstanceOfAddressWithResolvedDnsName() {
+        val address = Address.create("crm.rubeg38.ru", 3000)
+
+        Assert.assertEquals("194.146.201.66", address.ip)
         Assert.assertEquals(3000, address.port)
     }
 
