@@ -39,15 +39,6 @@ class AddressTests {
     }
 
     @Test
-    fun factoryMethodShouldThrowExceptionWhenDnsNameIsIncorrect() {
-        val ex = Assert.assertThrows(UnknownHostException::class.java) {
-            Address.create("unknown.hostname.test", 0)
-        }
-
-        Assert.assertEquals("No such host is known (unknown.hostname.test)", ex.message)
-    }
-
-    @Test
     fun factoryMethodShouldReturnNewInstanceOfAddress() {
         val address = Address.create("192.168.1.1", 3000)
 
@@ -56,11 +47,22 @@ class AddressTests {
     }
 
     @Test
-    fun factoryMethodShouldReturnNewInstanceOfAddressWithResolvedDnsName() {
-        val address = Address.create("crm.rubeg38.ru", 3000)
+    fun factoryMethodShouldThrowExceptionWhenDomainNameIsIncorrect() {
+        val ex = Assert.assertThrows(UnknownHostException::class.java) {
+            Address.createAll("unknown.hostname.test", 0)
+        }
 
-        Assert.assertEquals("194.146.201.66", address.ip)
-        Assert.assertEquals(3000, address.port)
+        Assert.assertEquals("No such host is known (unknown.hostname.test)", ex.message)
+    }
+
+    @Test
+    fun factoryMethodShouldReturnNewInstanceOfAddressWithResolvedDnsName() {
+        val addresses = Address.createAll("lk.rubeg38.ru", 3000)
+
+        Assert.assertEquals(2, addresses.size)
+        Assert.assertTrue(addresses.any { address -> address.ip == "91.189.160.38" })
+        Assert.assertTrue(addresses.any { address -> address.ip == "87.103.172.170" })
+        Assert.assertTrue(addresses.all { address -> address.port == 3000 })
     }
 
 }

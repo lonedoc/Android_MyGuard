@@ -17,16 +17,7 @@ class SplashScreenInteractor(
 
     fun getToken(): String? = sharedPreferencesHelper.token
 
-    fun getCachedAddresses(): List<String> =
-        sharedPreferencesHelper.guardService?.addresses ?: emptyList()
-
-    fun updateAddresses(addresses: List<String>) {
-        val guardService = sharedPreferencesHelper.guardService
-        sharedPreferencesHelper.guardService = guardService?.copy(addresses = addresses)
-    }
-
-    suspend fun getAddresses(cityName: String, guardServiceName: String) = attempt {
+    suspend fun getAddresses(cityName: String, guardServiceName: String) =
         addressesRepository.getAddresses(cityName, guardServiceName)
-    }
 
 }

@@ -1,5 +1,6 @@
 package kobramob.rubeg38.ru.myprotection.feature.login.ui
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.github.terrakok.cicerone.Router
 import kobramob.rubeg38.ru.myprotection.R

@@ -161,7 +161,7 @@
     <string name="testing_failed_message">Не удалось начать тестирование</string>
 
     <!-- Applications -->
-    <string name="application_screen_title">Завявка</string>
+    <string name="application_screen_title">Заявка</string>
     <string name="application_text_field_hint">Заявка</string>
     <string name="custom_application_text">Свой вариант</string>
     <string name="custom_application_text_field_hint">Текст заявки</string>

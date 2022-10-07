@@ -17,15 +17,8 @@ class PasswordInteractor(
     private val sharedPreferencesHelper: SharedPreferencesHelper
 ) {
 
-    suspend fun setIpAddresses(ipAddresses: List<String>) {
-        val addresses = ipAddresses.mapNotNull { ipAddress ->
-            try {
-                Address.create(ipAddress, PORT)
-            } catch(ex: IllegalArgumentException) {
-                null
-            }
-        }
-
+    suspend fun setIpAddresses(hosts: List<String>) {
+        val addresses = Address.createAll(hosts, PORT)
         sessionDataHolder.setAddresses(addresses)
     }
 

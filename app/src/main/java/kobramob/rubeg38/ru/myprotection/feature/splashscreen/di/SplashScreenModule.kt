@@ -17,7 +17,10 @@ val splashScreenModule = module {
     }
 
     single<AddressesRepository> {
-        AddressesRepositoryImpl(get<AddressesApi>())
+        AddressesRepositoryImpl(
+            get<AddressesApi>(),
+            get<SharedPreferencesHelper>()
+        )
     }
 
     single<SplashScreenInteractor> {

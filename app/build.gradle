@@ -7,12 +7,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "kobramob.rubeg38.ru.myprotection"
         minSdk 23
-        targetSdk 31
+        targetSdk 32
         versionCode 74
         versionName "1.5.4"
 
@@ -38,6 +38,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'kobramob.rubeg38.ru.myprotection'
 }
 
 dependencies {
@@ -51,12 +52,12 @@ dependencies {
     def swipe_refresh_layout_version = "1.1.0"
     def room_version = "2.4.3"
     def decoro_version = "1.5.0"
-    def biometric_version = "1.2.0-alpha04"
+    def biometric_version = "1.2.0-alpha05"
     def view_binding_delegate_version = "1.5.6"
     def adapter_delegates_version = "4.3.2"
-    def ktx_core_version = "1.8.0"
-    def ktx_fragment_version = "1.5.2"
-    def app_compat_version = "1.5.0"
+    def ktx_core_version = "1.9.0"
+    def ktx_fragment_version = "1.5.3"
+    def app_compat_version = "1.5.1"
 
     // Google services
     implementation "com.google.android.gms:play-services-base:18.1.0"

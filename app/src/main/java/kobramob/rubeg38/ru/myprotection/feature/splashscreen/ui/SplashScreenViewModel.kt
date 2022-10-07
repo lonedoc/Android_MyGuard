@@ -31,24 +31,14 @@ class SplashScreenViewModel(
 
         if (isUserLoggedIn) {
             viewModelScope.launch {
-                // Update the list of addresses
-                interactor.getAddresses(cityName!!, guardServiceName!!).fold(
-                    onSuccess = { addresses ->
-                        if (addresses.count() > 0) {
-                            interactor.updateAddresses(addresses)
+                val addresses = interactor.getAddresses(cityName!!, guardServiceName!!)
+                    .mapNotNull { ipAddress ->
+                        try {
+                            Address.create(ipAddress, PORT)
+                        } catch (ex: IllegalArgumentException) {
+                            null
                         }
-                    },
-                    onError = {}
-                )
-
-                // Prepare the SessionDataHolder instance
-                val addresses = interactor.getCachedAddresses().mapNotNull { ipAddress ->
-                    try {
-                        Address.create(ipAddress, PORT)
-                    } catch (ex: IllegalArgumentException) {
-                        null
                     }
-                }
 
                 sessionDataHolder.setAddresses(addresses)
                 sessionDataHolder.setToken(token)

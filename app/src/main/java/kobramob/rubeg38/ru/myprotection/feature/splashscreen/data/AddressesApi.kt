@@ -1,7 +1,6 @@
 package kobramob.rubeg38.ru.myprotection.feature.splashscreen.data
 
 import android.util.Log
-import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kobramob.rubeg38.ru.myprotection.BuildConfig
 import ru.rubeg38.protocolclient.Address
@@ -10,13 +9,13 @@ import ru.rubeg38.protocolclient.clientConfig
 import ru.rubeg38.protocolclient.retry
 import java.lang.Exception
 
-private val ipAddresses = listOf("94.177.183.4", "91.189.160.38")
-private const val port = 8300
+private const val HOSTNAME = "lk.rubeg38.ru"
+private const val PORT = 8300
 
 class AddressesApi {
 
     suspend fun getAddresses(cityName: String, guardServiceName: String): List<String> {
-        val addresses = ipAddresses.map { ip -> Address.create(ip, port) }
+        val addresses = Address.createAll(HOSTNAME, PORT)
         val query = "{\"\$c$\":\"getip\", \"city\":\"$cityName\", \"pr\":\"$guardServiceName\"}"
 
         if (BuildConfig.DEBUG) {
