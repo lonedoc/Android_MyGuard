@@ -29,15 +29,14 @@ class PasswordViewModel(
 
     private var timer: CountDownTimer? = null
 
+    val singleEvent = SingleLiveEvent<SingleEvent>()
+
     init {
         viewModelScope.launch {
             passwordInteractor.setIpAddresses(guardService.addresses)
+            processUiEvent(UiEvent.OnPasswordRequest)
         }
-
-        processUiEvent(UiEvent.OnPasswordRequest)
     }
-
-    val singleEvent = SingleLiveEvent<SingleEvent>()
 
     override fun initialViewState() = ViewState(
         password = "",

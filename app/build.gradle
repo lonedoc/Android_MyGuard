@@ -12,9 +12,9 @@ android {
     defaultConfig {
         applicationId "kobramob.rubeg38.ru.myprotection"
         minSdk 23
-        targetSdk 32
-        versionCode 74
-        versionName "1.5.4"
+        targetSdk 33
+        versionCode 75
+        versionName "1.5.5"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
