@@ -1,6 +1,7 @@
 package kobramob.rubeg38.ru.myprotection.feature.splashscreen.data
 
 import android.util.Log
+import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kobramob.rubeg38.ru.myprotection.BuildConfig
 import ru.rubeg38.protocolclient.Address
@@ -16,7 +17,7 @@ class AddressesApi {
 
     suspend fun getAddresses(cityName: String, guardServiceName: String): List<String> {
         val addresses = Address.createAll(HOSTNAME, PORT)
-        val query = "{\"\$c$\":\"getip\", \"city\":\"$cityName\", \"pr\":\"$guardServiceName\"}"
+        val query = getAddressesQuery(cityName, guardServiceName)
 
         if (BuildConfig.DEBUG) {
             Log.d(this::class.simpleName, "-> $query")
@@ -50,6 +51,13 @@ class AddressesApi {
         }
 
         return payload
+    }
+
+    private fun getAddressesQuery(cityName: String, guardServiceName: String) = JsonObject().run {
+        addProperty("\$c$", "getip")
+        addProperty("city", cityName)
+        addProperty("pr", guardServiceName)
+        toString()
     }
 
 }

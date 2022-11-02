@@ -8,16 +8,22 @@ import kobramob.rubeg38.ru.myprotection.BuildConfig
 import kobramob.rubeg38.ru.myprotection.data.models.LoginResponseDto
 import kobramob.rubeg38.ru.myprotection.domain.models.Credentials
 import kobramob.rubeg38.ru.myprotection.utils.SessionDataHolder
-import ru.rubeg38.protocolclient.Address
 import ru.rubeg38.protocolclient.Client
 import ru.rubeg38.protocolclient.clientConfig
 import ru.rubeg38.protocolclient.retry
 
-private const val PORT = 8301
 private const val LOGIN_ERROR = "regerror"
 private const val LOGIN_OK = "reglkok"
 
 class LoginApi(private val sessionDataHolder: SessionDataHolder) {
+
+    private val logoutQuery by lazy {
+        JsonObject().run {
+            addProperty("\$c$", "newlk")
+            addProperty("com", "deleteuser")
+            toString()
+        }
+    }
 
     suspend fun login(
         credentials: Credentials,
@@ -25,7 +31,6 @@ class LoginApi(private val sessionDataHolder: SessionDataHolder) {
         deviceName: String
     ): LoginResponseDto {
         val addresses = sessionDataHolder.getAddresses()
-
         val query = getLoginQuery(credentials, fcmToken, deviceName)
 
         if (BuildConfig.DEBUG) {
@@ -61,25 +66,12 @@ class LoginApi(private val sessionDataHolder: SessionDataHolder) {
         }
     }
 
-    private fun getLoginQuery(credentials: Credentials, fcmToken: String, deviceName: String): String {
-        val jsonObject = JsonObject()
-        jsonObject.addProperty("\$c$", "reglk")
-        jsonObject.addProperty("id", "FCC2C586-A78D-48F7-AC3A-FC85F0AE29EF")
-        jsonObject.addProperty("phone", credentials.phoneNumber)
-        jsonObject.addProperty("password", credentials.password)
-        jsonObject.addProperty("idgoogle", fcmToken)
-        jsonObject.addProperty("os", "android")
-        jsonObject.addProperty("name", deviceName)
-        return jsonObject.toString()
-    }
-
     suspend fun logout(): Boolean {
         val addresses = sessionDataHolder.getAddresses()
         val token = sessionDataHolder.getToken()
-        val query = "{\"\$c$\":\"newlk\",\"com\":\"deleteuser\"}"
 
         if (BuildConfig.DEBUG) {
-            Log.d(this::class.simpleName, "-> $query")
+            Log.d(this::class.simpleName, "-> $logoutQuery")
         }
 
         val data = retry(3, addresses) { address ->
@@ -89,7 +81,7 @@ class LoginApi(private val sessionDataHolder: SessionDataHolder) {
 
             val client = Client(config)
             client.bind(address)
-            client.sendRequest(query, token)
+            client.sendRequest(logoutQuery, token)
         }
 
         val json = String(data)
@@ -108,6 +100,18 @@ class LoginApi(private val sessionDataHolder: SessionDataHolder) {
         }
 
         return result == "ok"
+    }
+
+    private fun getLoginQuery(credentials: Credentials, fcmToken: String, deviceName: String): String {
+        val jsonObject = JsonObject()
+        jsonObject.addProperty("\$c$", "reglk")
+        jsonObject.addProperty("id", "FCC2C586-A78D-48F7-AC3A-FC85F0AE29EF")
+        jsonObject.addProperty("phone", credentials.phoneNumber)
+        jsonObject.addProperty("password", credentials.password)
+        jsonObject.addProperty("idgoogle", fcmToken)
+        jsonObject.addProperty("os", "android")
+        jsonObject.addProperty("name", deviceName)
+        return jsonObject.toString()
     }
 
     private fun parseCommand(json: String): String? {

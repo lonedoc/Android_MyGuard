@@ -14,7 +14,7 @@ import java.util.*
 
 class ApplicationsApi(private val sessionDataHolder: SessionDataHolder) {
 
-    private val predefinedApplicationsQuery: String by lazy {
+    private val predefinedApplicationsQuery by lazy {
         JsonObject().run {
             addProperty("\$c$", "newlk")
             addProperty("com", "get.catalog")
@@ -26,16 +26,15 @@ class ApplicationsApi(private val sessionDataHolder: SessionDataHolder) {
     suspend fun getPredefinedApplications(): List<PredefinedApplication> {
         val addresses = sessionDataHolder.getAddresses()
         val token = sessionDataHolder.getToken()
-        val query = predefinedApplicationsQuery
 
         if (BuildConfig.DEBUG) {
-            Log.d(this::class.simpleName, "-> $query")
+            Log.d(this::class.simpleName, "-> $predefinedApplicationsQuery")
         }
 
         val data = retry(3, addresses) { address ->
             val client = Client()
             client.bind(address)
-            client.sendRequest(query, token)
+            client.sendRequest(predefinedApplicationsQuery, token)
         }
 
         val json = String(data)

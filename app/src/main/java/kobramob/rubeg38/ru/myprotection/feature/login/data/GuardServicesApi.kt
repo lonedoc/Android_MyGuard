@@ -1,6 +1,7 @@
 package kobramob.rubeg38.ru.myprotection.feature.login.data
 
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 import kobramob.rubeg38.ru.myprotection.feature.login.data.models.CitiesResponseDto
 import ru.rubeg38.protocolclient.Address
 import ru.rubeg38.protocolclient.Client
@@ -12,9 +13,15 @@ private const val PORT = 8300
 
 class GuardServicesApi {
 
+    private val citiesQuery by lazy {
+        JsonObject().run {
+            addProperty("\$c$", "getcity")
+            toString()
+        }
+    }
+
     suspend fun getCitiesData(): CitiesResponseDto {
         val addresses = Address.createAll(HOSTNAME, PORT)
-        val query = "{\"\$c$\": \"getcity\"}"
 
         val data = retry(-1, addresses) { address ->
             val config = clientConfig {
@@ -23,7 +30,7 @@ class GuardServicesApi {
 
             val client = Client(config)
             client.bind(address)
-            client.sendRequest(query, null)
+            client.sendRequest(citiesQuery, null)
         }
 
         val json = String(data)

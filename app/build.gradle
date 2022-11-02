@@ -13,8 +13,8 @@ android {
         applicationId "kobramob.rubeg38.ru.myprotection"
         minSdk 23
         targetSdk 33
-        versionCode 75
-        versionName "1.5.5"
+        versionCode 80
+        versionName "1.5.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -38,6 +38,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
     namespace 'kobramob.rubeg38.ru.myprotection'
 }
 
@@ -48,7 +49,7 @@ dependencies {
     def coroutines_version = "1.6.1"
     def lifecycle_version = "2.5.1"
     def glide_version = "4.12.0"
-    def material_components_version = "1.6.1"
+    def material_components_version = "1.7.0"
     def swipe_refresh_layout_version = "1.1.0"
     def room_version = "2.4.3"
     def decoro_version = "1.5.0"
@@ -56,7 +57,7 @@ dependencies {
     def view_binding_delegate_version = "1.5.6"
     def adapter_delegates_version = "4.3.2"
     def ktx_core_version = "1.9.0"
-    def ktx_fragment_version = "1.5.3"
+    def ktx_fragment_version = "1.5.4"
     def app_compat_version = "1.5.1"
 
     // Google services
