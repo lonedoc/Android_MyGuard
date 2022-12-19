@@ -7,6 +7,11 @@
     <string name="request_failed_message">Could not load data</string> <!-- TODO: Edit -->
     <string name="call_button_title">Call the guard service</string>
     <string name="phone_number_not_found_message">Phone number is not found</string>
+    <string name="permission_required_title">Permission required</string>
+    <string name="permission_required_message">The application requires notifications permission</string>
+    <string name="grant_permission_button_text">Grant permission</string>
+    <string name="refuse_permission_button_text">Cancel</string>
+    <string name="notifications_permission_not_granted_message">Permission not granted. You will not receive notifications</string>
 
     <!-- Login -->
     <string name="logo_image_description">Logo</string>

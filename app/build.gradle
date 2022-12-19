@@ -7,16 +7,25 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('C:\\Users\\User\\Documents\\AndroidStudioProjects\\keyStore\\MyProtection.jks')
+            storePassword 'RubegNPO120'
+            keyAlias 'MyProtection'
+            keyPassword 'RubegNPO120'
+        }
+    }
     compileSdk 33
 
     defaultConfig {
         applicationId "kobramob.rubeg38.ru.myprotection"
         minSdk 23
         targetSdk 33
-        versionCode 80
-        versionName "1.5.7"
+        versionCode 81
+        versionName "1.5.8"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
     }
 
     buildTypes {
@@ -64,7 +73,7 @@ dependencies {
     implementation "com.google.android.gms:play-services-base:18.1.0"
 
     // Firebase
-    implementation platform('com.google.firebase:firebase-bom:29.0.4')
+    implementation platform('com.google.firebase:firebase-bom:31.1.1')
     implementation 'com.google.firebase:firebase-messaging'
 
     // Network

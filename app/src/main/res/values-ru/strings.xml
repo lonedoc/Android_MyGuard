@@ -7,6 +7,11 @@
     <string name="request_failed_message">Не удалось загрузить данные</string> <!-- TODO: Edit -->
     <string name="call_button_title">Позвонить в охранное предприятие</string>
     <string name="phone_number_not_found_message">Номер телефона не найден</string>
+    <string name="permission_required_title">Требуется разрешение</string>
+    <string name="permission_required_message">Требуется разрешение для отображения уведомлений</string>
+    <string name="grant_permission_button_text">Разрешить</string>
+    <string name="refuse_permission_button_text">Отмена</string>
+    <string name="notifications_permission_not_granted_message">Разрешение не получено. Вы не будете получать уведомления</string>
 
     <!-- Login -->
     <string name="logo_image_description">Логотип</string>
