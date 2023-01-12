@@ -2,6 +2,7 @@ package kobramob.rubeg38.ru.myprotection.feature.login.ui.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Configuration
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,10 +44,11 @@ class SingleLineTextAdapter<T> (
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = DropdownItemBinding.inflate(layoutInflater, parent, false)
 
+        val color = textColor(parent)
+
         if (position == 0) {
             binding.valueText.text = hint
 
-            val color = parent.context.getColor(R.color.translucent_white_80)
             binding.valueText.setTextColor(color)
 
             return binding.root
@@ -56,12 +58,12 @@ class SingleLineTextAdapter<T> (
             binding.valueText.text = transform(item)
 
             val colorRes = if (position == selectedItemPosition) {
-                R.color.green_500
+                parent.context.getColor(R.color.blue_main)
             } else {
-                R.color.white
+                color
             }
 
-            binding.valueText.setTextColor(parent.context.getColor(colorRes))
+            binding.valueText.setTextColor(colorRes)
         }
 
         return binding.root
@@ -72,16 +74,16 @@ class SingleLineTextAdapter<T> (
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = DropdownItemBinding.inflate(layoutInflater, parent, false)
 
+        val color = textColor(parent)
+
         if (position == 0) {
             binding.valueText.text = hint
 
-            val color = parent.context.getColor(R.color.translucent_white_80)
             binding.valueText.setTextColor(color)
         } else {
             getItem(position)?.let { item ->
                 binding.valueText.text = transform(item)
 
-                val color = parent.context.getColor(R.color.white)
                 binding.valueText.setTextColor(color)
             }
         }
@@ -106,4 +108,13 @@ class SingleLineTextAdapter<T> (
         return super.getItem(position - 1)
     }
 
+    private fun textColor(parent: ViewGroup): Int {
+        val nightModeFlags = context.resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK
+        return when (nightModeFlags) {
+            Configuration.UI_MODE_NIGHT_YES -> parent.context.getColor(R.color.white)
+            Configuration.UI_MODE_NIGHT_NO -> parent.context.getColor(R.color.black)
+            else -> {parent.context.getColor(R.color.black)}
+        }
+    }
 }

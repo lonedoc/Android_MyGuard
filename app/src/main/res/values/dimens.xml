@@ -3,11 +3,11 @@
     <!-- Common -->
     <dimen name="window_padding">24dp</dimen>
     <dimen name="half_window_padding">12dp</dimen>
-    <dimen name="small_headline_size">18sp</dimen>
-    <dimen name="body_text_size">16sp</dimen>
+    <dimen name="small_headline_size">17sp</dimen>
+    <dimen name="body_text_size">15sp</dimen>
 
     <!-- Login -->
-    <dimen name="logo_size">80dp</dimen>
+    <dimen name="logo_size">78dp</dimen>
     <dimen name="text_field_height">56dp</dimen>
     <dimen name="spinner_item_height">40dp</dimen>
 
@@ -18,17 +18,17 @@
     <dimen name="app_bar_logo_size">32dp</dimen>
     <dimen name="indicator_size">20dp</dimen>
     <dimen name="indicator_gap">8dp</dimen>
-    <dimen name="digit_button_size">64dp</dimen>
-    <dimen name="half_digit_button_size">32dp</dimen>
+    <dimen name="digit_button_size">78dp</dimen>
+    <dimen name="half_digit_button_size">44dp</dimen>
     <dimen name="digit_button_horizontal_gap">32dp</dimen>
     <dimen name="digit_button_vertical_gap">24dp</dimen>
-    <dimen name="digit_text_size">20sp</dimen>
-    <dimen name="digit_hint_text_size">16sp</dimen>
+    <dimen name="digit_text_size">37sp</dimen>
+    <dimen name="digit_hint_text_size">12sp</dimen>
 
     <!-- Facilities -->
-    <dimen name="facility_icon_wrapper_size">72dp</dimen>
+    <dimen name="facility_icon_wrapper_size">30dp</dimen>
     <dimen name="facility_icon_size">32dp</dimen>
-    <dimen name="facility_icon_horizontal_gap">16dp</dimen>
+    <dimen name="facility_icon_horizontal_gap">25dp</dimen>
 
     <!-- Sorting -->
     <dimen name="sorting_bottom_sheet_title_gap_size">24dp</dimen>

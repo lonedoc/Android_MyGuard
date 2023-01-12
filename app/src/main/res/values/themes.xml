@@ -2,18 +2,25 @@
     <!-- Base application theme. -->
     <style name="Theme.MyGuard" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_gray_700</item>
-        <item name="colorPrimaryVariant">@color/blue_gray_800</item>
+        <item name="colorPrimary">#E5E5E5</item>
+        <item name="colorPrimaryVariant">#7B7B7E</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <item name="android:statusBarColor" tools:targetApi="l">#E5E5E5</item>
+        <!-- Main text color. -->
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">#808084</item>
 
-        <item name="screenBackgroundColor">@color/blue_gray_50</item>
+        <item name="android:windowLightStatusBar">
+            true
+        </item>
+        <!-- Customize your theme here. -->
+        <item name="backgroundColor">#7B7B7E</item>
+        <item name="screenBackgroundColor">#F2F2F7</item>
         <item name="screenForegroundColor">@color/gray_800</item>
         <item name="surfaceBackgroundColor">@color/white</item>
         <item name="surfaceForegroundColor">@color/gray_800</item>

@@ -7,4 +7,4 @@
     android:paddingHorizontal="@dimen/window_padding"
     android:gravity="center_vertical|start"
     android:textSize="16sp"
-    android:textColor="@color/white" />
+    android:textColor="@color/black" />

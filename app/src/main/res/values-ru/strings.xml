@@ -11,14 +11,16 @@
     <!-- Login -->
     <string name="logo_image_description">Логотип</string>
     <string name="logo_text">Рубеж НПО</string>
+    <string name="slogan">Твоя защита</string>
     <string name="city_picker_hint">Город</string>
     <string name="guard_service_picker_hint">Охранное предприятие</string>
     <string name="phone_number_field_hint">Номер телефона</string>
-    <string name="get_password_button_text">Запросить пароль</string>
-
+    <string name="get_password_button_text">Получить пароль</string>
+    <string name="enter">Вход</string>
+    <string name="loginHint">Введите свои данные в поля ниже для входа</string>
     <!-- Password -->
-    <string name="password_sent_text">Смс-сообщение с паролем было отправлено на ваш номер. Введите его в текстовое поле ниже:</string>
-    <string name="password_hint">Пароль</string>
+    <string name="password_sent_text">Вам отправлено SMS сообщение с кодом безопасности</string>
+    <string name="password_hint">Введите код</string>
     <string name="password_request_cooldown_text">Вы можете запросить новый пароль через: %s</string>
     <string name="get_new_password_button_text">Запросить новый пароль</string>
     <string name="cancel_button_text">Отмена</string>
@@ -39,9 +41,9 @@
     <string name="digit_8_button_hint">шщъы</string>
     <string name="digit_9_button_hint">ьэюя</string>
     <string name="digit_0_button_hint">+</string>
-    <string name="passcode_creation_hint_text">Введите новый код</string>
-    <string name="passcode_confirmation_hint_text">Повторите код</string>
-    <string name="entrance_with_passcode_hint_text">Введите код</string>
+    <string name="passcode_creation_hint_text">Придумайте пинкод</string>
+    <string name="passcode_confirmation_hint_text">Повторите пинкод</string>
+    <string name="entrance_with_passcode_hint_text">Введите пинкод</string>
     <string name="wrong_passcode_confirmation_message">Коды не совпадают</string>
     <string name="wrong_passcode_message">Неправильный код</string>
     <string name="logout_failed_message">Не удалось выполнить выход</string>
@@ -170,4 +172,6 @@
     <string name="applications_request_failed_message">Не удалось загрузить заявки</string>
     <string name="missing_datetime_error_message">Ошибка заполнения формы</string>
     <string name="application_failed_message">Не удалось создать заявку</string>
+    <string name="clear_button">clear_button</string>
+
 </resources>

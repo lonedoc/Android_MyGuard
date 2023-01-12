@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:layout_width="match_parent"
+    tools:layout_height="match_parent"
+    >
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticalCenterGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <!-- 1 -->
+    <LinearLayout
+        android:id="@+id/digit1Button"
+        android:tag="1"
+        android:layout_width="@dimen/digit_button_size"
+        android:layout_height="@dimen/digit_button_size"
+        android:layout_marginEnd="@dimen/digit_button_horizontal_gap"
+        app:layout_constraintTop_toTopOf="@id/digit2Button"
+        app:layout_constraintEnd_toStartOf="@id/digit2Button"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/digit_button_background"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_text_size"
+            android:text="1"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_hint_text_size"
+            android:text="" />
+
+    </LinearLayout>
+
+    <!-- 2 -->
+    <LinearLayout
+        android:id="@+id/digit2Button"
+        android:tag="2"
+        android:layout_width="@dimen/digit_button_size"
+        android:layout_height="@dimen/digit_button_size"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/verticalCenterGuideline"
+        app:layout_constraintEnd_toEndOf="@id/verticalCenterGuideline"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/digit_button_background"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_text_size"
+            android:text="2"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_hint_text_size"
+            android:text="@string/digit_2_button_hint" />
+
+    </LinearLayout>
+
+    <!-- 3 -->
+    <LinearLayout
+        android:id="@+id/digit3Button"
+        android:tag="3"
+        android:layout_width="@dimen/digit_button_size"
+        android:layout_height="@dimen/digit_button_size"
+        android:layout_marginStart="@dimen/digit_button_horizontal_gap"
+        app:layout_constraintTop_toTopOf="@id/digit2Button"
+        app:layout_constraintStart_toEndOf="@id/digit2Button"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/digit_button_background"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_text_size"
+
+            android:text="3"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_hint_text_size"
+            android:text="@string/digit_3_button_hint" />
+
+    </LinearLayout>
+
+    <!-- 4 -->
+    <LinearLayout
+        android:id="@+id/digit4Button"
+        android:tag="4"
+        android:layout_width="@dimen/digit_button_size"
+        android:layout_height="@dimen/digit_button_size"
+        android:layout_marginEnd="@dimen/digit_button_horizontal_gap"
+        app:layout_constraintTop_toTopOf="@id/digit5Button"
+        app:layout_constraintEnd_toStartOf="@id/digit5Button"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/digit_button_background"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_text_size"
+
+            android:text="4"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_hint_text_size"
+            android:text="@string/digit_4_button_hint" />
+
+    </LinearLayout>
+
+    <!-- 5 -->
+    <LinearLayout
+        android:id="@+id/digit5Button"
+        android:tag="5"
+        android:layout_width="@dimen/digit_button_size"
+        android:layout_height="@dimen/digit_button_size"
+        android:layout_marginTop="@dimen/digit_button_vertical_gap"
+        app:layout_constraintTop_toBottomOf="@id/digit2Button"
+        app:layout_constraintStart_toStartOf="@id/verticalCenterGuideline"
+        app:layout_constraintEnd_toEndOf="@id/verticalCenterGuideline"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/digit_button_background"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_text_size"
+
+            android:text="5"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_hint_text_size"
+            android:text="@string/digit_5_button_hint" />
+
+    </LinearLayout>
+
+    <!-- 6 -->
+    <LinearLayout
+        android:id="@+id/digit6Button"
+        android:tag="6"
+        android:layout_width="@dimen/digit_button_size"
+        android:layout_height="@dimen/digit_button_size"
+        android:layout_marginStart="@dimen/digit_button_horizontal_gap"
+        app:layout_constraintTop_toTopOf="@id/digit5Button"
+        app:layout_constraintStart_toEndOf="@id/digit5Button"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/digit_button_background"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_text_size"
+
+            android:text="6"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_hint_text_size"
+            android:text="@string/digit_6_button_hint" />
+
+    </LinearLayout>
+
+    <!-- 7 -->
+    <LinearLayout
+        android:id="@+id/digit7Button"
+        android:tag="7"
+        android:layout_width="@dimen/digit_button_size"
+        android:layout_height="@dimen/digit_button_size"
+        android:layout_marginEnd="@dimen/digit_button_horizontal_gap"
+        app:layout_constraintTop_toTopOf="@id/digit8Button"
+        app:layout_constraintEnd_toStartOf="@id/digit8Button"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/digit_button_background"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_text_size"
+
+            android:text="7"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_hint_text_size"
+            android:text="@string/digit_7_button_hint" />
+
+    </LinearLayout>
+
+    <!-- 8 -->
+    <LinearLayout
+        android:id="@+id/digit8Button"
+        android:tag="8"
+        android:layout_width="@dimen/digit_button_size"
+        android:layout_height="@dimen/digit_button_size"
+        android:layout_marginTop="@dimen/digit_button_vertical_gap"
+        app:layout_constraintTop_toBottomOf="@id/digit5Button"
+        app:layout_constraintStart_toStartOf="@id/verticalCenterGuideline"
+        app:layout_constraintEnd_toEndOf="@id/verticalCenterGuideline"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/digit_button_background"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_text_size"
+
+            android:text="8"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_hint_text_size"
+            android:text="@string/digit_8_button_hint" />
+
+    </LinearLayout>
+
+    <!-- 9 -->
+    <LinearLayout
+        android:id="@+id/digit9Button"
+        android:tag="9"
+        android:layout_width="@dimen/digit_button_size"
+        android:layout_height="@dimen/digit_button_size"
+        android:layout_marginStart="@dimen/digit_button_horizontal_gap"
+        app:layout_constraintTop_toTopOf="@id/digit8Button"
+        app:layout_constraintStart_toEndOf="@id/digit8Button"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/digit_button_background"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_text_size"
+
+            android:text="9"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_hint_text_size"
+            android:text="@string/digit_9_button_hint" />
+
+    </LinearLayout>
+
+    <!-- 0 -->
+    <LinearLayout
+        android:id="@+id/digit0Button"
+        android:tag="0"
+        android:layout_width="@dimen/digit_button_size"
+        android:layout_height="@dimen/digit_button_size"
+        android:layout_marginTop="@dimen/digit_button_vertical_gap"
+        app:layout_constraintTop_toBottomOf="@id/digit8Button"
+        app:layout_constraintStart_toStartOf="@id/verticalCenterGuideline"
+        app:layout_constraintEnd_toEndOf="@id/verticalCenterGuideline"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/digit_button_background"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_text_size"
+
+            android:text="0"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/digit_hint_text_size"
+            android:text="@string/digit_0_button_hint" />
+
+    </LinearLayout>
+
+    <!-- Biometry -->
+    <ImageButton
+        android:id="@+id/biometryButton"
+        android:layout_width="@dimen/digit_button_size"
+        android:layout_height="@dimen/digit_button_size"
+        app:layout_constraintTop_toTopOf="@id/digit0Button"
+        app:layout_constraintEnd_toStartOf="@id/digit0Button"
+        android:layout_marginEnd="@dimen/digit_button_horizontal_gap"
+        android:background="@color/translucent_black_0"
+        android:src="@drawable/fingerprint_blue" />
+
+    <!-- Backspace -->
+    <ImageButton
+        android:id="@+id/backspaceButton"
+        android:layout_width="@dimen/digit_button_size"
+        android:layout_height="@dimen/digit_button_size"
+        app:layout_constraintTop_toTopOf="@id/digit0Button"
+        app:layout_constraintStart_toEndOf="@id/digit0Button"
+        android:layout_marginStart="@dimen/digit_button_horizontal_gap"
+        android:background="@color/translucent_black_0"
+        android:src="@drawable/backspace_darkgrey" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

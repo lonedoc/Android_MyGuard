@@ -1,6 +1,7 @@
 package kobramob.rubeg38.ru.myprotection.feature.facilities.ui
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -36,6 +37,18 @@ class FacilitiesFragment : Fragment(R.layout.fragment_facilities) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        when(resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK)){
+            Configuration.UI_MODE_NIGHT_YES->{
+                activity?.window?.statusBarColor = context?.getColor(R.color.darkthemebackgroundcolor)!!
+            }
+            Configuration.UI_MODE_NIGHT_NO->{
+                activity?.window?.statusBarColor = context?.getColor(R.color.lightthemestatusbarcolor)!!
+            }
+            else->{
+                activity?.window?.statusBarColor = context?.getColor(R.color.darkthemebackgroundcolor)!!
+            }
+        }
+
         binding.appBar.inflateMenu(R.menu.facilities_appbar_menu)
 
         binding.appBar.setOnMenuItemClickListener { item ->
@@ -63,9 +76,8 @@ class FacilitiesFragment : Fragment(R.layout.fragment_facilities) {
         binding.facilitiesRecyclerView.adapter = facilitiesAdapter
 
         binding.facilitiesRecyclerView.addItemDecoration(
-            DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
+            DividerItemDecoration(requireContext(), 0)
         )
-
         lifecycle.addObserver(viewModel)
 
         setFragmentResultListener(SortingDialogFragment.REQUEST_KEY) { _, bundle ->

@@ -1,5 +1,6 @@
 package kobramob.rubeg38.ru.myprotection.feature.password.ui
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -46,6 +47,18 @@ class PasswordFragment : Fragment(R.layout.fragment_password) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        when(resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK)){
+            Configuration.UI_MODE_NIGHT_YES->{
+                activity?.window?.statusBarColor = context?.getColor(R.color.darkthemebackgroundcolor)!!
+            }
+            Configuration.UI_MODE_NIGHT_NO->{
+                activity?.window?.statusBarColor = context?.getColor(R.color.lightthemenostatusbarcolor)!!
+            }
+            else->{
+                activity?.window?.statusBarColor = context?.getColor(R.color.darkthemebackgroundcolor)!!
+            }
+        }
 
         binding.passwordEditText.setDebouncingTextListener { value ->
             viewModel.processUiEvent(UiEvent.OnPasswordChange(value))

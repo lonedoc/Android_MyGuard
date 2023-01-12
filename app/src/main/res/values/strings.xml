@@ -11,14 +11,16 @@
     <!-- Login -->
     <string name="logo_image_description">Logo</string>
     <string name="logo_text">Rubezh NPO</string>
+    <string name="slogan">Your defence</string>
     <string name="city_picker_hint">City</string>
     <string name="guard_service_picker_hint">Guard service</string>
     <string name="phone_number_field_hint">Phone number</string>
     <string name="get_password_button_text">Get password</string>
+    <string name="enter">Login</string>
 
     <!-- Password -->
-    <string name="password_sent_text">An sms message with a password has been sent to your number. Please, enter it in the text field below:</string>
-    <string name="password_hint">Password</string>
+    <string name="password_sent_text">An SMS message with a security code has been sent to you</string>
+    <string name="password_hint">Enter code</string>
     <string name="password_request_cooldown_text">You can request new password again after: %s</string>
     <string name="get_new_password_button_text">Get new password</string>
     <string name="cancel_button_text">Cancel</string>
@@ -39,9 +41,9 @@
     <string name="digit_8_button_hint">tuv</string>
     <string name="digit_9_button_hint">wxyz</string>
     <string name="digit_0_button_hint">+</string>
-    <string name="passcode_creation_hint_text">Enter new passcode</string>
-    <string name="passcode_confirmation_hint_text">Repeat the passcode</string>
-    <string name="entrance_with_passcode_hint_text">Enter the passcode</string>
+    <string name="passcode_creation_hint_text">Come up with a pincode</string>
+    <string name="passcode_confirmation_hint_text">Repeat the pincode</string>
+    <string name="entrance_with_passcode_hint_text">Enter the pincode</string>
     <string name="wrong_passcode_confirmation_message">Wrong passcode confirmation</string>
     <string name="wrong_passcode_message">Wrong passcode</string>
     <string name="logout_failed_message">Could not log out. Please, try again</string>
@@ -170,4 +172,7 @@
     <string name="applications_request_failed_message">Could not fetch the applications</string>
     <string name="missing_datetime_error_message">Incorrect data</string>
     <string name="application_failed_message">Could not make an application</string>
+    <string name="loginHint">Enter your details in the fields below to login</string>
+    <string name="clear_button">clear_button</string>
+
 </resources>

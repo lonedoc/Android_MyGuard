@@ -27,7 +27,7 @@
         app:subtitle2="@string/descending_subtitle"
         app:icon1="@drawable/ascending_icon"
         app:icon2="@drawable/descending_icon"
-        app:tintColor="@color/green_500" />
+        app:tintColor="@color/blue_500" />
 
     <Space
         android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
         app:subtitle2="@string/descending_subtitle"
         app:icon1="@drawable/ascending_icon"
         app:icon2="@drawable/descending_icon"
-        app:tintColor="@color/green_500" />
+        app:tintColor="@color/blue_500" />
 
     <Space
         android:layout_width="wrap_content"

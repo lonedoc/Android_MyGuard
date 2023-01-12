@@ -96,7 +96,7 @@ class QuadStateCheckbox(context: Context, attrs: AttributeSet) : ConstraintLayou
 //        }
 
         val titleColor = if (isChecked) {
-            getColorFromRes(context, R.color.green_500)
+            getColorFromRes(context, R.color.blue_500)
         } else {
             getColorFromTheme(context, R.attr.surfaceForegroundColor)
         }

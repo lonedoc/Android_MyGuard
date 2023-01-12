@@ -24,7 +24,7 @@
                 android:width="@dimen/digit_button_size" />
 
             <corners android:radius="@dimen/half_digit_button_size" />
-            <solid android:color="@android:color/transparent" />
+            <solid android:color="@android:color/white" />
 
         </shape>
     </item>

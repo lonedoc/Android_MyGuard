@@ -1,5 +1,6 @@
 package kobramob.rubeg38.ru.myprotection.feature.login.ui
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
@@ -67,12 +68,29 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        when(resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK)){
+            Configuration.UI_MODE_NIGHT_YES->{
+                activity?.window?.statusBarColor = context?.getColor(R.color.darkthemebackgroundcolor)!!
+            }
+            Configuration.UI_MODE_NIGHT_NO->{
+                activity?.window?.statusBarColor = context?.getColor(R.color.lightthemenostatusbarcolor)!!
+            }
+            else->{
+                activity?.window?.statusBarColor = context?.getColor(R.color.darkthemebackgroundcolor)!!
+            }
+        }
+
         setupCityPicker()
         setupCompanyPicker()
         setupPhoneNumberMask()
 
         binding.submitButton.setThrottledClickListener {
             viewModel.processUiEvent(UiEvent.OnProceedButtonClicked)
+        }
+
+        binding.clearButton.setThrottledClickListener {
+            binding.phoneEditText.setText("")
+            phoneNumberWatcher.refreshMask()
         }
 
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
@@ -118,6 +136,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private fun setupPhoneNumberMask() {
         phoneNumberWatcher.installOn(binding.phoneEditText)
     }
+
 
     private fun render(viewState: ViewState) {
         updatePicker(

@@ -1,6 +1,7 @@
 package kobramob.rubeg38.ru.myprotection.feature.passcode.ui
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -31,7 +32,7 @@ class PasscodeFragment : Fragment(R.layout.fragment_passcode) {
 
         setKeyboardListeners()
 
-        binding.appBar.setOnMenuItemClickListener { item ->
+/*        binding.appBar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.exitItem -> {
                     viewModel.processUiEvent(UiEvent.OnExitButtonClick)
@@ -43,7 +44,20 @@ class PasscodeFragment : Fragment(R.layout.fragment_passcode) {
                 }
                 else -> false
             }
+        }*/
+
+        when(resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK)){
+            Configuration.UI_MODE_NIGHT_YES->{
+                activity?.window?.statusBarColor = context?.getColor(R.color.darkthemebackgroundcolor)!!
+            }
+            Configuration.UI_MODE_NIGHT_NO->{
+                activity?.window?.statusBarColor = context?.getColor(R.color.lightthemenostatusbarcolor)!!
+            }
+            else->{
+                activity?.window?.statusBarColor = context?.getColor(R.color.darkthemebackgroundcolor)!!
+            }
         }
+
 
         binding.forgotPasscodeButton.setOnClickListener {
             viewModel.processUiEvent(UiEvent.OnForgotCodeButtonClick)
@@ -62,9 +76,9 @@ class PasscodeFragment : Fragment(R.layout.fragment_passcode) {
 
         setIndicatorValue(viewState.indicatorValue)
 
-        if (viewState.isAppBarMenuVisible && binding.appBar.menu.isEmpty()) {
+       /* if (viewState.isAppBarMenuVisible && binding.appBar.menu.isEmpty()) {
             binding.appBar.inflateMenu(R.menu.passcode_appbar_menu)
-        }
+        }*/
 
         binding.keyboardView.biometryButton.isVisible = viewState.isBiometricButtonVisible
         binding.forgotPasscodeButton.isVisible = viewState.isForgotCodeButtonVisible
@@ -139,9 +153,9 @@ class PasscodeFragment : Fragment(R.layout.fragment_passcode) {
 
         indicatorItems.forEachIndexed { index, item ->
             val drawableRes = if (index < value) {
-                R.drawable.solid_shield_icon
+                R.drawable.ic_indicator_dot_blue
             } else {
-                R.drawable.outlined_shield_icon
+                R.drawable.ic_indicator_dot_grey
             }
 
             item.setImageResource(drawableRes)

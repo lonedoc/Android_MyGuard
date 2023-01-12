@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/screenBackgroundColor"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="98dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Hint -->
+            <TextView
+                android:id="@+id/hintTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/window_padding"
+                android:textSize="@dimen/body_text_size"
+                tools:text="Come up with a pincode" />
+
+            <!-- Indicator -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp">
+
+                <ImageView
+                    android:id="@+id/indicatorView1"
+                    android:layout_width="@dimen/indicator_size"
+                    android:layout_height="@dimen/indicator_size"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/logo_image_description"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/indicator_dot_dark_grey" />
+
+                <Space
+                    android:layout_width="@dimen/indicator_gap"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/indicatorView2"
+                    android:layout_width="@dimen/indicator_size"
+                    android:layout_height="@dimen/indicator_size"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/logo_image_description"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/indicator_dot_dark_grey" />
+
+                <Space
+                    android:layout_width="@dimen/indicator_gap"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/indicatorView3"
+                    android:layout_width="@dimen/indicator_size"
+                    android:layout_height="@dimen/indicator_size"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/logo_image_description"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/indicator_dot_dark_grey" />
+
+                <Space
+                    android:layout_width="@dimen/indicator_gap"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/indicatorView4"
+                    android:layout_width="@dimen/indicator_size"
+                    android:layout_height="@dimen/indicator_size"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/logo_image_description"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/indicator_dot_dark_grey" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Version -->
+        <TextView
+            android:id="@+id/versionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="12sp"
+            android:textColor="@color/gray_500"
+            tools:text="1.1.1" />
+
+        <!-- Forgot code button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/forgotPasscodeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/window_padding"
+            android:background="@android:color/transparent"
+            android:minHeight="0dp"
+            android:padding="0dp"
+            android:text="@string/forgot_code_button_text"
+            android:textColor="@color/blue_500"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/keyboardView" />
+
+        <!-- Keyboard -->
+        <include
+            android:id="@+id/keyboardView"
+            layout="@layout/keyboard_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

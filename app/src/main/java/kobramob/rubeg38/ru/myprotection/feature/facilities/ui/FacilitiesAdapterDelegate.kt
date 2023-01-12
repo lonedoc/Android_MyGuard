@@ -1,7 +1,11 @@
 package kobramob.rubeg38.ru.myprotection.feature.facilities.ui
 
 import android.graphics.drawable.InsetDrawable
+import android.opengl.Visibility
+import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.view.isVisible
+import com.bumptech.glide.Glide
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import kobramob.rubeg38.ru.myprotection.R
 import kobramob.rubeg38.ru.myprotection.databinding.FacilitiesItemBinding
@@ -18,19 +22,42 @@ fun facilitiesAdapterDelegate(onClick: (Facility) -> Unit) =
         binding.root.setThrottledClickListener { onClick(item) }
 
         bind {
-            val backgroundColor = context.getColor(getColorResByStatus(item.statusCodes))
+            //val backgroundColor = context.getColor(getColorResByStatus(item.statusCodes))
             val iconDrawableRes = getIconResByStatus(item.statusCodes)
+            val textColorRes = getTextColorResByStatus(item.statusCodes)
+            val textColor = context.getColor(textColorRes)
             val iconDrawable = AppCompatResources.getDrawable(context, iconDrawableRes)
             val drawable = InsetDrawable(iconDrawable, 32)
 
-            binding.iconImageView.setImageDrawable(drawable)
-            binding.iconImageView.setBackgroundColor(backgroundColor)
+            if(item.statusCodes.contains(StatusCode.ALARM)){
+                binding.iconImageView.visibility = View.GONE
+                binding.pulse.visibility = View.VISIBLE
+                binding.pulse.start()
+            }
+            else
+            {
+                binding.iconImageView.visibility = View.VISIBLE
+                binding.iconImageView.setImageDrawable(drawable)
+                binding.pulse.visibility = View.GONE
+            }
+
+
+            //binding.iconImageView.setBackgroundColor(backgroundColor)
 
             binding.titleTextView.text = item.name
             binding.addressTextView.text = item.address
+
+            binding.statusTextView.setTextColor(textColor)
             binding.statusTextView.text = item.statusDescription
+
         }
     }
+
+fun getTextColorResByStatus(statusCodes: List<StatusCode>) = when {
+    statusCodes.contains(StatusCode.ALARM)-> R.color.deep_orange_500
+    statusCodes.contains(StatusCode.GUARDED)-> R.color.blue_500
+    else-> R.color.blue_500
+}
 
 fun getColorResByStatus(statusCodes: List<StatusCode>) = when {
     statusCodes.contains(StatusCode.ALARM) -> R.color.deep_orange_500
@@ -44,7 +71,7 @@ fun getIconResByStatus(statusCodes: List<StatusCode>) = when {
     statusCodes.contains(StatusCode.NOT_GUARDED) -> R.drawable.status_not_guarded_icon
     statusCodes.contains(StatusCode.PERIMETER_ONLY) -> R.drawable.status_perimeter_only_icon
     statusCodes.contains(StatusCode.GUARDED) -> R.drawable.status_guarded_icon
-    statusCodes.contains(StatusCode.ALARM) -> R.drawable.status_alarm_icon
+    statusCodes.contains(StatusCode.ALARM) -> R.drawable.alarm
     statusCodes.contains(StatusCode.MALFUNCTION) -> R.drawable.status_malfunction_icon
     else -> R.drawable.status_unknown_icon
 }

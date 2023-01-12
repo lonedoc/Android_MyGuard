@@ -5,4 +5,16 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
+
+    <style name="LightSpinnerTheme" parent="android:Widget.Material.Spinner.Underlined">
+        <item name="android:background">@drawable/round_background
+        </item>
+        <item name="android:popupBackground">@drawable/round_background
+        </item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="DarkSpinnerTheme" parent="Widget.AppCompat.Spinner.Underlined">
+        <item name="android:text">#8D8D93</item>
+    </style>
 </resources>

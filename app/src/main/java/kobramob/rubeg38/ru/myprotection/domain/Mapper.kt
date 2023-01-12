@@ -40,7 +40,7 @@ fun FacilityDto.toDomain() = Facility(
 
 private fun getStatusCodes(statusCodeStr: String, perimeterOnly: Int?): List<StatusCode> =
     when (statusCodeStr) {
-        "1" -> listOf(StatusCode.ALARM, StatusCode.NOT_GUARDED)
+        "1" -> listOf(StatusCode.ALARM)
         "2" -> listOf(StatusCode.MALFUNCTION)
         "3" -> {
             val statusCodes = mutableListOf(StatusCode.GUARDED)
@@ -55,7 +55,7 @@ private fun getStatusCodes(statusCodeStr: String, perimeterOnly: Int?): List<Sta
         "5" -> listOf(StatusCode.ALARM, StatusCode.WITH_HANDLING, StatusCode.NOT_GUARDED)
         "6" -> listOf(StatusCode.ALARM)
         "7" -> {
-            val statusCodes = mutableListOf(StatusCode.ALARM, StatusCode.WITH_HANDLING, StatusCode.GUARDED)
+            val statusCodes = mutableListOf(StatusCode.ALARM)
 
             if (perimeterOnly == 1) {
                 statusCodes.add(StatusCode.PERIMETER_ONLY)
@@ -64,7 +64,7 @@ private fun getStatusCodes(statusCodeStr: String, perimeterOnly: Int?): List<Sta
             statusCodes
         }
         "8" -> {
-            val statusCodes = mutableListOf(StatusCode.ALARM, StatusCode.GUARDED)
+            val statusCodes = mutableListOf(StatusCode.ALARM)
 
             if (perimeterOnly == 1) {
                 statusCodes.add(StatusCode.PERIMETER_ONLY)

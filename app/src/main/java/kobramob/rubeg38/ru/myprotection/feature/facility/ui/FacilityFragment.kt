@@ -108,13 +108,13 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
         }
 
         initializePagerAdapter()
-
+/*
         binding.viewPager.isUserInputEnabled = false
-        binding.viewPager.adapter = pagerAdapter
+        binding.viewPager.adapter = pagerAdapter*/
 
         binding.bottomNavigationView.menu.getItem(2).isEnabled = false // placeholder
 
-        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+/*        binding.bottomNavigationView.setOnItemSelectedListener { item ->
             if (item.itemId == R.id.testModeItem) {
                 viewModel.processUiEvent(UiEvent.OnTestButtonClick)
                 return@setOnItemSelectedListener false
@@ -135,7 +135,7 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
                 }
                 else -> false
             }
-        }
+        }*/
 
         binding.bottomNavigationView.selectedItemId = R.id.eventsItem
 
