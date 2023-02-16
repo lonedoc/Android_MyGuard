@@ -68,6 +68,7 @@ class TestModeDialogFragment : DialogFragment() {
     }
 
     private fun render(viewState: ViewState) {
+        binding?.startTextView?.text = "Начало тестирования"
         binding?.hintTextView?.text = viewState.hintRes?.let { hintRes -> getString(hintRes) }
         binding?.countdownTextView?.text = viewState.countDownText
         binding?.resetButton?.isEnabled = viewState.isResetButtonEnabled

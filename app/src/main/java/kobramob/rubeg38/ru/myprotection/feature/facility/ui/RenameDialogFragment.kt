@@ -3,6 +3,7 @@ package kobramob.rubeg38.ru.myprotection.feature.facility.ui
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
@@ -37,7 +38,6 @@ class RenameDialogFragment : DialogFragment() {
             }
 
             setNegativeButton(R.string.rename_dialog_negative_button_text) { _, _ -> }
-
             create()
         }
 

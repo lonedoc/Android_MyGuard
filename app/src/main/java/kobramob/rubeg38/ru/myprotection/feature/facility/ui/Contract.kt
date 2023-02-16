@@ -11,8 +11,10 @@ data class ViewState(
     val pendingArmingOrDisarming: Boolean,
     val isProgressBarShown: Boolean,
     @StringRes val progressBarHintRes: Int?,
-    @DrawableRes val alarmButtonIconRes: Int,
-    @ColorRes val alarmButtonColorRes: Int
+    @StringRes val alarmButtonText:Int?,
+    @ColorRes val alarmButtonColorRes: Int,
+    @StringRes val armButtonText:Int?,
+    @ColorRes val armButtonColorRes: Int
 )
 
 sealed class UiEvent : Event {
@@ -27,6 +29,7 @@ sealed class UiEvent : Event {
     object OnAlarmButtonClick : UiEvent()
     object OnAlarmConfirmed : UiEvent()
     object OnTestButtonClick : UiEvent()
+    object OnDisarmArmingClick: UiEvent()
     data class OnCancelAlarmConfirmed(val passcode: String) : UiEvent()
     data class OnRenameConfirmed(val name: String) : UiEvent()
 }

@@ -1,7 +1,15 @@
 package kobramob.rubeg38.ru.myprotection.feature.facility.ui
 
+import android.app.Dialog
+import android.app.ProgressDialog
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.util.Log
 import android.view.View
+import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
@@ -12,11 +20,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.android.material.tabs.TabLayoutMediator
 import kobramob.rubeg38.ru.myprotection.R
 import kobramob.rubeg38.ru.myprotection.databinding.FragmentFacilityBinding
 import kobramob.rubeg38.ru.myprotection.domain.models.Facility
 import kobramob.rubeg38.ru.myprotection.feature.accounts.ui.AccountsFragment
+import kobramob.rubeg38.ru.myprotection.feature.applications.ui.ApplicationsFragment
 import kobramob.rubeg38.ru.myprotection.feature.events.ui.EventsFragment
+import kobramob.rubeg38.ru.myprotection.feature.facilities.ui.getColorResByStatus
 import kobramob.rubeg38.ru.myprotection.feature.sensors.ui.SensorsFragment
 import kobramob.rubeg38.ru.myprotection.feature.sensors.ui.SensorsViewModel
 import kobramob.rubeg38.ru.myprotection.feature.testmode.ui.TestModeDialogFragment
@@ -26,6 +37,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import kobramob.rubeg38.ru.myprotection.feature.sensors.ui.UiEvent as SensorsUiEvent
+
 
 class FacilityFragment : Fragment(R.layout.fragment_facility) {
 
@@ -48,12 +60,15 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
     private fun initializePagerAdapter() {
         pagerAdapter = object : FragmentStateAdapter(childFragmentManager, lifecycle) {
 
-            override fun getItemCount(): Int = 3
+            override fun getItemCount(): Int = 4
 
             override fun createFragment(position: Int): Fragment = when (position) {
                 0 -> createEventsFragment()
-                1 -> createSensorsFragment()
-                else -> createAccountsFragment()
+                1 -> createApplicationFragment()
+                2 -> createAccountsFragment()
+                3 -> createSensorsFragment()
+
+                else ->{createAccountsFragment()}
             }
 
             private fun createEventsFragment(): EventsFragment {
@@ -63,6 +78,8 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
 
             private fun createSensorsFragment() = SensorsFragment.create()
 
+            private fun createApplicationFragment() = ApplicationsFragment.create(FACILITY_KEY)
+
             private fun createAccountsFragment(): AccountsFragment {
                 val facility = requireArguments().getParcelable<Facility>(FACILITY_KEY)
                 return AccountsFragment.create(facility?.accounts ?: emptyList())
@@ -70,6 +87,13 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
 
         }
     }
+
+    private val array = arrayOf(
+        "События",
+        "Заявки",
+        "Оплата",
+        "Датчики"
+    )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -84,8 +108,8 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
                     viewModel.processUiEvent(UiEvent.OnRenameButtonClick)
                     true
                 }
-                R.id.applicationItem -> {
-                    viewModel.processUiEvent(UiEvent.OnApplyButtonClick)
+                R.id.testAlarmItem->{
+                    viewModel.processUiEvent(UiEvent.OnTestButtonClick)
                     true
                 }
                 else -> false
@@ -98,6 +122,7 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
 
         binding.armButton.setThrottledClickListener {
             viewModel.processUiEvent(UiEvent.OnArmButtonClick)
+            showProgressDialog()
         }
 
         binding.armButton.setOnLongClickListener {
@@ -106,37 +131,17 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
         }
 
         initializePagerAdapter()
-/*
+
+
+
         binding.viewPager.isUserInputEnabled = false
-        binding.viewPager.adapter = pagerAdapter*/
+        binding.viewPager.adapter = pagerAdapter
 
-        binding.bottomNavigationView.menu.getItem(2).isEnabled = false // placeholder
+        TabLayoutMediator(binding.tabLayout,binding.viewPager){
+            tab,position->
+            tab.text = array[position]
 
-/*        binding.bottomNavigationView.setOnItemSelectedListener { item ->
-            if (item.itemId == R.id.testModeItem) {
-                viewModel.processUiEvent(UiEvent.OnTestButtonClick)
-                return@setOnItemSelectedListener false
-            }
-
-            return@setOnItemSelectedListener when (item.itemId) {
-                R.id.eventsItem -> {
-                    binding.viewPager.setCurrentItem(0, true)
-                    true
-                }
-                R.id.sensorsItem -> {
-                    binding.viewPager.setCurrentItem(1, true)
-                    true
-                }
-                R.id.accountItem -> {
-                    binding.viewPager.setCurrentItem(2, true)
-                    true
-                }
-                else -> false
-            }
-        }*/
-
-
-        binding.bottomNavigationView.selectedItemId = R.id.eventsItem
+        }.attach()
 
         lifecycle.addObserver(viewModel)
 
@@ -164,35 +169,69 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
         }
 
         val armButtonImageRes = when {
-            facility.alarm && facility.isGuarded -> R.drawable.facility_status_alarm_guarded
-            facility.alarm && !facility.isGuarded -> R.drawable.facility_status_alarm_not_guarded
-            !facility.alarm && facility.isGuarded -> R.drawable.facility_status_guarded
-            else -> R.drawable.facility_status_not_guarded
+            !facility.alarm && facility.isGuarded -> {
+                binding.statusIcon.visibility = View.VISIBLE
+                R.drawable.status_guarded_icon
+            }
+            else -> {
+                binding.statusIcon.visibility = View.VISIBLE
+                R.drawable.status_not_guarded_icon
+            }
         }
 
-        val alarmButtonIcon = AppCompatResources.getDrawable(
-            requireContext(),
-            viewState.alarmButtonIconRes
-        )
+        when{
+            facility.alarm->{
+                binding.statusIcon.visibility = View.INVISIBLE
+                binding.statusPulse.visibility = View.VISIBLE
+                binding.statusPulse.start()
+            }
+            else ->{
+                binding.statusPulse.visibility = View.GONE
+                binding.statusPulse.stop()
+                binding.statusIcon.load(armButtonImageRes)
+            }
+        }
+
 
         val alarmButtonColor = AppCompatResources.getColorStateList(
             requireContext(),
             viewState.alarmButtonColorRes
         )
+        val armButtonColor = AppCompatResources.getColorStateList(
+            requireContext(),
+            viewState.armButtonColorRes
+        )
 
-        binding.appBar.menu.findItem(R.id.applicationItem)?.isVisible =
-            facility.isApplicationsEnabled
+        val alarmButtonText = viewState.alarmButtonText?.let { getText(it) }
+        val armButtonText = viewState.armButtonText?.let { getText(it) }
 
-        binding.appBar.title = facility.name
-        binding.statusTextView.text = facility.statusDescription
-        binding.addressTextView.text = facility.address
+
+        when{
+            viewState.isProgressBarShown && binding.determinateBar!!.isShown->{
+                hideProgressDialog()
+            }
+            viewState.pendingArmingOrDisarming && facility.armTime!!>0->{
+                if(!timerDialogShow)
+                    showTimerDialog(facility.armTime)
+            }
+            facility.isApplicationsEnabled->{(binding.tabLayout.getChildAt(0) as ViewGroup).getChildAt(1).visibility = View.GONE}
+        }
+
+        (binding.tabLayout.getChildAt(0) as ViewGroup).getChildAt(2).visibility = View.GONE
+
+        val facilityInfo = facility.name + " - " + facility.address
+        binding.appBar.setTitle(R.string.detail)
+        binding.facilityName.text = facilityInfo
+        binding.facilityStatus.text = facility.statusDescription
+        binding.facilityStatus.setTextColor(resources.getColor(getColorResByStatus(facility.statusCodes),null))
         binding.onlineChannelIcon.load(onlineChannelIconRes)
         binding.onlineChannelIcon.isVisible = facility.hasOnlineChannel
         binding.powerSupplyMalfunctionIcon.isVisible = facility.powerSupplyMalfunction
         binding.batteryMalfunctionIcon.isVisible = facility.batteryMalfunction
-        binding.armButton.load(armButtonImageRes)
-        binding.alarmButton.setImageDrawable(alarmButtonIcon)
         binding.alarmButton.backgroundTintList = alarmButtonColor
+        binding.armButton.backgroundTintList = armButtonColor
+        binding.alarmButton.text = alarmButtonText
+        binding.armButton.text = armButtonText
 
         sensorsViewModel.processUiEvent(SensorsUiEvent.OnDevicesListUpdated(facility.devices))
     }
@@ -245,7 +284,7 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
             .setTitle(R.string.confirmation_dialog_title)
             .setMessage(messageRes)
             .setPositiveButton(positiveButtonTextRes) { _, _ -> onProceed() }
-            .setNegativeButton(R.string.confirmation_dialog_negative_button_text) { _, _ -> }
+            .setNegativeButton(R.string.confirmation_dialog_negative_button_text) { _, _ -> hideProgressDialog() }
             .create()
             .show()
     }
@@ -255,6 +294,61 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
             requireActivity().supportFragmentManager,
             TestModeDialogFragment::class.simpleName
         )
+    }
+
+    private var timerDialogShow:Boolean = false
+
+    private var dialog:Dialog?  = null
+
+    private fun showTimerDialog(armTime:Int){
+        dialog = Dialog(requireContext())
+        timerDialogShow=true
+        dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog?.setCancelable(true)
+        dialog?.setContentView(R.layout.dialog_timer)
+        val cancelButton = dialog?.findViewById(R.id.cancelButton) as Button
+        val countdownTextView = dialog?.findViewById(R.id.countdownTextView) as TextView
+        val title = dialog?.findViewById(R.id.title) as TextView
+        title.text = "Время до постановки на охрану"
+        object : CountDownTimer(((armTime+5)*1000).toLong(), 1000) {
+
+            // Callback function, fired on regular interval
+            override fun onTick(millisUntilFinished: Long) {
+                if(millisUntilFinished<10)
+                {
+                    countdownTextView.text = "00 : 0"+millisUntilFinished / 1000
+                }
+                else
+                {
+                    countdownTextView.text = "00 : "+millisUntilFinished / 1000
+                }
+
+            }
+
+            // Callback function, fired
+            // when the time is up
+            override fun onFinish() {
+                closeTimerDialog()
+            }
+        }.start()
+
+        cancelButton.setThrottledClickListener {
+            viewModel.processUiEvent(UiEvent.OnDisarmArmingClick)
+            dialog?.hide()
+        }
+
+        dialog?.show()
+    }
+    private fun closeTimerDialog(){
+        timerDialogShow = false
+        dialog?.hide()
+    }
+
+    private fun showProgressDialog(){
+        binding.determinateBar?.visibility = View.VISIBLE
+    }
+    private fun hideProgressDialog(){
+        binding.determinateBar?.visibility = View.GONE
     }
 
     private fun showErrorMessage(@StringRes errorMessageRes: Int) {

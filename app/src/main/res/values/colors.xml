@@ -15,13 +15,17 @@
 
     <color name="blue_300">#64B5F6</color>
     <color name="blue_500">#2196F3</color>
+    <color name="blue_transparent_500">#4B2196F3</color>
     <color name="blue_main">#007AFF</color>
 
     <color name="deep_orange_300">#FFFF8A65</color>
     <color name="deep_orange_500">#FFFF5722</color>
 
     <color name="red_500">#F44336</color>
+    <color name="red_300">#AEF44336</color>
+    <color name="red_transparent_500">#7EF44336</color>
     <color name="brown_500">#795548</color>
+
 
     <color name="gray_200">#EEEEEE</color>
     <color name="gray_500">#9E9E9E</color>

@@ -10,49 +10,91 @@
     app:layout_constraintBottom_toBottomOf="parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ProgressBar
-            android:id="@+id/determinateBar"
-            style="@android:style/Widget.ProgressBar.Large"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:progress="25"
-            android:backgroundTint="@color/blue_500"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/facility_appbar_menu"
+            app:navigationIcon="@drawable/back_icon"
+            app:titleCentered="true"
+            app:titleTextColor="@color/black"
+            tools:title="@string/detail" />
+
 
         <!-- Facility details -->
-        <ImageView
-            android:id="@+id/backgroundImageView"
+        <TextView
+            android:id="@+id/facilityName"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:contentDescription="@string/background_image_description"
-            android:scaleType="centerCrop"
-            android:src="@drawable/background_image" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appBar" />
 
+        <TextView
+            android:id="@+id/facilityStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/facilityName" />
+
+        <ImageView
+            android:id="@+id/statusIcon"
+            android:layout_width="113dp"
+            android:layout_height="113dp"
+            android:layout_marginTop="24dp"
+            android:contentDescription="StatusImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/facilityStatus" />
+
+        <pl.bclogic.pulsator4droid.library.PulsatorLayout
+            android:id="@+id/statusPulse"
+            android:layout_width="113dp"
+            android:layout_height="113dp"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/facilityStatus"
+            app:pulse_color="@color/red_500"
+            app:pulse_count="4"
+            app:pulse_duration="3000"
+            app:pulse_interpolator="Linear"
+            app:pulse_repeat="0"
+            app:pulse_startFromScratch="false"
+            tools:ignore="MissingClass"></pl.bclogic.pulsator4droid.library.PulsatorLayout>
         <!-- Arm button -->
-        <ImageButton
+        <!--        <ImageButton
             android:id="@+id/armButton"
             android:layout_width="192dp"
             android:layout_height="128dp"
             android:layout_marginTop="@dimen/window_padding"
-            app:layout_constraintTop_toBottomOf="@id/appBar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:scaleType="fitCenter"
             android:background="@android:color/transparent"
             android:contentDescription="@string/arming_button_content_description"
-            android:src="@drawable/facility_status_alarm_guarded" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/facility_status_alarm_guarded"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/statusIcon" />-->
 
         <!-- Progress bar -->
-        <com.google.android.material.progressindicator.LinearProgressIndicator
+        <!--        <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/progressBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,9 +104,9 @@
             app:trackColor="@color/blue_300"
             app:indicatorColor="@color/blue_500"
             android:indeterminate="true"
-            android:visibility="invisible" />
+            android:visibility="invisible" />-->
 
-        <TextView
+        <!--        <TextView
             android:id="@+id/progressHintTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,27 +117,26 @@
             android:textStyle="bold"
             android:textSize="14sp"
             android:textColor="@android:color/white"
-            android:visibility="invisible" />
+            android:visibility="invisible" />-->
 
         <!-- Icons -->
         <LinearLayout
             android:id="@+id/iconsContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/armButton"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/statusTextView"
-            android:orientation="horizontal">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/statusIcon">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/onlineChannelIcon"
                 android:layout_width="@dimen/equipment_status_icon_size"
                 android:layout_height="@dimen/equipment_status_icon_size"
                 android:layout_marginHorizontal="@dimen/equipment_status_icon_margin"
+                android:background="@color/green_500"
                 android:src="@drawable/online_channel_on_icon"
-                android:background="@color/blue_500"
-                app:shapeAppearanceOverlay="@style/roundedImageView"
                 android:visibility="invisible" />
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -103,9 +144,8 @@
                 android:layout_width="@dimen/equipment_status_icon_size"
                 android:layout_height="@dimen/equipment_status_icon_size"
                 android:layout_marginHorizontal="@dimen/equipment_status_icon_margin"
+                android:background="@color/red_500"
                 android:src="@drawable/battery_icon"
-                android:background="@color/deep_orange_500"
-                app:shapeAppearanceOverlay="@style/roundedImageView"
                 android:visibility="invisible" />
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -113,130 +153,71 @@
                 android:layout_width="@dimen/equipment_status_icon_size"
                 android:layout_height="@dimen/equipment_status_icon_size"
                 android:layout_marginHorizontal="@dimen/equipment_status_icon_margin"
+                android:background="@color/deep_orange_300"
                 android:src="@drawable/power_supply_icon"
-                android:background="@color/deep_orange_500"
-                app:shapeAppearanceOverlay="@style/roundedImageView"
                 android:visibility="invisible" />
-
+            <!-- app:shapeAppearanceOverlay="@style/roundedImageView"-->
         </LinearLayout>
 
-        <!-- Status description -->
-        <TextView
-            android:id="@+id/statusTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            app:layout_constraintBottom_toTopOf="@id/addressTextView"
-            app:layout_constraintStart_toStartOf="parent"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/alarmButton"
+            android:layout_width="322dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="55dp"
+            android:text="Начать тревогу"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textStyle="bold"
-            android:textSize="@dimen/status_text_size"
-            android:textColor="@android:color/white"
-            tools:text="Alarm"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/statusIcon" />
 
-        <!-- Address -->
-        <TextView
-            android:id="@+id/addressTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/half_window_padding"
-            app:layout_constraintStart_toStartOf="parent"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/armButton"
+            android:layout_width="322dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:text="Снять с охраны"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/backgroundImageView"
-            android:textSize="@dimen/body_text_size"
-            android:textColor="@android:color/white"
-            tools:text="Address"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/alarmButton" />
 
-        <!-- AppBar -->
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/appBar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="?attr/colorPrimary"
-            app:titleTextColor="@android:color/white"
-            app:titleCentered="true"
-            app:menu="@menu/facility_appbar_menu"
-            app:navigationIcon="@drawable/back_icon"
-            tools:title="Facility" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
-            android:layout_width="391dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="180dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/backgroundImageView">
+            app:layout_constraintTop_toBottomOf="@+id/statusIcon"
+            app:tabGravity="center">
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/events_item_text" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/application_text_field_hint" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/payment_page_title" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sensors_item_text" />
         </com.google.android.material.tabs.TabLayout>
 
         <!-- Content -->
 
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Bottom navigation -->
+    <ProgressBar
+        android:id="@+id/determinateBar"
+        style="@android:style/Widget.ProgressBar.Large"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:focusable="true"
+        android:indeterminateDrawable="@drawable/light_spinner"
+        android:progress="25"
+        android:visibility="gone"
+        app:layout_anchor="@+id/constraintLayout"
+        app:layout_anchorGravity="center" />
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:layout_dodgeInsetEdges="none"
-        app:contentInsetLeft="0dp"
-        app:contentInsetStart="0dp"
-        app:contentInsetRight="0dp"
-        app:contentInsetEnd="0dp"
-        app:fabAlignmentMode="center"
-        app:fabCradleMargin="10dp"
-        app:fabCradleRoundedCornerRadius="10dp"
-        app:fabCradleVerticalOffset="10dp"
-        android:backgroundTint="?attr/colorPrimary">
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_gravity="bottom"
-            app:layout_dodgeInsetEdges="none"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/facility_bottom_navigation_menu"
-            android:background="?attr/colorPrimary"
-            app:itemIconTint="@android:color/white"
-            app:itemTextColor="@android:color/white" />
-
-    </com.google.android.material.bottomappbar.BottomAppBar>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/alarmButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_anchor="@id/bottomAppBar"
-        app:srcCompat="@drawable/alarm_icon"
-        app:backgroundTint="@color/deep_orange_500"
-        app:tint="@android:color/white"
-        android:contentDescription="@string/alarm_button_content_description" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -3,9 +3,12 @@
     <!-- Common -->
     <style name="roundedImageView">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%</item>
+        <item name="cornerSize">80%</item>
     </style>
 
+    <style name="CircularProgress" parent="Theme.AppCompat.Light">
+    <item name="colorAccent">@color/blue_500</item>
+    </style>
     <style name="LightSpinnerTheme" parent="android:Widget.Material.Spinner.Underlined">
         <item name="android:background">@drawable/round_background
         </item>

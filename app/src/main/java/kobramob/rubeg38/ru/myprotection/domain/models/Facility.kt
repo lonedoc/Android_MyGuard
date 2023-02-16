@@ -21,7 +21,9 @@ data class Facility(
     val passcode: String?,
     val isApplicationsEnabled: Boolean,
     val accounts: List<Account>,
-    val devices: List<Device>
+    val devices: List<Device>,
+    val armState:String?,
+    val armTime:Int?
 ) : Parcelable {
 
     @IgnoredOnParcel

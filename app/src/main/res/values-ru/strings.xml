@@ -173,5 +173,10 @@
     <string name="missing_datetime_error_message">Ошибка заполнения формы</string>
     <string name="application_failed_message">Не удалось создать заявку</string>
     <string name="clear_button">clear_button</string>
+    <string name="detail">Подробнее</string>
+    <string name="start_alarm">Начать тревогу</string>
+    <string name="stop_alarm">Отменить тревогу</string>
+    <string name="arm_guarded">Включить охрану</string>
+    <string name="arm_not_guarded">Выключить охрану</string>
 
 </resources>

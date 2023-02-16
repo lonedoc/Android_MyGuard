@@ -45,15 +45,18 @@ class FacilityViewModel(
         pendingArmingOrDisarming = false,
         isProgressBarShown = false,
         progressBarHintRes = null,
-        alarmButtonIconRes = R.drawable.alarm_icon,
-        alarmButtonColorRes = R.color.alarm_button_color
+        alarmButtonText = R.string.start_alarm,
+        alarmButtonColorRes = R.color.alarm_button_color,
+        armButtonText = R.string.arm_guarded,
+        armButtonColorRes = R.color.green_500
     )
 
     override suspend fun reduce(event: Event, previousState: ViewState): ViewState? {
         when (event) {
             is UiEvent.OnArmButtonLongClick -> {
                 val facility = previousState.facility
-                val isOnlineChannelAvailable = facility.hasOnlineChannel && facility.isOnlineChannelEnabled
+                val isOnlineChannelAvailable =
+                    facility.hasOnlineChannel && facility.isOnlineChannelEnabled
 
                 if (!isOnlineChannelAvailable) {
                     return null
@@ -73,9 +76,29 @@ class FacilityViewModel(
                 singleEvent.postValue(confirmDialogEvent)
                 return null
             }
-            is UiEvent.OnArmButtonClick -> {
+            is UiEvent.OnDisarmArmingClick -> {
+                startTimer(SHORT_UPDATE_INTERVAL)
                 val facility = previousState.facility
-                val isOnlineChannelAvailable = facility.hasOnlineChannel && facility.isOnlineChannelEnabled
+                val isOnlineChannelAvailable =
+                    facility.hasOnlineChannel && facility.isOnlineChannelEnabled
+                if (!isOnlineChannelAvailable) {
+                    return null
+                }
+
+                val confirmDialogEvent =  SingleEvent.OnConfirmationDialog(
+                    R.string.disarming_dialog_message,
+                    R.string.disarming_dialog_positive_button_text,
+                    UiEvent.OnDisarmingConfirmed
+                )
+
+                singleEvent.postValue(confirmDialogEvent)
+                return null
+            }
+            is UiEvent.OnArmButtonClick -> {
+                startTimer(SHORT_UPDATE_INTERVAL)
+                val facility = previousState.facility
+                val isOnlineChannelAvailable =
+                    facility.hasOnlineChannel && facility.isOnlineChannelEnabled
 
                 if (!isOnlineChannelAvailable) {
                     return null
@@ -104,14 +127,13 @@ class FacilityViewModel(
                 return null
             }
             is UiEvent.OnArmingConfirmed -> {
-                startTimer(SHORT_UPDATE_INTERVAL)
                 viewModelScope.launch {
                     interactor.arm(previousState.facility.id).fold(
                         onSuccess = { success ->
                             if (success) {
                                 processDataEvent(DataEvent.OnArmingStart)
                             } else {
-                                processDataEvent(DataEvent.OnArmingFail)
+                                processDataEvent(DataEvent.OnArmingStart)
                             }
                         },
                         onError = {
@@ -123,14 +145,13 @@ class FacilityViewModel(
                 return null
             }
             is UiEvent.OnPerimeterArmingConfirmed -> {
-                startTimer(SHORT_UPDATE_INTERVAL)
                 viewModelScope.launch {
                     interactor.armPerimeter(previousState.facility.id).fold(
                         onSuccess = { success ->
                             if (success) {
                                 processDataEvent(DataEvent.OnPerimeterArmingStart)
                             } else {
-                                processDataEvent(DataEvent.OnPerimeterArmingFail)
+                                processDataEvent(DataEvent.OnPerimeterArmingStart)
                             }
                         },
                         onError = {
@@ -142,15 +163,13 @@ class FacilityViewModel(
                 return null
             }
             is UiEvent.OnDisarmingConfirmed -> {
-
-                startTimer(SHORT_UPDATE_INTERVAL)
                 viewModelScope.launch {
                     interactor.disarm(previousState.facility.id).fold(
                         onSuccess = { success ->
                             if (success) {
                                 processDataEvent(DataEvent.OnDisarmingStart)
                             } else {
-                                processDataEvent(DataEvent.OnDisarmingFail)
+                                processDataEvent(DataEvent.OnDisarmingStart)
                             }
                         },
                         onError = {
@@ -178,7 +197,11 @@ class FacilityViewModel(
                     interactor.setName(previousState.facility.id, event.name).fold(
                         onSuccess = { renamingResult ->
                             if (renamingResult.success) {
-                                processDataEvent(DataEvent.OnRenamingResult(renamingResult.name ?: ""))
+                                processDataEvent(
+                                    DataEvent.OnRenamingResult(
+                                        renamingResult.name ?: ""
+                                    )
+                                )
                             } else {
                                 processDataEvent(DataEvent.OnRenamingFail)
                             }
@@ -194,7 +217,8 @@ class FacilityViewModel(
                 val facility = previousState.facility
 
                 if (facility.statusCodes.contains(StatusCode.ALARM)) {
-                    val lastCancellationTime = interactor.getLastCancellationTime(previousState.facility.id)
+                    val lastCancellationTime =
+                        interactor.getLastCancellationTime(previousState.facility.id)
 
                     if (lastCancellationTime != null) {
                         val timeSinceLastCancellation = elapsedRealtime() - lastCancellationTime
@@ -281,7 +305,7 @@ class FacilityViewModel(
                 return null
             }
             is DataEvent.OnArmingStart -> {
-
+                Log.d("Arming", "Starting")
                 return previousState.copy(
                     pendingArmingOrDisarming = true,
                     isProgressBarShown = true,
@@ -289,6 +313,7 @@ class FacilityViewModel(
                 )
             }
             is DataEvent.OnArmingFail -> {
+                Log.d("Arming", "Starting")
                 singleEvent.postValue(SingleEvent.OnError(R.string.arming_failed_message))
                 return null
             }
@@ -307,12 +332,13 @@ class FacilityViewModel(
             is DataEvent.OnDisarmingStart -> {
 
                 return previousState.copy(
-                    pendingArmingOrDisarming = true,
+                    pendingArmingOrDisarming = false,
                     isProgressBarShown = true,
                     progressBarHintRes = R.string.disarming_progress_bar_hint
                 )
             }
             is DataEvent.OnDisarmingFail -> {
+                Log.d("Disarming", "Starting")
                 singleEvent.postValue(SingleEvent.OnError(R.string.disarming_failed_message))
                 return null
             }
@@ -345,19 +371,24 @@ class FacilityViewModel(
 
                         return previousState.copy(
                             facility = event.facility,
-                            pendingArmingOrDisarming = false,
+                            pendingArmingOrDisarming = true,
                             isProgressBarShown = false,
                             progressBarHintRes = null,
-                            alarmButtonIconRes = getAlarmButtonIcon(event.facility.alarm),
-                            alarmButtonColorRes = getAlarmButtonColor(event.facility.alarm)
+                            alarmButtonText = getAlarmButtonText(event.facility.alarm),
+                            alarmButtonColorRes = getAlarmButtonColor(event.facility.alarm),
+                            armButtonText = getArmButtonText(event.facility.isGuarded),
+                            armButtonColorRes = getArmButtonColor(event.facility.isGuarded)
                         )
                     }
                 }
 
                 return previousState.copy(
                     facility = event.facility,
-                    alarmButtonIconRes = getAlarmButtonIcon(event.facility.alarm),
-                    alarmButtonColorRes = getAlarmButtonColor(event.facility.alarm)
+                    isProgressBarShown = true,
+                    alarmButtonText = getAlarmButtonText(event.facility.alarm),
+                    alarmButtonColorRes = getAlarmButtonColor(event.facility.alarm),
+                    armButtonText = getArmButtonText(event.facility.isGuarded),
+                    armButtonColorRes = getArmButtonColor(event.facility.isGuarded)
                 )
             }
             is DataEvent.OnRenamingResult -> {
@@ -409,16 +440,28 @@ class FacilityViewModel(
         !facility.isGuarded && updatedFacility.isGuarded ||
                 facility.isGuarded && !updatedFacility.isGuarded
 
-    private fun getAlarmButtonIcon(alarm: Boolean) = if (alarm) {
-        R.drawable.cancel_alarm_icon
+    private fun getAlarmButtonText(alarm: Boolean) = if (alarm) {
+        R.string.stop_alarm
     } else {
-        R.drawable.alarm_icon
+        R.string.start_alarm
     }
 
     private fun getAlarmButtonColor(alarm: Boolean) = if (alarm) {
-        R.color.cancel_alarm_button_color
+        R.color.blue_500
     } else {
-        R.color.alarm_button_color
+        R.color.red_500
+    }
+
+    private fun getArmButtonText(arm:Boolean) = if (arm){
+        R.string.arm_not_guarded
+    } else {
+        R.string.arm_guarded
+    }
+
+    private fun getArmButtonColor(arm: Boolean) = if (arm){
+        R.color.green_500
+    } else {
+        R.color.blue_500
     }
 
 }
@@ -439,7 +482,9 @@ private fun createFacilityNull() = Facility(
     passcode = null,
     isApplicationsEnabled = false,
     accounts = emptyList(),
-    devices = emptyList()
+    devices = emptyList(),
+    armState = "",
+    armTime = 0
 )
 
 private fun <T> getRandomElements(count: Int, source: List<T>): List<T> {

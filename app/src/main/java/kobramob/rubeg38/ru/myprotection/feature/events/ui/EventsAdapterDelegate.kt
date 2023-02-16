@@ -37,7 +37,7 @@ fun eventsAdapterDelegate() =
 
 private fun getColorResByType(type: Int) = when(type) {
     1, 2, 3, 4, 77, 79, 81, 85 -> R.color.deep_orange_500
-    5, 33 -> R.color.brown_500
+    5, 33 -> R.color.deep_orange_300
     10, 68, 69 -> R.color.green_500
     6, 8, 9, 66, 67 -> R.color.blue_500
     else -> R.color.gray_500
@@ -51,13 +51,13 @@ private fun getIconByType(context: Context, type: Int): Drawable {
 
 
 private fun getIconResByType(type: Int) = when(type) {
-    1, 2, 3, 77, 79, 85 -> R.drawable.status_alarm_icon
-    4 -> R.drawable.fire_alarm_icon
-    5 -> R.drawable.status_malfunction_icon
-    6, 8, 9, 66, 67 -> R.drawable.status_guarded_icon
-    10, 68, 69 -> R.drawable.status_not_guarded_icon
-    33, 81 -> R.drawable.battery_icon
-    else -> R.drawable.status_unknown_icon
+    1, 2, 3, 77, 79, 85 -> R.drawable.i_status_alarm
+    4 -> R.drawable.i_status_fire
+    5 -> R.drawable.i_status_malfunction
+    6, 8, 9, 66, 67 -> R.drawable.i_status_guard
+    10, 68, 69 -> R.drawable.i_status_not_guard
+    33, 81 -> R.drawable.i_status_battery
+    else -> R.drawable.i_status_malfunction
 }
 
 @SuppressLint("SimpleDateFormat")

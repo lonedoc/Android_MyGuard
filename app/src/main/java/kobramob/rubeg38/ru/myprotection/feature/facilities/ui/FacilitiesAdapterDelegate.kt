@@ -24,7 +24,7 @@ fun facilitiesAdapterDelegate(onClick: (Facility) -> Unit) =
         bind {
             //val backgroundColor = context.getColor(getColorResByStatus(item.statusCodes))
             val iconDrawableRes = getIconResByStatus(item.statusCodes)
-            val textColorRes = getTextColorResByStatus(item.statusCodes)
+            val textColorRes = getColorResByStatus(item.statusCodes)
             val textColor = context.getColor(textColorRes)
             val iconDrawable = AppCompatResources.getDrawable(context, iconDrawableRes)
             val drawable = InsetDrawable(iconDrawable, 32)

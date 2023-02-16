@@ -54,7 +54,7 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.swipeRefreshLayout.setColorSchemeColors(
-            requireContext().getColor(R.color.green_500)
+            requireContext().getColor(R.color.blue_500)
         )
 
         binding.swipeRefreshLayout.setOnRefreshListener {
@@ -64,7 +64,7 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
         binding.eventsRecyclerView.adapter = eventsAdapter
 
         binding.eventsRecyclerView.addItemDecoration(
-            DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
+            DividerItemDecoration(requireContext(), 0)
         )
 
         binding.eventsRecyclerView.addOnScrollListener(onScrollListener)
