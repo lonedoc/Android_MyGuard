@@ -1,7 +1,5 @@
 package kobramob.rubeg38.ru.myprotection.feature.facility.ui
 
-import android.content.res.ColorStateList
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -136,6 +134,7 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
                 else -> false
             }
         }*/
+
 
         binding.bottomNavigationView.selectedItemId = R.id.eventsItem
 

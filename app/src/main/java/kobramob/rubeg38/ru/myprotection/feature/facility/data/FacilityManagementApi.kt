@@ -10,6 +10,7 @@ import kobramob.rubeg38.ru.myprotection.feature.facility.data.models.RenamingRes
 import kobramob.rubeg38.ru.myprotection.feature.facility.data.models.ResultDto
 import kobramob.rubeg38.ru.myprotection.utils.SessionDataHolder
 import ru.rubeg38.protocolclient.Client
+import ru.rubeg38.protocolclient.clientConfig
 import ru.rubeg38.protocolclient.retry
 
 class FacilityManagementApi(private val sessionDataHolder: SessionDataHolder) {
@@ -136,8 +137,13 @@ class FacilityManagementApi(private val sessionDataHolder: SessionDataHolder) {
             Log.d(this::class.simpleName, "-> $query")
         }
 
+
+
         val data = retry(3, addresses) { address ->
-            val client = Client()
+            val config = clientConfig {
+                setSleepInterval(0)
+            }
+            val client = Client(config)
             client.bind(address)
             client.sendRequest(query, token)
         }

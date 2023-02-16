@@ -35,6 +35,10 @@ data class FacilityDto(
     val isApplicationsEnabled: Int?,
     @SerializedName("device")
     val devices: List<DeviceDto>?,
+    @SerializedName("vvstate")
+    val armState:String?,
+    @SerializedName("vvsec")
+    val armTime:String?,
 
     // account 1
     @SerializedName("i1clic")

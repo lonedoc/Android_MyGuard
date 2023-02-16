@@ -2,6 +2,7 @@ package kobramob.rubeg38.ru.myprotection.feature.facility.ui
 
 import android.app.Application
 import android.os.SystemClock.elapsedRealtime
+import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
@@ -20,8 +21,8 @@ import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.random.Random
 
-private const val LONG_UPDATE_INTERVAL: Long = 10_000
-private const val SHORT_UPDATE_INTERVAL: Long = 2_000
+private const val LONG_UPDATE_INTERVAL: Long = 5_000
+private const val SHORT_UPDATE_INTERVAL: Long = 1_000
 private const val CANCELLATION_COOLDOWN: Long = 3_600_000 // 1 hour
 
 class FacilityViewModel(
@@ -103,6 +104,7 @@ class FacilityViewModel(
                 return null
             }
             is UiEvent.OnArmingConfirmed -> {
+                startTimer(SHORT_UPDATE_INTERVAL)
                 viewModelScope.launch {
                     interactor.arm(previousState.facility.id).fold(
                         onSuccess = { success ->
@@ -121,6 +123,7 @@ class FacilityViewModel(
                 return null
             }
             is UiEvent.OnPerimeterArmingConfirmed -> {
+                startTimer(SHORT_UPDATE_INTERVAL)
                 viewModelScope.launch {
                     interactor.armPerimeter(previousState.facility.id).fold(
                         onSuccess = { success ->
@@ -139,6 +142,8 @@ class FacilityViewModel(
                 return null
             }
             is UiEvent.OnDisarmingConfirmed -> {
+
+                startTimer(SHORT_UPDATE_INTERVAL)
                 viewModelScope.launch {
                     interactor.disarm(previousState.facility.id).fold(
                         onSuccess = { success ->
@@ -276,7 +281,6 @@ class FacilityViewModel(
                 return null
             }
             is DataEvent.OnArmingStart -> {
-                startTimer(SHORT_UPDATE_INTERVAL)
 
                 return previousState.copy(
                     pendingArmingOrDisarming = true,
@@ -289,7 +293,6 @@ class FacilityViewModel(
                 return null
             }
             is DataEvent.OnPerimeterArmingStart -> {
-                startTimer(SHORT_UPDATE_INTERVAL)
 
                 return previousState.copy(
                     pendingArmingOrDisarming = true,
@@ -302,7 +305,6 @@ class FacilityViewModel(
                 return null
             }
             is DataEvent.OnDisarmingStart -> {
-                startTimer(SHORT_UPDATE_INTERVAL)
 
                 return previousState.copy(
                     pendingArmingOrDisarming = true,
@@ -321,6 +323,7 @@ class FacilityViewModel(
                     interactor.getFacility(facility.id).fold(
                         onSuccess = { facility ->
                             processDataEvent(DataEvent.OnFacilityUpdate(facility))
+
                         },
                         onError = {}
                     )
@@ -393,6 +396,7 @@ class FacilityViewModel(
     }
 
     private fun startTimer(period: Long) {
+        Log.d("FacilityViewModel","ReNewTimer   newtime:$period")
         timer?.cancel()
         timer = Timer().apply {
             schedule(delay = 0, period = period) {
