@@ -9,4 +9,4 @@ fun RenamingResultDto.toDomain() = RenamingResult(
     name = name
 )
 
-fun ResultDto.toDomain() = result == "ok"
+fun ResultDto.toDomain() = result == "ok" || result == "start"
