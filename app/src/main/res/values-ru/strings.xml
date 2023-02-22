@@ -7,7 +7,11 @@
     <string name="request_failed_message">Не удалось загрузить данные</string> <!-- TODO: Edit -->
     <string name="call_button_title">Позвонить в охранное предприятие</string>
     <string name="phone_number_not_found_message">Номер телефона не найден</string>
-
+    <string name="permission_required_title">Требуется разрешение</string>
+    <string name="permission_required_message">Требуется разрешение для отображения уведомлений</string>
+    <string name="grant_permission_button_text">Разрешить</string>
+    <string name="refuse_permission_button_text">Отмена</string>
+    <string name="notifications_permission_not_granted_message">Разрешение не получено. Вы не будете получать уведомления</string>
     <!-- Login -->
     <string name="logo_image_description">Логотип</string>
     <string name="logo_text">Рубеж НПО</string>
@@ -95,6 +99,8 @@
     <string name="arming_dialog_positive_button_text">Поставить под охрану</string>
     <string name="arming_progress_bar_hint">Постановка на охрану…</string>
     <string name="arming_failed_message">Не удалось поставить объект на охрану</string>
+    <string name="arming_failed_not_ready_message">Не удалось поставить объект на охрану, объект не готов</string>
+    <string name="arming_failed_block_message">Оплатите обслуживание объекта</string>
     <string name="arming_perimeter_dialog_message">Вы уверены, что хотите поставить периметр объекта на охрану?</string>
     <string name="arming_perimeter_dialog_positive_button_text">Поставить периметр на охрану</string>
     <string name="arming_perimeter_progress_bar_hint">Постановка периметра на охрану…</string>

@@ -7,6 +7,11 @@
     <string name="request_failed_message">Could not load data</string> <!-- TODO: Edit -->
     <string name="call_button_title">Call the guard service</string>
     <string name="phone_number_not_found_message">Phone number is not found</string>
+    <string name="permission_required_title">Permission required</string>
+    <string name="permission_required_message">The application requires notifications permission</string>
+    <string name="grant_permission_button_text">Grant permission</string>
+    <string name="refuse_permission_button_text">Cancel</string>
+    <string name="notifications_permission_not_granted_message">Permission not granted. You will not receive notifications</string>
 
     <!-- Login -->
     <string name="logo_image_description">Logo</string>
@@ -95,6 +100,8 @@
     <string name="arming_dialog_positive_button_text">Arm the facility</string>
     <string name="arming_progress_bar_hint">Arming…</string>
     <string name="arming_failed_message">Could not arm the facility</string>
+    <string name="arming_failed_not_ready_message">Could not arm the facility cause not ready</string>
+    <string name="arming_failed_block_message">Could not arm the facility cause its block</string>
     <string name="arming_perimeter_dialog_message">Are you sure you want to arm the facility\'s perimeter?</string>
     <string name="arming_perimeter_dialog_positive_button_text">Arm the facility\'s perimeter</string>
     <string name="arming_perimeter_progress_bar_hint">Arming perimeter…</string>

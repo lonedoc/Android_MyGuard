@@ -1,126 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/screenBackgroundColor"
+   >
+<LinearLayout
+    android:layout_marginTop="12dp"
+    android:layout_marginBottom="12dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="?attr/screenBackgroundColor">
-
-    <!-- AppBar -->
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/appBar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_marginBottom="@dimen/half_window_padding"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="?attr/colorPrimary"
-        app:titleTextColor="@android:color/white"
-        app:titleCentered="true"
-        app:navigationIcon="@drawable/close_icon"
-        app:title="@string/application_screen_title" />
-
     <!-- Predefined applications -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/window_padding"
-        android:hint="@string/application_text_field_hint"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
-        <AutoCompleteTextView
-            android:id="@+id/applicationsPicker"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:focusableInTouchMode="false"
-            android:inputType="none" />
+            android:layout_marginHorizontal="@dimen/window_padding"
+            android:hint="@string/application_text_field_hint"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:background="@color/white">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <AutoCompleteTextView
+                android:id="@+id/applicationsPicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="false"
+                android:inputType="none"
+                android:background="@color/white"/>
 
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Custom application -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/window_padding"
-        android:hint="@string/custom_application_text_field_hint"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="16dp" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/application_text_field"
-            android:layout_width="match_parent"
-            android:layout_height="128dp"
-            android:inputType="textMultiLine"
-            android:gravity="top" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="16dp" />
-
-    <!-- Date -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/window_padding"
-        android:hint="@string/date_text_field_hint"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/dateTextField"
+        <!-- Custom application -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="false"
-            android:cursorVisible="false"
-            android:focusable="false"
-            android:focusableInTouchMode="false" />
+            android:layout_marginHorizontal="@dimen/window_padding"
+            android:hint="@string/custom_application_text_field_hint"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/application_text_field"
+                android:layout_width="match_parent"
+                android:layout_height="128dp"
+                android:inputType="textMultiLine"
+                android:gravity="top"
+                android:background="@color/white"/>
 
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Time -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/window_padding"
-        android:hint="@string/time_text_field_hint"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="16dp" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/timeTextField"
+        <!-- Date -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="false"
-            android:cursorVisible="false"
-            android:focusable="false"
-            android:focusableInTouchMode="false" />
+            android:layout_marginHorizontal="@dimen/window_padding"
+            android:hint="@string/date_text_field_hint"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dateTextField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:background="@color/white"/>
 
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Submit button -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/submit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:backgroundTint="@color/positive_button_background_color"
-        android:textColor="@color/white"
-        android:text="@string/proceed_button_text" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="16dp" />
 
+        <!-- Time -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/window_padding"
+            android:hint="@string/time_text_field_hint"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/timeTextField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:background="@color/white"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="16dp" />
+
+        <!-- Submit button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/submit_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/positive_button_background_color"
+            android:textColor="@color/white"
+            android:text="@string/proceed_button_text" />
 </LinearLayout>
+    </ScrollView>

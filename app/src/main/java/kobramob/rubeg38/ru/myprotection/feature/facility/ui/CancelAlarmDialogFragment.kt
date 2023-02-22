@@ -25,7 +25,7 @@ class CancelAlarmDialogFragment : DialogFragment() {
         val binding = FragmentCancelAlarmDialogBinding.inflate(layoutInflater)
         val passcodes = requireArguments().getStringArrayList(PASSCODES_KEY) ?: listOf()
 
-        val dialog = AlertDialog.Builder(requireContext()).run {
+        val dialog = AlertDialog.Builder(requireContext(),R.style.AlertDialogCustom).run {
             setTitle(requireContext().getString(R.string.cancel_alarm_dialog_title))
             setMessage(R.string.cancel_alarm_dialog_message)
             setView(binding.root)
@@ -59,7 +59,10 @@ class CancelAlarmDialogFragment : DialogFragment() {
         dialog.setOnShowListener {
             dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.let { positiveButton ->
                 positiveButton.isEnabled = false
+
             }
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(requireContext().getColor(R.color.blue_500))
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(requireContext().getColor(R.color.red_500))
 
             binding.root.setOnCheckedChangeListener { _, checkedId ->
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.let { positiveButton ->

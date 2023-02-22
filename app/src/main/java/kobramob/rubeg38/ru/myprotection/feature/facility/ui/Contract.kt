@@ -38,6 +38,8 @@ sealed class DataEvent : Event {
     object OnFacilityRequest : DataEvent()
     object OnArmingStart : DataEvent()
     object OnArmingFail : DataEvent()
+    object OnArmingBlock:DataEvent()
+    object OnArmingNotReady:DataEvent()
     object OnPerimeterArmingStart : DataEvent()
     object OnPerimeterArmingFail : DataEvent()
     object OnDisarmingStart : DataEvent()

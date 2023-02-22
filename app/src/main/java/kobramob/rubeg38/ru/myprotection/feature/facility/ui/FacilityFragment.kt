@@ -1,10 +1,8 @@
 package kobramob.rubeg38.ru.myprotection.feature.facility.ui
 
 import android.app.Dialog
-import android.app.ProgressDialog
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
@@ -14,6 +12,7 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -160,11 +159,16 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
     }
 
     private fun render(viewState: ViewState) {
+        val params: ConstraintLayout.LayoutParams = binding.tabLayout.layoutParams as ConstraintLayout.LayoutParams
         val facility = viewState.facility
 
         val onlineChannelIconRes = if (facility.isOnlineChannelEnabled) {
+            binding.armButton.visibility = View.VISIBLE
             R.drawable.online_channel_on_icon
         } else {
+            params.setMargins(params.leftMargin,params.topMargin-50,params.rightMargin,params.bottomMargin)
+            binding.tabLayout.layoutParams = params
+            binding.armButton.visibility = View.GONE
             R.drawable.online_channel_off_icon
         }
 
@@ -207,17 +211,33 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
 
 
         when{
-            viewState.isProgressBarShown && binding.determinateBar!!.isShown->{
+            viewState.isProgressBarShown && binding.determinateBar!!.isShown && !viewState.pendingArmingOrDisarming->{
                 hideProgressDialog()
             }
-            viewState.pendingArmingOrDisarming && facility.armTime!!>0->{
+            viewState.pendingArmingOrDisarming && facility.armTime!!>=5->{
+                hideProgressDialog()
                 if(!timerDialogShow)
                     showTimerDialog(facility.armTime)
+            }
+            facility.statusDescription=="Под охраной"->{
+                hideProgressDialog()
             }
             facility.isApplicationsEnabled->{(binding.tabLayout.getChildAt(0) as ViewGroup).getChildAt(1).visibility = View.GONE}
         }
 
-        (binding.tabLayout.getChildAt(0) as ViewGroup).getChildAt(2).visibility = View.GONE
+        if(facility.devices.isEmpty())
+            (binding.tabLayout.getChildAt(0) as ViewGroup).getChildAt(3).visibility = View.GONE
+
+
+        if(!facility.isAlarmButtonEnabled){
+            binding.alarmButton.visibility = View.GONE
+            params.setMargins(params.leftMargin,170,params.rightMargin,params.bottomMargin)
+            binding.tabLayout.layoutParams = params
+        }
+
+        if(!facility.isSelfServiceEnabled){
+            (binding.tabLayout.getChildAt(0) as ViewGroup).getChildAt(2).visibility = View.GONE
+        }
 
         val facilityInfo = facility.name + " - " + facility.address
         binding.appBar.setTitle(R.string.detail)
@@ -280,7 +300,7 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
         @StringRes positiveButtonTextRes: Int,
         onProceed: () -> Unit
     ) {
-        AlertDialog.Builder(requireContext())
+        AlertDialog.Builder(requireContext(),R.style.AlertDialogCustom)
             .setTitle(R.string.confirmation_dialog_title)
             .setMessage(messageRes)
             .setPositiveButton(positiveButtonTextRes) { _, _ -> onProceed() }
@@ -310,11 +330,11 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
         val countdownTextView = dialog?.findViewById(R.id.countdownTextView) as TextView
         val title = dialog?.findViewById(R.id.title) as TextView
         title.text = "Время до постановки на охрану"
-        object : CountDownTimer(((armTime+5)*1000).toLong(), 1000) {
+        object : CountDownTimer(((armTime)*1000).toLong(), 1000) {
 
             // Callback function, fired on regular interval
             override fun onTick(millisUntilFinished: Long) {
-                if(millisUntilFinished<10)
+                if(millisUntilFinished<10000)
                 {
                     countdownTextView.text = "00 : 0"+millisUntilFinished / 1000
                 }

@@ -28,7 +28,7 @@ class RenameDialogFragment : DialogFragment() {
         val currentName = requireArguments().getString(NAME_KEY) ?: ""
         binding.nameEditText.setText(currentName)
 
-        val dialog = AlertDialog.Builder(requireContext()).run {
+        val dialog = AlertDialog.Builder(requireContext(),R.style.AlertDialogCustom).run {
             setTitle(R.string.rename_dialog_title)
             setView(binding.root)
 
@@ -38,7 +38,14 @@ class RenameDialogFragment : DialogFragment() {
             }
 
             setNegativeButton(R.string.rename_dialog_negative_button_text) { _, _ -> }
+
+
             create()
+        }
+
+        dialog.setOnShowListener {
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(requireContext().getColor(R.color.blue_500))
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(requireContext().getColor(R.color.red_500))
         }
 
         binding.nameEditText.setTextChangedListener { text ->

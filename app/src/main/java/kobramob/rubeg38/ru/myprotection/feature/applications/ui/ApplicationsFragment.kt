@@ -46,9 +46,9 @@ class ApplicationsFragment : Fragment(R.layout.fragment_applications) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.appBar.setNavigationOnClickListener {
+       /* binding.appBar.setNavigationOnClickListener {
             viewModel.processUiEvent(UiEvent.OnCloseButtonClick)
-        }
+        }*/
 
         setupApplicationPicker()
 

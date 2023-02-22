@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -43,6 +44,7 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.core:core-ktx:+'
     def gson_version = '2.10'
     def koin_version = '3.3.1'
     def cicerone_version = "7.1"

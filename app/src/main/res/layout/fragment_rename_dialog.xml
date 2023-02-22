@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingVertical="@dimen/half_window_padding"
-    android:paddingHorizontal="@dimen/window_padding">
+    android:paddingHorizontal="@dimen/window_padding"
+    style="R.style.AlertDialogCustom">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nameTextInputLayout"
