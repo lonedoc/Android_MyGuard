@@ -23,7 +23,7 @@ import java.util.*
 import kotlin.math.sin
 import kotlin.random.Random
 
-private const val LONG_UPDATE_INTERVAL: Long = 5_000
+private const val LONG_UPDATE_INTERVAL: Long = 3_000
 private const val SHORT_UPDATE_INTERVAL: Long = 1_000
 private const val CANCELLATION_COOLDOWN: Long = 3_600_000 // 1 hour
 
@@ -320,7 +320,9 @@ class FacilityViewModel(
             }
             is DataEvent.OnArmingNotReady ->{
                 startTimer(LONG_UPDATE_INTERVAL)
-                singleEvent.postValue(SingleEvent.OnError(R.string.arming_failed_not_ready_message))
+                val facility = previousState.facility
+                val message = "Не удалось поставить объект на охрану, не готова зона " + facility.zone.toString()
+                singleEvent.postValue(SingleEvent.OnErrorStr(message))
                 return null
             }
             is DataEvent.OnArmingBlock->{
@@ -351,7 +353,6 @@ class FacilityViewModel(
             }
             is DataEvent.OnDisarmingFail -> {
                 startTimer(LONG_UPDATE_INTERVAL)
-                Log.d("Disarming", "Starting")
                 singleEvent.postValue(SingleEvent.OnError(R.string.disarming_failed_message))
                 return null
             }
@@ -379,33 +380,33 @@ class FacilityViewModel(
                     val facility = previousState.facility
                     val updatedFacility = event.facility
 
-                    when(facility.armState){
+                    when(updatedFacility.armState){
                         "4"->{
                             startTimer(LONG_UPDATE_INTERVAL)
                             processDataEvent(DataEvent.OnArmingFail)
                             return previousState.copy(
-                                facility = event.facility,
+                                facility = updatedFacility,
                                 pendingArmingOrDisarming = true,
                                 isProgressBarShown = false,
                                 progressBarHintRes = null,
-                                alarmButtonText = getAlarmButtonText(event.facility.alarm),
-                                alarmButtonColorRes = getAlarmButtonColor(event.facility.alarm),
-                                armButtonText = getArmButtonText(event.facility.isGuarded),
-                                armButtonColorRes = getArmButtonColor(event.facility.isGuarded)
+                                alarmButtonText = getAlarmButtonText(updatedFacility.alarm),
+                                alarmButtonColorRes = getAlarmButtonColor(updatedFacility.alarm),
+                                armButtonText = getArmButtonText(updatedFacility.isGuarded),
+                                armButtonColorRes = getArmButtonColor(updatedFacility.isGuarded)
                             )
                         }
                         "5"->{
                             startTimer(LONG_UPDATE_INTERVAL)
                             processDataEvent(DataEvent.OnArmingNotReady)
                             return previousState.copy(
-                                facility = event.facility,
+                                facility = updatedFacility,
                                 pendingArmingOrDisarming = false,
                                 isProgressBarShown = false,
                                 progressBarHintRes = null,
-                                alarmButtonText = getAlarmButtonText(event.facility.alarm),
-                                alarmButtonColorRes = getAlarmButtonColor(event.facility.alarm),
-                                armButtonText = getArmButtonText(event.facility.isGuarded),
-                                armButtonColorRes = getArmButtonColor(event.facility.isGuarded)
+                                alarmButtonText = getAlarmButtonText(updatedFacility.alarm),
+                                alarmButtonColorRes = getAlarmButtonColor(updatedFacility.alarm),
+                                armButtonText = getArmButtonText(updatedFacility.isGuarded),
+                                armButtonColorRes = getArmButtonColor(updatedFacility.isGuarded)
                             )
                         }
                         "7"->{
@@ -416,10 +417,10 @@ class FacilityViewModel(
                                 pendingArmingOrDisarming = false,
                                 isProgressBarShown = false,
                                 progressBarHintRes = null,
-                                alarmButtonText = getAlarmButtonText(event.facility.alarm),
-                                alarmButtonColorRes = getAlarmButtonColor(event.facility.alarm),
-                                armButtonText = getArmButtonText(event.facility.isGuarded),
-                                armButtonColorRes = getArmButtonColor(event.facility.isGuarded)
+                                alarmButtonText = getAlarmButtonText(updatedFacility.alarm),
+                                alarmButtonColorRes = getAlarmButtonColor(updatedFacility.alarm),
+                                armButtonText = getArmButtonText(updatedFacility.isGuarded),
+                                armButtonColorRes = getArmButtonColor(updatedFacility.isGuarded)
                             )
                         }
                         else->{
@@ -543,7 +544,8 @@ private fun createFacilityNull() = Facility(
     accounts = emptyList(),
     devices = emptyList(),
     armState = "",
-    armTime = 0
+    armTime = 0,
+    zone = 6
 )
 
 private fun <T> getRandomElements(count: Int, source: List<T>): List<T> {

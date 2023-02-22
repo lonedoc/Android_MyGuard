@@ -23,7 +23,8 @@ data class Facility(
     val accounts: List<Account>,
     val devices: List<Device>,
     val armState:String?,
-    val armTime:Int?
+    val armTime:Int?,
+    val zone:Int?
 ) : Parcelable {
 
     @IgnoredOnParcel

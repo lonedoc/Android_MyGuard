@@ -242,6 +242,7 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
         val facilityInfo = facility.name + " - " + facility.address
         binding.appBar.setTitle(R.string.detail)
         binding.facilityName.text = facilityInfo
+        binding.facilityName.isSelected = true
         binding.facilityStatus.text = facility.statusDescription
         binding.facilityStatus.setTextColor(resources.getColor(getColorResByStatus(facility.statusCodes),null))
         binding.onlineChannelIcon.load(onlineChannelIconRes)
@@ -276,6 +277,9 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
                 showTestModeDialog(event.facilityId)
             }
             is SingleEvent.OnError -> {
+                showErrorMessage(event.errorMessageRes)
+            }
+            is SingleEvent.OnErrorStr->{
                 showErrorMessage(event.errorMessageRes)
             }
         }
@@ -373,6 +377,9 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
 
     private fun showErrorMessage(@StringRes errorMessageRes: Int) {
         Toast.makeText(requireContext(), errorMessageRes, Toast.LENGTH_LONG).show()
+    }
+    private fun showErrorMessage(errorMessageRes: String){
+        Toast.makeText(requireContext(),errorMessageRes,Toast.LENGTH_LONG).show()
     }
 
 }

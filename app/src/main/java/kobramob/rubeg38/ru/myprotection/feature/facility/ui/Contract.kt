@@ -62,4 +62,6 @@ sealed class SingleEvent {
     data class OnTestModeDialog(val facilityId: String) : SingleEvent()
     data class OnRenameDialog(val currentName: String) : SingleEvent()
     data class OnError(@StringRes val errorMessageRes: Int) : SingleEvent()
+
+    data class OnErrorStr(val errorMessageRes:String): SingleEvent()
 }

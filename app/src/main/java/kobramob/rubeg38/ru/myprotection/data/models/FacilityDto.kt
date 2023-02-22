@@ -39,6 +39,8 @@ data class FacilityDto(
     val armState:String?,
     @SerializedName("vvsec")
     val armTime:Int?,
+    @SerializedName("vvzone")
+    val zone:Int?,
 
     // account 1
     @SerializedName("i1clic")

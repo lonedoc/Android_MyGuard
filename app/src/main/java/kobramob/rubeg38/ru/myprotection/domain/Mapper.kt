@@ -37,7 +37,8 @@ fun FacilityDto.toDomain() = Facility(
     accounts = parseAccounts(this),
     devices = devices?.map(DeviceDto::toDomain) ?: emptyList(),
     armState = armState,
-    armTime = armTime
+    armTime = armTime,
+    zone = zone
 )
 
 private fun getStatusCodes(statusCodeStr: String, perimeterOnly: Int?): List<StatusCode> =

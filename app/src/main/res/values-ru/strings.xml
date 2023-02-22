@@ -100,7 +100,7 @@
     <string name="arming_progress_bar_hint">Постановка на охрану…</string>
     <string name="arming_failed_message">Не удалось поставить объект на охрану</string>
     <string name="arming_failed_not_ready_message">Не удалось поставить объект на охрану, объект не готов</string>
-    <string name="arming_failed_block_message">Оплатите обслуживание объекта</string>
+    <string name="arming_failed_block_message">Объект заблокирован для постановки на охрану</string>
     <string name="arming_perimeter_dialog_message">Вы уверены, что хотите поставить периметр объекта на охрану?</string>
     <string name="arming_perimeter_dialog_positive_button_text">Поставить периметр на охрану</string>
     <string name="arming_perimeter_progress_bar_hint">Постановка периметра на охрану…</string>
@@ -180,9 +180,9 @@
     <string name="application_failed_message">Не удалось создать заявку</string>
     <string name="clear_button">clear_button</string>
     <string name="detail">Подробнее</string>
-    <string name="start_alarm">Начать тревогу</string>
+    <string name="start_alarm">Тревожная кнопка</string>
     <string name="stop_alarm">Отменить тревогу</string>
-    <string name="arm_guarded">Включить охрану</string>
-    <string name="arm_not_guarded">Выключить охрану</string>
+    <string name="arm_guarded">Поставить под охрану</string>
+    <string name="arm_not_guarded">Снять с охраны</string>
 
 </resources>
