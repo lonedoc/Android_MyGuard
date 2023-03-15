@@ -8,14 +8,23 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('D:\\Work\\keyStore\\MyProtection.jks')
+            storePassword 'RubegNPO120'
+            keyAlias 'MyProtection'
+            keyPassword 'RubegNPO120'
+        }
+    }
     compileSdk 33
 
     defaultConfig {
+        compileSdkPreview = "UpsideDownCake"
         applicationId "kobramob.rubeg38.ru.myprotection"
         minSdk 23
         targetSdk 33
-        versionCode 80
-        versionName "1.5.7"
+        versionCode 81
+        versionName "1.5.8"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -44,39 +53,39 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:+'
-    def gson_version = '2.10'
-    def koin_version = '3.3.1'
+    implementation 'androidx.core:core-ktx:1.12.0-alpha01'
+    def gson_version = '2.10.1'
+    def koin_version = '3.3.3'
     def cicerone_version = "7.1"
     def coroutines_version = '1.6.4'
-    def lifecycle_version = "2.5.1"
+    def lifecycle_version = '2.6.0'
     def glide_version = "4.12.0"
-    def material_components_version = "1.7.0"
+    def material_components_version = '1.8.0'
     def swipe_refresh_layout_version = "1.1.0"
-    def room_version = "2.4.3"
+    def room_version = '2.5.0'
     def decoro_version = '1.5.1'
     def biometric_version = "1.2.0-alpha05"
-    def view_binding_delegate_version = "1.5.6"
+    def view_binding_delegate_version = '1.5.8'
     def adapter_delegates_version = "4.3.2"
-    def ktx_core_version = "1.9.0"
+    def ktx_core_version = "1.12.0-alpha01"
     def ktx_fragment_version = '1.5.5'
-    def app_compat_version = "1.5.1"
+    def app_compat_version = '1.6.1'
 
     // Google services
-    implementation "com.google.android.gms:play-services-base:18.1.0"
+    implementation 'com.google.android.gms:play-services-base:18.2.0'
 
     // Firebase
-    implementation platform('com.google.firebase:firebase-bom:31.1.1')
+    implementation platform('com.google.firebase:firebase-bom:31.2.3')
     implementation 'com.google.firebase:firebase-messaging'
 
     // Network
     implementation project(path: ':protocolclient')
 
     // Gson
-    implementation "com.google.code.gson:gson:$gson_version"
+    implementation "com.google.code.gson:gson:2.10.1"
 
     // Dependency injection
-    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-android:3.3.3"
 
     // Cicerone
     implementation "com.github.terrakok:cicerone:$cicerone_version"
@@ -85,21 +94,21 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
     // Lifecycle
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.0"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.0"
     // Glide
-    implementation "com.github.bumptech.glide:glide:4.14.2"
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
 
     // Adapter delegates
     implementation "com.hannesdorfmann:adapterdelegates4-kotlin-dsl:$adapter_delegates_version"
     implementation "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:$adapter_delegates_version"
 
     // View binding delegate
-    implementation "com.github.kirich1409:viewbindingpropertydelegate:$view_binding_delegate_version"
+    implementation "com.github.kirich1409:viewbindingpropertydelegate:1.5.8"
 
     // Material components
-    implementation "com.google.android.material:material:$material_components_version"
+    implementation "com.google.android.material:material:1.8.0"
 
     // SwipeRefreshLayout
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_refresh_layout_version"
@@ -117,18 +126,16 @@ dependencies {
 
     // Testing
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    // Kotlin extensions
-    implementation "androidx.core:core-ktx:$ktx_core_version"
     implementation "androidx.fragment:fragment-ktx:$ktx_fragment_version"
 
     // Android
     implementation "androidx.appcompat:appcompat:$app_compat_version"
 
     //Gif
-    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
 
     //Pulse
     implementation "pl.bclogic:pulsator4droid:1.0.3"

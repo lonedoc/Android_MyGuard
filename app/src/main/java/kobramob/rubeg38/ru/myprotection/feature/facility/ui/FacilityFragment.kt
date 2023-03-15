@@ -209,20 +209,22 @@ class FacilityFragment : Fragment(R.layout.fragment_facility) {
         val alarmButtonText = viewState.alarmButtonText?.let { getText(it) }
         val armButtonText = viewState.armButtonText?.let { getText(it) }
 
+        if(viewState.isProgressBarShown && binding.determinateBar!!.isShown && !viewState.pendingArmingOrDisarming)
+            hideProgressDialog()
 
-        when{
-            viewState.isProgressBarShown && binding.determinateBar!!.isShown && !viewState.pendingArmingOrDisarming->{
-                hideProgressDialog()
-            }
-            viewState.pendingArmingOrDisarming && facility.armTime!!>=5->{
-                hideProgressDialog()
-                if(!timerDialogShow)
-                    showTimerDialog(facility.armTime)
-            }
-            facility.statusDescription=="Под охраной"->{
-                hideProgressDialog()
-            }
-            facility.isApplicationsEnabled->{(binding.tabLayout.getChildAt(0) as ViewGroup).getChildAt(1).visibility = View.GONE}
+        if(viewState.pendingArmingOrDisarming && facility.armTime!!>=5)
+        {
+            hideProgressDialog()
+            if(!timerDialogShow)
+                showTimerDialog(facility.armTime)
+        }
+
+
+        if(facility.statusDescription=="Под охраной")
+            hideProgressDialog()
+
+        if(!facility.isApplicationsEnabled){
+            (binding.tabLayout.getChildAt(0) as ViewGroup).getChildAt(1).visibility = View.GONE
         }
 
         if(facility.devices.isEmpty())

@@ -35,6 +35,8 @@ android {
 
 dependencies {
     implementation 'androidx.core:core-ktx:+'
+    implementation 'androidx.core:core-ktx:+'
+    implementation 'androidx.core:core-ktx:+'
     def coroutines_version = "1.6.1"
     def junit_version = "4.13.2"
 
